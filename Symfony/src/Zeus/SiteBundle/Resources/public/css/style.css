@@ -16,13 +16,17 @@
     border-width: 0;
 }
 
+.navbar {
+	box-shadow: none;
+}
+
 /* Changement de la couleur de la navigation */
 .navbar-inverse .navbar-nav > li > a {
 	color:#22427c;
 }
 
 /* Changement de couleur pour le hover de la navigation */
-.navbar-inverse .navbar-nav > li > a:hover {
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
 	color:#22427c;
 }
 
@@ -41,10 +45,34 @@
 	margin:90px 0 0 0;
 }
 
+.separation{
+	height:20px;
+	background-color:#22427c;
+	margin:-20px 0 0 0;
+}
+
 /************************
   Jumbotron / Container
 ************************/
 /* Changement de couleur pour le background */
 .jumbotron {
 	background-color:white;
+}
+
+/************************
+  Jumbotron / Container
+************************/
+footer{
+	color:white;
+	background-color:#22427c;
+	width:100%;
+	padding: 10px 10px;
+}
+
+footer p{
+	text-align:center;
+}
+
+footer a{
+	color:white;
 }

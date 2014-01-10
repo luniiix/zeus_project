@@ -26,7 +26,19 @@
 		<input type="submit" name="rechercher" value="Rechercher" />
 	</form>
 </div>
+<div>
+	<ul>
+		<li>
+			<img alt="" src="{{ parution.urlFrontpage }}">
+			<h2>{{ parution.nomParution }}</h2>
+			<h3>Auteur: {{ parution.auteur.prenomAuteur }} {{ parution.auteur.nomAuteur }}</h3>
+			<h3>Catégorie: {{ parution.categorie }} </h3>
+			<p>Résumé: {{ parution.resumeParution }}</p>
+		</li>
+	</ul>
+</div>
 
+<img src=""/>
 {# <div id="carousel-news" class="carousel slide" data-ride="carousel">#}
 {#   <!-- Indicators -->#}
 {#   <ol class="carousel-indicators">#}

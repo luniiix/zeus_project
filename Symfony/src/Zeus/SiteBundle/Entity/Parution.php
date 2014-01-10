@@ -69,6 +69,13 @@ class Parution
      * @ORM\Column(name="url_thumb", type="string", length=50, nullable=true)
      */
     private $urlThumb;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=150, nullable=true)
+     */
+    private $categorie;
 
     /**
      * @var \Auteur
@@ -78,7 +85,7 @@ class Parution
      *   @ORM\JoinColumn(name="id_auteur", referencedColumnName="id_auteur")
      * })
      */
-    private $idAuteur;
+    private $auteur;
 
 
 
@@ -252,6 +259,29 @@ class Parution
     {
         return $this->urlThumb;
     }
+    
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     * @return Parution
+     */
+    public function setCategorie($urlThumb)
+    {
+    	$this->categorie = $categorie;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get categorie
+     *
+     * @return string
+     */
+    public function getCategorie()
+    {
+    	return $this->categorie;
+    }
 
     /**
      * Set idAuteur
@@ -259,9 +289,9 @@ class Parution
      * @param \Zeus\SiteBundle\Entity\Auteur $idAuteur
      * @return Parution
      */
-    public function setIdAuteur(\Zeus\SiteBundle\Entity\Auteur $idAuteur = null)
+    public function setAuteur(\Zeus\SiteBundle\Entity\Auteur $idAuteur = null)
     {
-        $this->idAuteur = $idAuteur;
+        $this->auteur = $auteur;
     
         return $this;
     }
@@ -271,8 +301,8 @@ class Parution
      *
      * @return \Zeus\SiteBundle\Entity\Auteur 
      */
-    public function getIdAuteur()
+    public function getAuteur()
     {
-        return $this->idAuteur;
+        return $this->auteur;
     }
 }
