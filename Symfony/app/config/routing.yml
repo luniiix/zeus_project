@@ -1,0 +1,4 @@
+zeus_site:
+    resource: "@ZeusSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+

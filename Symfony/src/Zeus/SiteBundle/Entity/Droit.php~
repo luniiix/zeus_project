@@ -1,0 +1,44 @@
+<?php
+
+namespace Zeus\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Droit
+ *
+ * @ORM\Table(name="droit")
+ * @ORM\Entity
+ */
+class Droit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_droit", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idDroit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_droit", type="string", length=20, nullable=false)
+     */
+    private $nomDroit;
+
+    /**
+     * @var \Groupe
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Groupe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_groupe", referencedColumnName="id_groupe")
+     * })
+     */
+    private $idGroupe;
+
+
+}

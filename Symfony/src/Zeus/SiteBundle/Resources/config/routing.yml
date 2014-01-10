@@ -1,0 +1,3 @@
+zeus_site_homepage:
+    pattern:  /
+    defaults: { _controller: ZeusSiteBundle:Accueil:index }

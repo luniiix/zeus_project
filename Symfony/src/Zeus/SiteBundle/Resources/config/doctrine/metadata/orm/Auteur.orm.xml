@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Auteur" table="auteur">
+    <id name="idAuteur" type="integer" column="id_auteur">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomAuteur" type="string" column="nom_auteur" length="20" nullable="false"/>
+    <field name="prenomAuteur" type="string" column="prenom_auteur" length="20" nullable="false"/>
+  </entity>
+</doctrine-mapping>

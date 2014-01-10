@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+<div class='block-find'>
+	<h2>Recherche</h2>
+	<form action="#" method="post">
+		<label for="titre">Titre</label>
+		<input type="text" name="titre"></input>
+		<label for="auteur">Auteur</label>
+		<input type="text" name="auteur"></input>
+		<label for="tag">Recherche par mots clés</label>
+		<input type="text" name="tag"></input>
+		<label for="type">Type de parutions</label>
+		<select name="type">
+			<option>Article</option>
+			<option>Revue</option>
+		</select>
+		<label for="category">Catégorie</label>
+		<input type="text" name="category"></input>
+		<label for="date">Date de parution</label>
+		<input type="text" name="date"></input>
+		<label for="aviable">Disponibilité</label>
+		<select name="aviable">
+			<option>Disponible</option>
+			<option>Indisponible</option>
+		</select>
+		<input type="submit" name="rechercher" value="Rechercher" />
+	</form>
+</div>
+
+{# <div id="carousel-news" class="carousel slide" data-ride="carousel">#}
+{#   <!-- Indicators -->#}
+{#   <ol class="carousel-indicators">#}
+{#     <li data-target="#carousel-news" data-slide-to="0" class="active"></li>#}
+{#     <li data-target="#carousel-news" data-slide-to="1"></li>#}
+{#     <li data-target="#carousel-news" data-slide-to="2"></li>#}
+{#   </ol>#}
+
+{#   <!-- Wrapper for slides -->#}
+{#   <div class="carousel-inner">#}
+{#     <div class="item active">#}
+{#       <img src="http://esoterophilie.com/wp-content/uploads/2012/06/livre.gif" width="200" height="310">#}
+{#       <div class="carousel-caption">#}
+{#         ...#}
+{#       </div>#}
+{#     </div>#}
+{#     ...#}
+{#   </div>#}
+
+{#   <!-- Controls -->#}
+{#   <a class="left carousel-control" href="#carousel-news" data-slide="prev">#}
+{#     <span class="glyphicon glyphicon-chevron-left"></span>#}
+{#   </a>#}
+{#   <a class="right carousel-control" href="#carousel-news" data-slide="next">#}
+{#     <span class="glyphicon glyphicon-chevron-right"></span>#}
+{#   </a>#}
+{# </div>#}
+{% endblock %}

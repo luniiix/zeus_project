@@ -1,0 +1,84 @@
+<?php
+
+namespace Zeus\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Parution
+ *
+ * @ORM\Table(name="parution")
+ * @ORM\Entity
+ */
+class Parution
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_parution", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idParution;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_parution", type="string", length=20, nullable=false)
+     */
+    private $nomParution;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type_parution", type="integer", nullable=false)
+     */
+    private $typeParution;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resume_parution", type="text", nullable=false)
+     */
+    private $resumeParution;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_parution", type="date", nullable=false)
+     */
+    private $dateParution;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_frontpage", type="string", length=50, nullable=true)
+     */
+    private $urlFrontpage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_backpage", type="string", length=50, nullable=true)
+     */
+    private $urlBackpage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_thumb", type="string", length=50, nullable=true)
+     */
+    private $urlThumb;
+
+    /**
+     * @var \Auteur
+     *
+     * @ORM\ManyToOne(targetEntity="Auteur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_auteur", referencedColumnName="id_auteur")
+     * })
+     */
+    private $idAuteur;
+
+
+}

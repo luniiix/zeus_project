@@ -1,0 +1,46 @@
+<?php
+
+namespace Zeus\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Tag
+ *
+ * @ORM\Table(name="tag")
+ * @ORM\Entity
+ */
+class Tag
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_tag", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idTag;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle_tag", type="string", length=20, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $libelleTag;
+
+    /**
+     * @var \Parution
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Parution")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_parution", referencedColumnName="id_parution")
+     * })
+     */
+    private $idParution;
+
+
+}

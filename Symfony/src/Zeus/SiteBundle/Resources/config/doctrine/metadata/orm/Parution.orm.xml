@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Parution" table="parution">
+    <id name="idParution" type="integer" column="id_parution">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomParution" type="string" column="nom_parution" length="20" nullable="false"/>
+    <field name="typeParution" type="integer" column="type_parution" nullable="false"/>
+    <field name="resumeParution" type="text" column="resume_parution" nullable="false"/>
+    <field name="dateParution" type="date" column="date_parution" nullable="false"/>
+    <field name="urlFrontpage" type="string" column="url_frontpage" length="50" nullable="true"/>
+    <field name="urlBackpage" type="string" column="url_backpage" length="50" nullable="true"/>
+    <field name="urlThumb" type="string" column="url_thumb" length="50" nullable="true"/>
+    <many-to-one field="idAuteur" target-entity="Auteur">
+      <join-columns>
+        <join-column name="id_auteur" referenced-column-name="id_auteur"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

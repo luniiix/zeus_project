@@ -1,0 +1,77 @@
+<?php
+
+namespace Zeus\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Employe
+ *
+ * @ORM\Table(name="employe")
+ * @ORM\Entity
+ */
+class Employe
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_employe", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEmploye;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_employe", type="string", length=20, nullable=false)
+     */
+    private $nomEmploye;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom_employe", type="string", length=20, nullable=false)
+     */
+    private $prenomEmploye;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail_employe", type="string", length=20, nullable=false)
+     */
+    private $mailEmploye;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone_employe", type="integer", nullable=false)
+     */
+    private $telephoneEmploye;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="psswd", type="string", length=32, nullable=false)
+     */
+    private $psswd;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bureau_employe", type="integer", nullable=false)
+     */
+    private $bureauEmploye;
+
+    /**
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_service", referencedColumnName="id_service")
+     * })
+     */
+    private $idService;
+
+
+}
