@@ -12,252 +12,124 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Parution
 {
-    /**
+     /**
      * @var integer
      *
-     * @ORM\Column(name="id_parution", type="integer", nullable=false)
+     * @ORM\Column(name="id_parution", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idParution;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_parution", type="string", length=20, nullable=false)
-     */
-    private $nomParution;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="type_parution", type="integer", nullable=false)
-     */
-    private $typeParution;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="resume_parution", type="text", nullable=false)
-     */
-    private $resumeParution;
-
+    private $id;
+    
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_parution", type="date", nullable=false)
+     * @ORM\Column(name="date_ajout_parution", type="datetime", nullable=false)
      */
-    private $dateParution;
+    private $dateAjout;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_frontpage", type="string", length=50, nullable=true)
+     * @ORM\Column(name="titre_parution", type="string", length=100, nullable=false)
      */
-    private $urlFrontpage;
+    private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_backpage", type="string", length=50, nullable=true)
+     * @ORM\Column(name="resume_parution", type="text", nullable=true)
      */
-    private $urlBackpage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url_thumb", type="string", length=50, nullable=true)
-     */
-    private $urlThumb;
+    private $resume;
     
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categorie", type="string", length=150, nullable=true)
-     */
+  	  * @ORM\ManyToOne(targetEntity="Zeus\SiteBundle\Entity\CategorieParution", cascade={"persist"})
+      */
     private $categorie;
-
+	
     /**
-     * @var \Auteur
-     *
-     * @ORM\ManyToOne(targetEntity="Auteur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_auteur", referencedColumnName="id_auteur")
-     * })
+     * @ORM\ManyToMany(targetEntity="Zeus\SiteBundle\Entity\Auteur", cascade={"persist"})
+   	 *
      */
-    private $auteur;
-
-
+    private $auteurs;
 
     /**
-     * Get idParution
+     * Get id
      *
      * @return integer 
      */
-    public function getIdParution()
+    public function getId()
     {
-        return $this->idParution;
+        return $this->id;
     }
 
     /**
-     * Set nomParution
+     * Set nom
      *
      * @param string $nomParution
      * @return Parution
      */
-    public function setNomParution($nomParution)
+    public function setNom($nom)
     {
-        $this->nomParution = $nomParution;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get nomParution
+     * Get nom
      *
      * @return string 
      */
-    public function getNomParution()
+    public function getNom()
     {
-        return $this->nomParution;
+        return $this->nom;
     }
 
     /**
-     * Set typeParution
+     * Set resume
      *
-     * @param integer $typeParution
+     * @param string $resume
      * @return Parution
      */
-    public function setTypeParution($typeParution)
+    public function setResume($resume)
     {
-        $this->typeParution = $typeParution;
+        $this->resume = $resume;
     
         return $this;
     }
 
     /**
-     * Get typeParution
-     *
-     * @return integer 
-     */
-    public function getTypeParution()
-    {
-        return $this->typeParution;
-    }
-
-    /**
-     * Set resumeParution
-     *
-     * @param string $resumeParution
-     * @return Parution
-     */
-    public function setResumeParution($resumeParution)
-    {
-        $this->resumeParution = $resumeParution;
-    
-        return $this;
-    }
-
-    /**
-     * Get resumeParution
+     * Get resume
      *
      * @return string 
      */
-    public function getResumeParution()
+    public function getResume()
     {
-        return $this->resumeParution;
+        return $this->resume;
     }
 
     /**
-     * Set dateParution
+     * Set dateAjout
      *
-     * @param \DateTime $dateParution
+     * @param \DateTime $dateAjout
      * @return Parution
      */
-    public function setDateParution($dateParution)
+    public function setDateAjout($dateAjout)
     {
-        $this->dateParution = $dateParution;
+        $this->dateAjout = $dateAjout;
     
         return $this;
     }
 
     /**
-     * Get dateParution
+     * Get dateAjout
      *
      * @return \DateTime 
      */
-    public function getDateParution()
+    public function getDateAjout()
     {
-        return $this->dateParution;
-    }
-
-    /**
-     * Set urlFrontpage
-     *
-     * @param string $urlFrontpage
-     * @return Parution
-     */
-    public function setUrlFrontpage($urlFrontpage)
-    {
-        $this->urlFrontpage = $urlFrontpage;
-    
-        return $this;
-    }
-
-    /**
-     * Get urlFrontpage
-     *
-     * @return string 
-     */
-    public function getUrlFrontpage()
-    {
-        return $this->urlFrontpage;
-    }
-
-    /**
-     * Set urlBackpage
-     *
-     * @param string $urlBackpage
-     * @return Parution
-     */
-    public function setUrlBackpage($urlBackpage)
-    {
-        $this->urlBackpage = $urlBackpage;
-    
-        return $this;
-    }
-
-    /**
-     * Get urlBackpage
-     *
-     * @return string 
-     */
-    public function getUrlBackpage()
-    {
-        return $this->urlBackpage;
-    }
-
-    /**
-     * Set urlThumb
-     *
-     * @param string $urlThumb
-     * @return Parution
-     */
-    public function setUrlThumb($urlThumb)
-    {
-        $this->urlThumb = $urlThumb;
-    
-        return $this;
-    }
-
-    /**
-     * Get urlThumb
-     *
-     * @return string 
-     */
-    public function getUrlThumb()
-    {
-        return $this->urlThumb;
+        return $this->dateAjout;
     }
     
     /**
@@ -266,7 +138,7 @@ class Parution
      * @param string $categorie
      * @return Parution
      */
-    public function setCategorie($urlThumb)
+    public function setCategorie($categorie)
     {
     	$this->categorie = $categorie;
     
@@ -284,25 +156,32 @@ class Parution
     }
 
     /**
-     * Set idAuteur
-     *
-     * @param \Zeus\SiteBundle\Entity\Auteur $idAuteur
-     * @return Parution
-     */
-    public function setAuteur(\Zeus\SiteBundle\Entity\Auteur $idAuteur = null)
-    {
-        $this->auteur = $auteur;
-    
-        return $this;
-    }
+   	* Add auteur
+	*
+    * @param Zeus\SiteBundle\Entity\Auteur $auteur
+    */
+	public function addAuteur(Auteur $auteur) 
+  	{
+   	 	$this->auteurs[] = $auteur;
+  	}
 
-    /**
-     * Get idAuteur
-     *
-     * @return \Zeus\SiteBundle\Entity\Auteur 
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
+  	/**
+   	 * Remove auteur
+   	 *
+   	 * @param Zeus\SiteBundle\Entity\Auteur $auteur
+  	 */
+ 	public function removeAuteur(Auteur $auteur) 
+ 	{
+   	 	$this->auteurs->removeElement($auteur);
+  	}
+
+  	/**
+   	 * Get auteurs
+   	 *
+   	 * @param Zeus\SiteBundle\Entity\Auteur $auteur
+   	 */
+	public function getAuteurs()
+	{
+  		return $this->auteurs;
+  	}
 }
