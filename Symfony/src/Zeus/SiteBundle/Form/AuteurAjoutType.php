@@ -18,7 +18,7 @@ class AuteurAjoutType extends AuteurType
         	->add('ajouter', 'submit')
         ;
     }
-    
+     
     /**
      * @return string
      */
