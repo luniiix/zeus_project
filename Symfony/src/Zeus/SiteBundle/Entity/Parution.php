@@ -52,6 +52,11 @@ class Parution
    	 *
      */
     private $auteurs;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Zeus\SiteBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
 
     /**
      * Get id
@@ -183,5 +188,28 @@ class Parution
 	public function getAuteurs()
 	{
   		return $this->auteurs;
+  	}
+  	
+  	/**
+  	 * Set image
+  	 *
+  	 * @param Image $image
+  	 * @return Parution
+  	 */
+  	public function setImage(Image $image)
+  	{
+  		$this->image = $image;
+  	
+  		return $this;
+  	}
+  	
+  	/**
+  	 * Get image
+  	 *
+  	 * @return Image
+  	 */
+  	public function getImage()
+  	{
+  		return $this->image;
   	}
 }
