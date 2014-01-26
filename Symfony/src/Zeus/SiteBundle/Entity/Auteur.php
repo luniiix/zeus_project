@@ -19,21 +19,21 @@ class Auteur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idAuteur;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom_auteur", type="string", length=20, nullable=false)
      */
-    private $nomAuteur;
+    private $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom_auteur", type="string", length=20, nullable=false)
      */
-    private $prenomAuteur;
+    private $prenom;
 
 
 
@@ -42,54 +42,54 @@ class Auteur
      *
      * @return integer 
      */
-    public function getIdAuteur()
+    public function getId()
     {
-        return $this->idAuteur;
+        return $this->id;
     }
 
     /**
      * Set nomAuteur
      *
-     * @param string $nomAuteur
+     * @param string $nom
      * @return Auteur
      */
-    public function setNomAuteur($nomAuteur)
+    public function setNomAuteur($nom)
     {
-        $this->nomAuteur = $nomAuteur;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get nomAuteur
+     * Get nom
      *
      * @return string 
      */
-    public function getNomAuteur()
+    public function getNom()
     {
-        return $this->nomAuteur;
+        return $this->nom;
     }
 
     /**
-     * Set prenomAuteur
+     * Set prenom
      *
-     * @param string $prenomAuteur
+     * @param string $prenom
      * @return Auteur
      */
-    public function setPrenomAuteur($prenomAuteur)
+    public function setPrenom($prenom)
     {
-        $this->prenomAuteur = $prenomAuteur;
+        $this->prenom = $prenom;
     
         return $this;
     }
 
     /**
-     * Get prenomAuteur
+     * Get prenom
      *
      * @return string 
      */
-    public function getPrenomAuteur()
+    public function getPrenom()
     {
-        return $this->prenomAuteur;
+        return $this->prenom;
     }
 }
