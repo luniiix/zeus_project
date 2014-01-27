@@ -29,14 +29,14 @@ class ParutionType extends AbstractType
           			}
      		 ))
             ->add('image', new ImageType(), array('required' => false))
-            ->add('type', 'entity', array(
-     		 		'class'		=> 'ZeusSiteBundle:TypeParution',
+            ->add('categorie', 'entity', array(
+     		 		'class'		=> 'ZeusSiteBundle:CategorieParution',
             		'property' => 'libelle',		// si pas property ou plusieur alors créer fonction __toString() dans TypeParution
             		'multiple' 	=> false,
             		'expanded'	=> false,
             		'query_builder' => function(EntityRepository $er) {
-          				return $er->createQueryBuilder('type_parution')
-          						  ->orderBy('type_parution.libelle', 'ASC');
+          				return $er->createQueryBuilder('categorie_parution')
+          						  ->orderBy('categorie_parution.libelle', 'ASC');
           			}
      		 ))
         ;

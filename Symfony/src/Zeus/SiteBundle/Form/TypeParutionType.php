@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategorieParutionType extends AbstractType
+class TypeParutionType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -25,7 +25,7 @@ class CategorieParutionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Zeus\SiteBundle\Entity\CategorieParution'
+            'data_class' => 'Zeus\SiteBundle\Entity\TypeParution'
         ));
     }
 
@@ -34,6 +34,6 @@ class CategorieParutionType extends AbstractType
      */
     public function getName()
     {
-        return 'zeus_sitebundle_categorieparution';
+        return 'zeus_sitebundle_typeparution';
     }
 }

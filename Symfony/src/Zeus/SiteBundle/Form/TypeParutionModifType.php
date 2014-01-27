@@ -5,7 +5,7 @@ namespace Zeus\SiteBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CategorieParutionModifType extends CategorieParutionType
+class TypeParutionModifType extends TypeParutionType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -25,6 +25,6 @@ class CategorieParutionModifType extends CategorieParutionType
      */
     public function getName()
     {
-        return 'zeus_sitebundle_categorieparutionmodif';
+        return 'zeus_sitebundle_typeparutionmodif';
     }
 }

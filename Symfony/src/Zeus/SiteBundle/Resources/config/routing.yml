@@ -1,3 +1,35 @@
+_imagine:
+    resource: .
+    type:     imagine
+
 zeus_site_homepage:
     pattern:  /
     defaults: { _controller: ZeusSiteBundle:Accueil:index }
+
+zeus_site_auteur_tableau:
+    pattern: /auteur
+    defaults: { _controller: ZeusSiteBundle:Auteur:index }
+    
+zeus_site_auteur_ajout:
+    pattern: /auteur/ajouter
+    defaults: { _controller: ZeusSiteBundle:Auteur:ajouter }
+
+zeus_site_auteur_modif:
+    pattern: /auteur/modifier/{idAuteur}
+    defaults: { _controller: ZeusSiteBundle:Auteur:modifier }
+
+zeus_site_parution_ajout:
+    pattern: /parution/ajouter
+    defaults: { _controller: ZeusSiteBundle:Parution:ajouter }
+    
+zeus_site_parution_modif:
+    pattern: /parution/modifier/{idParution}
+    defaults: { _controller: ZeusSiteBundle:Parution:modifier }
+    
+zeus_site_typeparution_ajout:
+    pattern: /typeParution/ajouter
+    defaults: { _controller: ZeusSiteBundle:TypeParution:ajouter }
+    
+zeus_site_typeparution_modif:
+    pattern: /typeParution/modifier/{idTypeParution}
+    defaults: { _controller: ZeusSiteBundle:TypeParution:modifier }

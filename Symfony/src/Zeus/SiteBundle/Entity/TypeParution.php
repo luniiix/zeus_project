@@ -5,12 +5,12 @@ namespace Zeus\SiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CategorieParution
+ * TypeParution
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\CategorieParutionRepository")
+ * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\TypeParutionRepository")
  */
-class CategorieParution
+class TypeParution
 {
     /**
      * @var integer
@@ -43,7 +43,7 @@ class CategorieParution
      * Set libelle
      *
      * @param string $libelle
-     * @return CategorieParution
+     * @return TypeParution
      */
     public function setLibelle($libelle)
     {
