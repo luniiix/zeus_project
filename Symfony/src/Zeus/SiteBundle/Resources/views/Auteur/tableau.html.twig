@@ -1,0 +1,29 @@
+{# src/Zeus/SiteBundle/Resources/views/Auteur/tableau.html.twig #}
+
+
+ <form method="POST" {{ form_enctype(form) }}> 
+	<table>
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for auteur in form.auteurs %}  
+				<tr>
+					 <td>&nbsp;</td>
+					 <td>{{ form_row(auteur.nom) }}</td> 
+					 <td>{{ form_row(auteur.prenom) }}</td> 
+				</tr>
+			 {% endfor %}  
+		</tbody>
+		<tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>
+	</table>
+	
+ </form> 
