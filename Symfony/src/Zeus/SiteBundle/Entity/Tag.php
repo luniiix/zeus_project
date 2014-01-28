@@ -37,7 +37,7 @@ class Tag
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Parution")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_parution", referencedColumnName="id_parution")
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
      * })
      */
     private $idParution;
