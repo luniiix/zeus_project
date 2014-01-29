@@ -53,7 +53,7 @@ class Auteur
      * @param string $nom
      * @return Auteur
      */
-    public function setNomAuteur($nom)
+    public function setNom($nom)
     {
         $this->nom = $nom;
     
@@ -91,5 +91,10 @@ class Auteur
     public function getPrenom()
     {
         return $this->prenom;
+    }
+    
+    public function __toString()
+    {
+    	return $this->nom." ".$this->prenom;
     }
 }

@@ -142,7 +142,7 @@ class Image
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function upload($idArticle)
+    public function upload()
     {
     	// Si jamais il n'y a pas de fichier (champ facultatif)
 	    if (null === $this->file) {

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TypeParution
  *
- * @ORM\Table()
+ * @ORM\Table(name="type_parution")
  * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\TypeParutionRepository")
  */
 class TypeParution

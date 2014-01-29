@@ -17,7 +17,7 @@ class ParutionRepository extends EntityRepository
 		
    	 // Méthode équivalente, mais plus longue :
     $queryBuilder = $this->_em->createQueryBuilder()
-                              ->select('parution_id')
+                              ->select('p.id')
                               ->from($this->_entityName, 'p');
       // Dans un repository, $this->_entityName est le namespace de l'entité gérée
       // Ici, il vaut donc Sdz\BlogBundle\Entity\Article

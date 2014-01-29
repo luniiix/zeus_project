@@ -19,7 +19,7 @@ class ParutionType extends AbstractType
             ->add('titre', 'text')
             ->add('resume', 'textarea', array('required' => false))
             ->add('isActif', 'checkbox', array('required' => false))
-          	->add('auteurs', 'entity', array(
+          	->add('auteurs', 'entity', array(       // ici pas property donc function __toString dans Entity Auteur
         			'class'    => 'ZeusSiteBundle:Auteur',
         			'multiple' => true,
         			'expanded' => false,
@@ -29,14 +29,14 @@ class ParutionType extends AbstractType
           			}
      		 ))
             ->add('image', new ImageType(), array('required' => false))
-            ->add('categorie', 'entity', array(
-     		 		'class'		=> 'ZeusSiteBundle:CategorieParution',
+            ->add('type', 'entity', array(
+     		 		'class'		=> 'ZeusSiteBundle:TypeParution',
             		'property' => 'libelle',		// si pas property ou plusieur alors créer fonction __toString() dans TypeParution
             		'multiple' 	=> false,
             		'expanded'	=> false,
             		'query_builder' => function(EntityRepository $er) {
-          				return $er->createQueryBuilder('categorie_parution')
-          						  ->orderBy('categorie_parution.libelle', 'ASC');
+          				return $er->createQueryBuilder('type_parution')
+          						  ->orderBy('type_parution.libelle', 'ASC');
           			}
      		 ))
         ;
