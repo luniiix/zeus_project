@@ -1,23 +1,45 @@
 <?php
 
-namespace src\Zeus\SiteBundle\Entity;
+namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zeus\SiteBundle\Entity\Image;
 
 /**
  * ImageParution
- * 
+ *
  * @ORM\Table(name="image_parution")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\ImageParutionRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class ImageParution extends Image{
+class ImageParution extends Image
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-	public function getUploadDir()
-	{
-		// On retourne le chemin relatif vers l'image pour un navigateur
-		return 'uploads/img_parution';
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
+	
+	/* 
+	 * @see \Zeus\SiteBundle\Entity\Image::getUploadDir()
+	 */
+	public function getUploadDir() 
+	{
+		return 'uploads/img_parution';
+	}
 
 }
-
