@@ -3,14 +3,14 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Entity\User;
 /**
  * Employe
  *
  * @ORM\Table(name="employe")
  * @ORM\Entity
  */
-class Employe
+class User
 {
     /**
      * @var integer
@@ -19,35 +19,35 @@ class Employe
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idEmploye;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom_employe", type="string", length=20, nullable=false)
      */
-    private $nomEmploye;
+    private $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom_employe", type="string", length=20, nullable=false)
      */
-    private $prenomEmploye;
+    private $prenom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mail_employe", type="string", length=20, nullable=false)
      */
-    private $mailEmploye;
+    private $mail;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="telephone_employe", type="integer", nullable=false)
      */
-    private $telephoneEmploye;
+    private $telephone;
 
     /**
      * @var string
@@ -61,7 +61,7 @@ class Employe
      *
      * @ORM\Column(name="bureau_employe", type="integer", nullable=false)
      */
-    private $bureauEmploye;
+    private $bureau;
 
     /**
      * @var \Service
@@ -80,9 +80,9 @@ class Employe
      *
      * @return integer 
      */
-    public function getIdEmploye()
+    public function getId()
     {
-        return $this->idEmploye;
+        return $this->id;
     }
 
     /**
@@ -91,9 +91,9 @@ class Employe
      * @param string $nomEmploye
      * @return Employe
      */
-    public function setNomEmploye($nomEmploye)
+    public function setNom($nom)
     {
-        $this->nomEmploye = $nomEmploye;
+        $this->nom = $nom;
     
         return $this;
     }
@@ -103,9 +103,9 @@ class Employe
      *
      * @return string 
      */
-    public function getNomEmploye()
+    public function getNom()
     {
-        return $this->nomEmploye;
+        return $this->nom;
     }
 
     /**
@@ -114,9 +114,9 @@ class Employe
      * @param string $prenomEmploye
      * @return Employe
      */
-    public function setPrenomEmploye($prenomEmploye)
+    public function setPrenom($prenom)
     {
-        $this->prenomEmploye = $prenomEmploye;
+        $this->prenom = $prenom;
     
         return $this;
     }
@@ -126,9 +126,9 @@ class Employe
      *
      * @return string 
      */
-    public function getPrenomEmploye()
+    public function getPrenom()
     {
-        return $this->prenomEmploye;
+        return $this->prenom;
     }
 
     /**
@@ -137,9 +137,9 @@ class Employe
      * @param string $mailEmploye
      * @return Employe
      */
-    public function setMailEmploye($mailEmploye)
+    public function setMail($mail)
     {
-        $this->mailEmploye = $mailEmploye;
+        $this->mail = $mail;
     
         return $this;
     }
@@ -149,9 +149,9 @@ class Employe
      *
      * @return string 
      */
-    public function getMailEmploye()
+    public function getMail()
     {
-        return $this->mailEmploye;
+        return $this->mail;
     }
 
     /**
@@ -160,9 +160,9 @@ class Employe
      * @param integer $telephoneEmploye
      * @return Employe
      */
-    public function setTelephoneEmploye($telephoneEmploye)
+    public function setTelephone($telephone)
     {
-        $this->telephoneEmploye = $telephoneEmploye;
+        $this->telephone = $telephone;
     
         return $this;
     }
@@ -172,9 +172,9 @@ class Employe
      *
      * @return integer 
      */
-    public function getTelephoneEmploye()
+    public function getTelephone()
     {
-        return $this->telephoneEmploye;
+        return $this->telephone;
     }
 
     /**
@@ -206,9 +206,9 @@ class Employe
      * @param integer $bureauEmploye
      * @return Employe
      */
-    public function setBureauEmploye($bureauEmploye)
+    public function setBureau($bureau)
     {
-        $this->bureauEmploye = $bureauEmploye;
+        $this->bureau = $bureau;
     
         return $this;
     }
@@ -218,7 +218,7 @@ class Employe
      *
      * @return integer 
      */
-    public function getBureauEmploye()
+    public function getBureau()
     {
         return $this->bureauEmploye;
     }

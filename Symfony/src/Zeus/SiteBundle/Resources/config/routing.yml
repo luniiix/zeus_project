@@ -33,3 +33,7 @@ zeus_site_typeparution_ajout:
 zeus_site_typeparution_modif:
     pattern: /typeParution/modifier/{idTypeParution}
     defaults: { _controller: ZeusSiteBundle:TypeParution:modifier }
+    
+zeus_site_informationuser_edit:
+    pattern: /informationuser/edit
+    defaults: { _controller: ZeusSiteBundle:User:edit }
