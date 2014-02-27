@@ -8,57 +8,51 @@ use Doctrine\ORM\Mapping as ORM;
  * TypeParution
  *
  * @ORM\Table(name="type_parution")
- * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\TypeParutionRepository")
+ * @ORM\Entity
  */
 class TypeParution
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=50)
+     * @ORM\Column(name="libelle", type="string", length=50, nullable=false)
      */
     private $libelle;
+	/**
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
+	/**
+	 * @return the $libelle
+	 */
+	public function getLibelle() {
+		return $this->libelle;
+	}
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * @param number $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
 
-    /**
-     * Set libelle
-     *
-     * @param string $libelle
-     * @return TypeParution
-     */
-    public function setLibelle($libelle)
-    {
-        $this->libelle = $libelle;
-    
-        return $this;
-    }
+	/**
+	 * @param string $libelle
+	 */
+	public function setLibelle($libelle) {
+		$this->libelle = $libelle;
+	}
 
-    /**
-     * Get libelle
-     *
-     * @return string 
-     */
-    public function getLibelle()
-    {
-        return $this->libelle;
-    }
 }

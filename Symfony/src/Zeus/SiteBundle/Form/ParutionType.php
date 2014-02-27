@@ -18,17 +18,24 @@ class ParutionType extends AbstractType
         $builder
             ->add('titre', 'text')
             ->add('resume', 'textarea', array('required' => false))
-            ->add('isActif', 'checkbox', array('required' => false))
-          	->add('auteurs', 'entity', array(       // ici pas property donc function __toString dans Entity Auteur
-        			'class'    => 'ZeusSiteBundle:Auteur',
-        			'multiple' => true,
-        			'expanded' => false,
-          			'query_builder' => function(EntityRepository $er) {
-          				return $er->createQueryBuilder('auteur')
-          						  ->orderBy('auteur.nom, auteur.prenom', 'ASC');
-          			}
-     		 ))
-            ->add('image', new ImageType(), array('required' => false))
+          	->add('auteurs', 'genemu_jqueryselect2_entity', array(
+            		'class' => 'ZeusSiteBundle:Auteur',
+					'multiple' 	=> true,
+            		'expanded'	=> false,
+        	))
+			->add('traducteur', 'genemu_jqueryselect2_entity', array(
+            		'class' => 'ZeusSiteBundle:Traducteur',
+					'property' => 'nom',
+					'multiple' 	=> false,
+            		'expanded'	=> false,
+        	))
+			->add('sousCategorie', 'genemu_jqueryselect2_entity', array(
+            		'class' => 'ZeusSiteBundle:SousCategorie',
+					'property' => 'codeClassification',
+					'multiple' 	=> false,
+            		'expanded'	=> false,
+        	))
+            ->add('imageParution', new ImageParutionType(), array('required' => false))
             ->add('type', 'entity', array(
      		 		'class'		=> 'ZeusSiteBundle:TypeParution',
             		'property' => 'libelle',		// si pas property ou plusieur alors créer fonction __toString() dans TypeParution

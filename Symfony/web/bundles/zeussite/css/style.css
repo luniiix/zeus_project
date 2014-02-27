@@ -4,6 +4,39 @@
 */
 
 /*********************
+ 	Général
+*********************/
+h1{
+	font-size:16px !important;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+
+h2{
+	font-size:14px !important;
+}
+
+h3{
+	font-size:12px !important;
+}
+
+p{
+	font-size:12px !important;
+}
+
+.divContainer{
+	background-color: #e5e5e5;
+}
+
+label{
+	font-size:12px;
+}
+
+li, a{
+	text-decoration:none;
+}
+
+/*********************
  	Header
 *********************/
 /* Changement de la couleur de fond */

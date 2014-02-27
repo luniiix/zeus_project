@@ -76,4 +76,18 @@ services:
 fos_user:
     db_driver:     orm
     firewall_name: main
-    user_class:    Zeus\UserBundle\Entity\User
+    user_class:    Zeus\UserBundle\Entity\Utilisateur
+    
+liip_imagine:
+    filter_sets:
+        image_parution_thumbnail:
+            quality: 80
+            filters:
+                thumbnail: { size: [300, 300], mode: inset }
+                
+genemu_form:
+    select2:
+        enabled: true
+        configs:
+            width: '200px'
+            maximumSelectionSize: 3

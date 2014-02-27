@@ -1,4 +1,6 @@
 {% extends "::base.html.twig" %}
+
+
 {% block content %}
 <div class='block-find'>
 	<h2>Recherche</h2>
@@ -29,14 +31,14 @@
 <div>
 	<ul>
 		<li>
-			<img alt="{{ asset(parution.image.webPath) }}" src="{{ asset(parution.image.webPath) }}"><br />
-			<h2>{{ parution.titre }}</h2>
+			<img alt="{{ asset(parution.imageParution.url) }}" src="{{ asset(parution.imageParution.webPath) | imagine_filter('image_parution_thumbnail') }}" class="img_resume"><br />
+			<h2>{# {{ parution.titre }} #}</h2>
 			<h3>Auteur:</h3>
 			{% for auteur in parution.auteurs %}
 				<h3>{{ auteur.prenom }} {{ auteur.nom }}</h3>
 			{% endfor %}
 			<h3>Catégorie: {{ parution.type.libelle }} </h3>
-			<p>Résumé: {{ parution.resume }}</p>
+			<p class="resume">Résumé: {{ parution.resume | nl2br}}</p>
 		</li>
 	</ul>
 </div>

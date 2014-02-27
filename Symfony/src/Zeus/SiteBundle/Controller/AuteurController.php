@@ -16,6 +16,12 @@ class AuteurController extends Controller
 	{
 		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Auteur');
 		$liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
+		
+		return $this->render('ZeusSiteBundle:Auteur:page_gestion.html.twig', array(
+			'auteurs' => $liste_auteurs,
+		));
+		/*$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Auteur');
+		$liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
 		$auteurs = new AuteursCollection(); 
 		$auteurs->setAuteurs($liste_auteurs);
 		$form = $this->createForm(new AuteursCollectionType(), $auteurs);
@@ -36,9 +42,9 @@ class AuteurController extends Controller
 			}
 		}
 		
-		return $this->render('ZeusSiteBundle:Auteur:tableau.html.twig', array(
+		return $this->render('ZeusSiteBundle:Auteur:page_gestion.html.twig', array(
 			'form' => $form->createView(),
-		));
+		));*/
 	}
 	
 	public function ajouterAction(Request $request)
@@ -59,7 +65,7 @@ class AuteurController extends Controller
 			}
 		}
 		
-		return $this->render('ZeusSiteBundle:Auteur:ajouter.html.twig', array(
+		return $this->render('ZeusSiteBundle:Auteur:page_ajout.html.twig', array(
 			'form' => $form->createView(),
 		));
 	}
@@ -83,7 +89,7 @@ class AuteurController extends Controller
 			}	
 		}
 		
-		return $this->render('ZeusSiteBundle:Auteur:modifier.html.twig', array(
+		return $this->render('ZeusSiteBundle:Auteur:page_modif.html.twig', array(
 			'form' => $form->createView(),	
 		));
 	}

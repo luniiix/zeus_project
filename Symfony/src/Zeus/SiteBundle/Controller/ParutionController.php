@@ -12,31 +12,12 @@ class ParutionController extends Controller
 {
 	public function indexAction(Request $request)
 	{
-		/*$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Auteur');
-		$liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
-		$auteurs = new AuteursCollection();
-		$auteurs->setAuteurs($liste_auteurs);
-		$form = $this->createForm(new AuteursCollectionType(), $auteurs);
-		$validator = $this->get('validator');
+		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
+		$liste_parution = $repository->findBy(array(), array('dateAjout' => 'desc'));
 		
-		if($request->isMethod('POST')){
-			
-			$form->handleRequest($request);
-			$liste_erreurs = $validator->validate($auteurs);
-			
-			if(count($liste_erreurs) === 0){
-				
-				foreach ($auteurs->getAuteurs() as $auteur){
-					$entity_manager = $this->getDoctrine()->getManager();
-					$entity_manager->persist($auteur);
-				}
-				$entity_manager->flush();
-			}
-		}
-		
-		return $this->render('ZeusSiteBundle:Auteur:tableau.html.twig', array(
-			'form' => $form->createView(),
-		));*/
+		return $this->render('ZeusSiteBundle:Parution:page_gestion.html.twig', array(
+			'parutions' => $liste_parution,
+		));
 	}
 	
 	public function ajouterAction(Request $request)
@@ -57,7 +38,7 @@ class ParutionController extends Controller
 			}
 		}
 		
-		return $this->render('ZeusSiteBundle:Parution:ajouter.html.twig', array(
+		return $this->render('ZeusSiteBundle:Parution:page_ajout.html.twig', array(
 				'form' => $form->createView(),
 		));
 	}
@@ -66,6 +47,7 @@ class ParutionController extends Controller
 	{
 		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
 		$parution = $repository->find($idParution);
+		
 		$form = $this->createForm(new ParutionModifType(), $parution);
 		$validator = $this->get('validator');
 		
@@ -81,9 +63,9 @@ class ParutionController extends Controller
 			}	
 		}
 		
-		return $this->render('ZeusSiteBundle:Parution:modifier.html.twig', array(
+		return $this->render('ZeusSiteBundle:Parution:page_modif.html.twig', array(
 			'form' => $form->createView(), 
-			'image' => $parution->getImage() 	
+			'image' => $parution->getImageParution() 	
 		));
 	}
 	

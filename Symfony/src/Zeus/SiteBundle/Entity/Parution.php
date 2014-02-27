@@ -3,44 +3,39 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use \DateTime;
+use Zeus\SiteBundle\Entity\Auteur;
+use Zeus\SiteBundle\Entity\SousCategorie;
 
 /**
  * Parution
  *
  * @ORM\Table(name="parution")
- * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\ParutionRepository")
+ * @ORM\Entity
  */
 class Parution
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_ajout", type="datetime")
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
      */
     private $dateAjout;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
-
-     /**
-   	  * @ORM\ManyToMany(targetEntity="Zeus\SiteBundle\Entity\Auteur", cascade={"persist"})
-      */
-    private $auteurs;
 
     /**
      * @var string
@@ -49,41 +44,88 @@ class Parution
      */
     private $resume;
 
-     /**
-  	  * @ORM\OneToOne(targetEntity="Zeus\SiteBundle\Entity\Image", cascade={"persist"})
-      */
-    private $image;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Auteur", inversedBy="parutions")
+     * @ORM\JoinTable(name="parution_auteur",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="ref_parution", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="ref_auteur", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $auteurs;
 
-     /**
-  	  * @ORM\ManyToOne(targetEntity="Zeus\SiteBundle\Entity\TypeParution", cascade={"persist"})
-      */
+    /**
+     * @var \SousCategorie
+     *
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ref_sous_categorie", referencedColumnName="id")
+     * })
+     */
+    private $sousCategorie;
+    
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Traducteur", inversedBy="parutions")
+     * @ORM\JoinTable(name="parution_traducteur",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="ref_parution", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="ref_traducteur", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $traducteur;
+
+    /**
+     * @var \TypeParution
+     *
+     * @ORM\ManyToOne(targetEntity="TypeParution")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ref_type_parution", referencedColumnName="id")
+     * })
+     */
     private $type;
 
-    /** 
-     * @var boolean
-     * 
-     * @ORM\Column(name="is_actif", type="boolean")
+    /**
+     * @var \ImageParution
+     *
+     * @ORM\ManyToOne(targetEntity="ImageParution", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ref_image_parution", referencedColumnName="id")
+     * })
      */
-    private $isActif;
+    private $imageParution;
 
-    
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-    	$this->dateAjout = new DateTime();
-    	$this->isActif = true;
-    	$this->auteurs = new ArrayCollection();
+        $this->auteurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->traducteurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateAjout = new \DateTime;
     }
     
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
-        return $this->id;
+    	return $this->id;
     }
-
+    
     /**
      * Set dateAjout
      *
@@ -92,21 +134,21 @@ class Parution
      */
     public function setDateAjout($dateAjout)
     {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
+    	$this->dateAjout = $dateAjout;
+    
+    	return $this;
     }
-
+    
     /**
      * Get dateAjout
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateAjout()
     {
-        return $this->dateAjout;
+    	return $this->dateAjout;
     }
-
+    
     /**
      * Set titre
      *
@@ -115,51 +157,80 @@ class Parution
      */
     public function setTitre($titre)
     {
-        $this->titre = $titre;
-
-        return $this;
+    	$this->titre = $titre;
+    
+    	return $this;
     }
-
+    
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
-        return $this->titre;
+    	return $this->titre;
     }
-
-   /**
-   	* Add auteurs
-	*
-    * @param Zeus\SiteBundle\Entity\Auteur $auteur
-    */
-	public function addAuteur(Auteur $auteur) 
-  	{
-   	 	$this->auteurs[] = $auteur;
-  	}
-
-  	/**
-   	 * Remove auteurs
-   	 *
-   	 * @param Zeus\SiteBundle\Entity\Auteur $auteur
-  	 */
- 	public function removeAuteur(Auteur $auteur) 
- 	{
-   	 	$this->auteurs->removeElement($auteur);
-  	}
-
-  	/**
-   	 * Get auteurs
-   	 *
-   	 * @param Zeus\SiteBundle\Entity\Auteur $auteur
-   	 */
-  	public function getAuteurs()
-  	{
-  		return $this->auteurs;
-  	}
-
+    
+    /**
+     * Add auteurs
+     *
+     * @param Zeus\SiteBundle\Entity\Auteur $auteur
+     */
+    public function addAuteur(Auteur $auteur)
+    {
+    	$this->auteurs[] = $auteur;
+    }
+    
+    /**
+     * Remove auteurs
+     *
+     * @param Zeus\SiteBundle\Entity\Auteur $auteur
+     */
+    public function removeAuteur(Auteur $auteur)
+    {
+    	$this->auteurs->removeElement($auteur);
+    }
+    
+    /**
+     * Get auteurs
+     *
+     * @param Zeus\SiteBundle\Entity\Auteur $auteur
+     */
+    public function getAuteurs()
+    {
+    	return $this->auteurs;
+    }
+    
+	/**
+     * Add traducteur
+     *
+     * @param Zeus\SiteBundle\Entity\Traducteur $traducteur
+     */
+    public function addTraducteur(Traducteur $traducteur)
+    {
+    	$this->traducteurs[] = $traducteur;
+    }
+    
+    /**
+     * Remove traducteur
+     *
+     * @param Zeus\SiteBundle\Entity\Traducteur $traducteur
+     */
+    public function removeTraducteur(Traducteur $traducteur)
+    {
+    	$this->traducteurs->removeElement($traducteur);
+    }
+    
+    /**
+     * Get traducteurs
+     *
+     */
+    public function getATraducteurs()
+    {
+    	return $this->traducteurs;
+    }
+    
     /**
      * Set resume
      *
@@ -168,44 +239,44 @@ class Parution
      */
     public function setResume($resume)
     {
-        $this->resume = $resume;
-
-        return $this;
+    	$this->resume = $resume;
+    
+    	return $this;
     }
-
+    
     /**
      * Get resume
      *
-     * @return string 
+     * @return string
      */
     public function getResume()
     {
-        return $this->resume;
+    	return $this->resume;
     }
-
+    
     /**
-     * Set image
+     * Set imageParution
      *
-     * @param Image $image
+     * @param ImageParution $imageParution
      * @return Parution
      */
-    public function setImage(Image $image)
+    public function setImageParution(ImageParution $imageParution)
     {
-        $this->image = $image;
-
-        return $this;
+    	$this->imageParution = $imageParution;
+    
+    	return $this;
     }
-
+    
     /**
-     * Get image
+     * Get imageParution
      *
-     * @return Image 
+     * @return ImageParution
      */
-    public function getImage()
+    public function getImageParution()
     {
-        return $this->image;
+    	return $this->imageParution;
     }
-
+    
     /**
      * Set type
      *
@@ -214,41 +285,50 @@ class Parution
      */
     public function setType(TypeParution $type)
     {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return TypeParution 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-    
-    /**
-    *  Set isActif
-    *
-    * @param boolean $actif
-    * @return Parution
-    */
-    public function setIsActif($isActif)
-    {
-    	$this->isActif = $isActif;
+    	$this->type = $type;
     
     	return $this;
     }
     
     /**
-     * Get isActif
+     * Get type
+     *
+     * @return TypeParution
+     */
+    public function getType()
+    {
+    	return $this->type;
+    }
+    
+    /**
+     *  Set traducteur
+     *
+     * @param boolean $actif
+     * @return Parution
+     */
+    public function setTraducteur($traducteur)
+    {
+    	$this->traducteur = $traducteur;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get traducteur
      *
      * @return string
      */
-    public function getIsActif()
+    public function getTraducteur()
     {
-    	return $this->isActif;
+    	return $this->traducteur;
     }
+	
+	public function setSousCategorie($sousCategorie){
+		$this->sousCategorie = $sousCategorie;
+		return $this;
+	}
+	
+	public function getSousCategorie(){
+		return $this->sousCategorie;
+	}
 }

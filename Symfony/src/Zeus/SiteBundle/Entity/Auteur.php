@@ -34,67 +34,57 @@ class Auteur
      * @ORM\Column(name="prenom", type="string", length=20, nullable=false)
      */
     private $prenom;
-
-
-
+	
     /**
-     * Get idAuteur
-     *
-     * @return integer 
+     * ORM\@ManyToMany(targetEntity="Auteur", mappedBy="auteurs")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nomAuteur
-     *
-     * @param string $nom
-     * @return Auteur
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
+    private $parutions;
     
-        return $this;
-    }
-
     /**
-     * Get nom
-     *
-     * @return string 
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
+	 * @return the $id
+	 */
+	public function getId() 
+	{
+		return $this->id;
+	}
 
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     * @return Auteur
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-    
-        return $this;
-    }
+	/**
+	 * @return the $nom
+	 */
+	public function getNom() 
+	{
+		return $this->nom;
+	}
 
-    /**
-     * Get prenom
-     *
-     * @return string 
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-    
-    public function __toString()
-    {
-    	return $this->nom." ".$this->prenom;
-    }
+	/**
+	 * @return the $prenom
+	 */
+	public function getPrenom() 
+	{
+		return $this->prenom;
+	}
+
+	/**
+	 * @param string $nom
+	 */
+	public function setNom($nom) 
+	{
+		$this->nom = $nom;
+		return $this;
+	}
+
+	/**
+	 * @param string $prenom
+	 */
+	public function setPrenom($prenom) 
+	{
+		$this->prenom = $prenom;
+		return $this;
+	}
+	
+	public function __toString()
+	{
+		return $this->nom." ".$this->prenom;
+	}
+
 }

@@ -12,31 +12,12 @@ class TypeParutionController extends Controller
 {
 	public function indexAction(Request $request)
 	{
-		/*$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:TypeParution');
-		$liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
-		$auteurs = new AuteursCollection();
-		$auteurs->setAuteurs($liste_auteurs);
-		$form = $this->createForm(new AuteursCollectionType(), $auteurs);
-		$validator = $this->get('validator');
+		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:TypeParution');
+		$liste_typesparutions = $repository->findBy(array(), array('libelle' => 'asc'));
 		
-		if($request->isMethod('POST')){
-			
-			$form->handleRequest($request);
-			$liste_erreurs = $validator->validate($auteurs);
-			
-			if(count($liste_erreurs) === 0){
-				
-				foreach ($auteurs->getAuteurs() as $auteur){
-					$entity_manager = $this->getDoctrine()->getManager();
-					$entity_manager->persist($auteur);
-				}
-				$entity_manager->flush();
-			}
-		}
-		
-		return $this->render('ZeusSiteBundle:Auteur:tableau.html.twig', array(
-			'form' => $form->createView(),
-		));*/
+		return $this->render('ZeusSiteBundle:TypeParution:page_gestion.html.twig', array(
+			'typesparutions' => $liste_typesparutions,
+		));
 	}
 	
 	public function ajouterAction(Request $request)
@@ -57,7 +38,7 @@ class TypeParutionController extends Controller
 			}
 		}
 		
-		return $this->render('ZeusSiteBundle:TypeParution:ajouter.html.twig', array(
+		return $this->render('ZeusSiteBundle:TypeParution:page_ajout.html.twig', array(
 			'form' => $form->createView(),
 		));
 	}
@@ -81,7 +62,7 @@ class TypeParutionController extends Controller
 			}	
 		}
 		
-		return $this->render('ZeusSiteBundle:TypeParution:modifier.html.twig', array(
+		return $this->render('ZeusSiteBundle:TypeParution:page_modif.html.twig', array(
 			'form' => $form->createView(),	
 		));
 	}

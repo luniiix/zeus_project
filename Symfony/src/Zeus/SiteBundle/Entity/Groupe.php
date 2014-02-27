@@ -7,19 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Groupe
  *
- * @ORM\Table(name="groupe")
- * @ORM\Entity
  */
 class Groupe
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_groupe", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $idGroupe;
+    private $id;
 
     /**
      * @var integer
@@ -38,73 +36,4 @@ class Groupe
     private $nomGroupe;
 
 
-
-    /**
-     * Set idGroupe
-     *
-     * @param integer $idGroupe
-     * @return Groupe
-     */
-    public function setIdGroupe($idGroupe)
-    {
-        $this->idGroupe = $idGroupe;
-    
-        return $this;
-    }
-
-    /**
-     * Get idGroupe
-     *
-     * @return integer 
-     */
-    public function getIdGroupe()
-    {
-        return $this->idGroupe;
-    }
-
-    /**
-     * Set idService
-     *
-     * @param integer $idService
-     * @return Groupe
-     */
-    public function setIdService($idService)
-    {
-        $this->idService = $idService;
-    
-        return $this;
-    }
-
-    /**
-     * Get idService
-     *
-     * @return integer 
-     */
-    public function getIdService()
-    {
-        return $this->idService;
-    }
-
-    /**
-     * Set nomGroupe
-     *
-     * @param string $nomGroupe
-     * @return Groupe
-     */
-    public function setNomGroupe($nomGroupe)
-    {
-        $this->nomGroupe = $nomGroupe;
-    
-        return $this;
-    }
-
-    /**
-     * Get nomGroupe
-     *
-     * @return string 
-     */
-    public function getNomGroupe()
-    {
-        return $this->nomGroupe;
-    }
 }

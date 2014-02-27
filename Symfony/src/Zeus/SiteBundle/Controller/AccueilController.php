@@ -11,10 +11,13 @@ class AccueilController extends Controller
     	$repositoryParution = $this->getDoctrine()
     					->getManager()
     					->getRepository('ZeusSiteBundle:Parution');
+        
     	$parution = $repositoryParution->find(1);
     	
-        return $this->render('ZeusSiteBundle:Default:index.html.twig'
-        		, array(
+    	//var_dump($parution);
+    	
+       return $this->render('ZeusSiteBundle:Default:index.html.twig'
+       		, array(
          				'parution'   => $parution,
 						'tab_menu' => array('Accueil','Onglet1','Onglet2','Onglet3')
         		));

@@ -14,7 +14,15 @@
     		<link rel="stylesheet" href="{{ asset_url }}" />
 		{% endstylesheets %}
 		
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		{% javascripts 
+						'bundles/zeussite/js/jquery-1.10.1.min.js'
+						'bundles/zeussite/js/bootstrap.js'
+						'bundles/zeussite/js/select2.js'
+						'bundles/zeussite/js/select2_locale_fr.js'%}
+    		<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+		
+       {# <script src="bundles/zeussite/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> #}
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -69,10 +77,7 @@
     <footer>
     	<p>&copy; Zeus 2013  -  <a href="#">Mention l&eacute;gale</a></p>
     </footer>     
-       
-		
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+      
 
         <script src="js/vendor/bootstrap.min.js"></script>
 

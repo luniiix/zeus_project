@@ -7,31 +7,39 @@ zeus_site_homepage:
     defaults: { _controller: ZeusSiteBundle:Accueil:index }
 
 zeus_site_auteur_tableau:
-    pattern: /auteur
+    pattern: /auteurs
     defaults: { _controller: ZeusSiteBundle:Auteur:index }
     
 zeus_site_auteur_ajout:
-    pattern: /auteur/ajouter
+    pattern: /auteurs/ajouter
     defaults: { _controller: ZeusSiteBundle:Auteur:ajouter }
 
 zeus_site_auteur_modif:
-    pattern: /auteur/modifier/{idAuteur}
+    pattern: /auteurs/modifier/{idAuteur}
     defaults: { _controller: ZeusSiteBundle:Auteur:modifier }
 
+zeus_site_parution_tableau:
+    pattern: /parutions
+    defaults: { _controller: ZeusSiteBundle:Parution:index }
+
 zeus_site_parution_ajout:
-    pattern: /parution/ajouter
+    pattern: /parutions/ajouter
     defaults: { _controller: ZeusSiteBundle:Parution:ajouter }
     
 zeus_site_parution_modif:
-    pattern: /parution/modifier/{idParution}
+    pattern: /parutions/modifier/{idParution}
     defaults: { _controller: ZeusSiteBundle:Parution:modifier }
+
+zeus_site_typeparution_tableau:
+    pattern: /types-parutions
+    defaults: { _controller: ZeusSiteBundle:TypeParution:index }
     
 zeus_site_typeparution_ajout:
-    pattern: /typeParution/ajouter
+    pattern: /types-parutions/ajouter
     defaults: { _controller: ZeusSiteBundle:TypeParution:ajouter }
     
 zeus_site_typeparution_modif:
-    pattern: /typeParution/modifier/{idTypeParution}
+    pattern: /types-parutions/modifier/{idTypeParution}
     defaults: { _controller: ZeusSiteBundle:TypeParution:modifier }
     
 zeus_site_informationuser_edit:

@@ -15,51 +15,33 @@ class Service
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_service", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idService;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_service", type="string", length=20, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=20, nullable=false)
      */
-    private $nomService;
-
-
-
-    /**
-     * Get idService
-     *
-     * @return integer 
-     */
-    public function getIdService()
-    {
-        return $this->idService;
-    }
-
-    /**
-     * Set nomService
-     *
-     * @param string $nomService
-     * @return Service
-     */
-    public function setNomService($nomService)
-    {
-        $this->nomService = $nomService;
+    private $nom;
     
-        return $this;
+    public function getId()
+    {
+    	return $this->id;	
     }
 
-    /**
-     * Get nomService
-     *
-     * @return string 
-     */
-    public function getNomService()
+    public function setNom($nom)
     {
-        return $this->nomService;
+    	$this->nom = $nom;
+    	return $this;
     }
+    
+    public function getNom()
+    {
+    	return $this->nom;
+    }
+
 }
