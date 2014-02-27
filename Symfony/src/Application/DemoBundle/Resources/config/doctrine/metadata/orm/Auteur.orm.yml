@@ -1,0 +1,30 @@
+Auteur:
+    type: entity
+    table: auteur
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+        prenom:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+    manyToMany:
+        parution:
+            targetEntity: Parution
+            cascade: {  }
+            mappedBy: auteur
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -1,0 +1,35 @@
+{# src/Zeus/SiteBundle/Resources/views/Auteur/tableau.html.twig #}
+
+
+ <form method="POST" {{ form_enctype(form) }}> 
+	<table>
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for auteur in form.auteurs %}  
+				<tr>
+					 <td>&nbsp;</td>
+					 <td>{{ form_row(auteur.nom) }}</td> 
+					 <td>{{ form_row(auteur.prenom) }}</td> 
+					 <td>
+					 	<a href="{{ path('zeus_site_auteur_modif', { 'idAuteur': auteur.id }) }}">
+					 		<img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+					 	</a>
+					 </td>
+				</tr>
+			 {% endfor %}  
+		</tbody>
+		<tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>
+	</table>
+	
+ </form> 

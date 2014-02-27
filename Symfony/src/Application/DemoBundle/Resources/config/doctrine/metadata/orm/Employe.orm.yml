@@ -1,0 +1,56 @@
+Employe:
+    type: entity
+    table: employe
+    fields:
+        idEmploye:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_employe
+            generator:
+                strategy: IDENTITY
+        nomEmploye:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+            column: nom_employe
+        prenomEmploye:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+            column: prenom_employe
+        mailEmploye:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+            column: mail_employe
+        telephoneEmploye:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: telephone_employe
+        psswd:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        bureauEmploye:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: bureau_employe
+    manyToOne:
+        idService:
+            targetEntity: Service
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_service:
+                    referencedColumnName: id_service
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

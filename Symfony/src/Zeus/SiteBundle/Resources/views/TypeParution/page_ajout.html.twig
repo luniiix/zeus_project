@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+		with {'route': 'zeus_site_typeparution_tableau', 'element' : 'types de parutions'} only %}
+	{% include 'ZeusSiteBundle:TypeParution:form_ajout.html.twig' %}
+{% endblock %}

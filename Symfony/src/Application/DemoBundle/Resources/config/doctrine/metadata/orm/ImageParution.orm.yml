@@ -1,0 +1,22 @@
+ImageParution:
+    type: entity
+    table: image_parution
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        url:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        alt:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

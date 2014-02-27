@@ -1,0 +1,116 @@
+Parution:
+    type: entity
+    table: parution
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        dateAjout:
+            type: datetime
+            nullable: false
+            column: date_ajout
+        titre:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        resume:
+            type: text
+            nullable: true
+        isActif:
+            type: boolean
+            nullable: false
+            column: is_actif
+        codeReference:
+            type: text
+            nullable: false
+            column: code_reference
+    manyToMany:
+        auteur:
+            targetEntity: Auteur
+            cascade: {  }
+            mappedBy: null
+            inversedBy: parution
+            joinTable:
+                name: parution_auteur
+                joinColumns:
+                    -
+                        name: parution_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: auteur_id
+                        referencedColumnName: id
+            orderBy: null
+        idCategorie:
+            targetEntity: Categorie
+            cascade: {  }
+            mappedBy: null
+            inversedBy: idParution
+            joinTable:
+                name: parution_categorie
+                joinColumns:
+                    -
+                        name: id_parution
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: id_categorie
+                        referencedColumnName: id_categorie
+            orderBy: null
+        idEditeur:
+            targetEntity: Editeur
+            cascade: {  }
+            mappedBy: null
+            inversedBy: idParution
+            joinTable:
+                name: parution_editeur
+                joinColumns:
+                    -
+                        name: id_parution
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: id_editeur
+                        referencedColumnName: id_editeur
+            orderBy: null
+        idTraducteur:
+            targetEntity: Traducteur
+            cascade: {  }
+            mappedBy: null
+            inversedBy: idParution
+            joinTable:
+                name: parution_traducteur
+                joinColumns:
+                    -
+                        name: id_parution
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: id_traducteur
+                        referencedColumnName: id_traducteur
+            orderBy: null
+    manyToOne:
+        type:
+            targetEntity: TypeParution
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        imageParution:
+            targetEntity: ImageParution
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                image_parution:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

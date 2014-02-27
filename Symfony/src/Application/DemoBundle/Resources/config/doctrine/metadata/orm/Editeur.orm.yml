@@ -1,0 +1,27 @@
+Editeur:
+    type: entity
+    table: editeur
+    fields:
+        idEditeur:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_editeur
+            generator:
+                strategy: IDENTITY
+        nomEditeur:
+            type: string
+            length: 200
+            fixed: false
+            nullable: false
+            column: nom_editeur
+    manyToMany:
+        idParution:
+            targetEntity: Parution
+            cascade: {  }
+            mappedBy: idEditeur
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }
