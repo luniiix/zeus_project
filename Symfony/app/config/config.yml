@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -83,7 +83,7 @@ liip_imagine:
         image_parution_thumbnail:
             quality: 80
             filters:
-                thumbnail: { size: [300, 300], mode: inset }
+                thumbnail: { size: [200, 200], mode: inset }
                 
 genemu_form:
     select2:
