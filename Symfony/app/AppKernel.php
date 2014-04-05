@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpKernel\Kernel;
+
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
@@ -21,6 +22,7 @@ class AppKernel extends Kernel
         	new FOS\UserBundle\FOSUserBundle(),
         	new Liip\ImagineBundle\LiipImagineBundle(),
 			new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+        		
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

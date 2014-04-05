@@ -1,56 +1,40 @@
-# app/config/security.yml
+# app/config/security.yml     
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            logout: true
+            anonymous: true
+             
+        # Firewall principal pour le reste de notre site
         main:
-            pattern:    ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_provider: form.csrf_provider
-            logout:       true
-            anonymous: ~
-
+            pattern: .*                     
+            form_login:                     
+                provider: fos_userbundle    
+                remember_me: true     
+                #default_target_path: /frontend/photo
+            remember_me:
+                key: %secret%
+            logout: true
+            anonymous: true
+ 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        
-security:
-    encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
-
-    providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
-
-    firewalls:
-        main:
-            pattern:    ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_provider: form.csrf_provider
-            logout:       true
-            anonymous: ~
-
-    access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/parutions, role: ROLE_ADMIN }
+       # - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }--> à mettre pour obliger l'authentification
+        - { path: ^/auteurs, roles: ROLE_USER }  
         
         

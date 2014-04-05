@@ -89,5 +89,6 @@ genemu_form:
     select2:
         enabled: true
         configs:
-            width: '200px'
+            allowClear: true
+            width: resolve
             maximumSelectionSize: 3
