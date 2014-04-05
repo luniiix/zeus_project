@@ -1,0 +1,10 @@
+{# src/Zeus/SiteBundle/Resources/views/Editeur/ajouter.html.twig #}
+
+<h3>Ajouter un Editeur</h3>
+
+<div class="well">
+	<form method="post" {{ form_enctype(form) }}>
+    	{{ form_label(form.nom, "Nom de l'éditeur") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
+    	{{ form_widget(form.ajouter) }}
+	</form>
+</div>

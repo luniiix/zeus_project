@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+		with {'route': 'zeus_site_parution_tableau', 'element' : 'partions'} only %}
+	{% include 'ZeusSiteBundle:Parution:form_modif.html.twig' with {'form': form} %}
+{% endblock %}

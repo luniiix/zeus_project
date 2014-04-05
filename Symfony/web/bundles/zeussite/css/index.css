@@ -1,0 +1,65 @@
+/*.block-find{
+    width: 600px;
+    height: 500px;
+    padding: 25px 20px;
+    margin: 0;
+    float: left;
+}*/
+
+/*.resume{
+        height: 220px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+}*/
+
+.img_resume{
+    float: right;
+}
+
+a :hover{
+    pointer: cursor;	
+}
+
+.container{
+    font-size: 12px;	
+}
+
+table tr td, table tr th{
+    padding: 5px;	
+    border: 1px solid rgb(34, 66, 124);
+}
+
+table tr th{
+    text-align: center;
+}
+
+/*accueil*/
+.lasts-parutions {
+  border: 3px solid #22427C;
+  padding: 15px 10%;
+}
+.lasts-parutions h2 {
+    font-size: 22px !important;
+    text-align: center;
+    text-transform: uppercase;
+}
+.lasts-parutions h3 { 
+    font-size: 16px !important;
+    text-decoration: underline;
+}
+.lasts-parutions > li {
+    list-style: none outside none;
+}
+.lasts-parutions img {
+    text-align: center;
+}
+#parution-slider .carousel-control {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    top: 46%;
+    width: 10%;
+    color:#22427C;
+}
+.carousel .carousel-control {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #000000;
+}

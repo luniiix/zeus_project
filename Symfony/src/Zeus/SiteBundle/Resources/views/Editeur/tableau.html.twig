@@ -1,0 +1,31 @@
+{# src/Zeus/SiteBundle/Resources/views/Editeur/tableau.html.twig #}
+
+	{% if editeurs|length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Nom</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for editeur in editeurs %}  
+				<tr>
+					 <td>
+					 	<a href="{{ path('zeus_site_editeurs_modif', { 'idEditeur': editeur.id }) }}">
+					 		<img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+					 	</a>
+					 </td>
+					 <td>{{ editeur.nom }}</td> 
+				</tr>
+			 {% endfor %}  
+		</tbody>
+		{# <tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>#}
+	</table>
+	{% else %}
+		<div>Aucun auteur</div>
+	{% endif %}

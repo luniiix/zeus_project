@@ -1,0 +1,111 @@
+@CHARSET "ISO-8859-1";
+/*
+	Surcharge le css de Bootstrap
+*/
+
+/*********************
+ 	Général
+*********************/
+h1{
+	font-size:16px !important;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+
+h2{
+	font-size:14px !important;
+}
+
+h3{
+	font-size:12px !important;
+}
+
+p{
+	font-size:12px !important;
+}
+
+.divContainer{
+	background-color: #e5e5e5;
+}
+
+label{
+	font-size:12px;
+}
+
+li, a{
+	text-decoration:none;
+}
+
+/*********************
+ 	Header
+*********************/
+/* Changement de la couleur de fond */
+.navbar-inverse {
+	 background-image: linear-gradient(to bottom, #ffffff 0px, #ffffff 100%);
+}
+
+/* On enlève la bordure du bas */
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-width: 0;
+}
+
+.navbar {
+	box-shadow: none;
+}
+
+/* Changement de la couleur de la navigation */
+.navbar-inverse .navbar-nav > li > a {
+	color:#22427c;
+}
+
+/* Changement de couleur pour le hover de la navigation */
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+	color:#22427c;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+	text-shadow:none;
+}
+
+/* Changement de coloration pour un onglet actif */
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background-color:white;
+	font-weight:bold;
+	color:#22427c;
+}
+
+.navbar-collapse.collapse {
+	margin:90px 0 0 0;
+}
+
+.separation{
+	height:20px;
+	background-color:#22427c;
+	margin:-20px 0 0 0;
+}
+
+/************************
+  Jumbotron / Container
+************************/
+/* Changement de couleur pour le background */
+.jumbotron {
+	background-color:white;
+}
+
+/************************
+  Jumbotron / Container
+************************/
+footer{
+	color:white;
+	background-color:#22427c;
+	width:100%;
+	padding: 10px 10px;
+}
+
+footer p{
+	text-align:center;
+}
+
+footer a{
+	color:white;
+}

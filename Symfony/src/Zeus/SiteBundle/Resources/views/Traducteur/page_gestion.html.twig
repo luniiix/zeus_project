@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+	{% include 'ZeusSiteBundle:Traducteur:tableau.html.twig' %}
+	
+	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+		with {'route': 'zeus_site_traducteur_ajout', 'element' : 'un traducteur'} only %}
+
+{% endblock %}

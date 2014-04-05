@@ -1,0 +1,33 @@
+{# src/Zeus/SiteBundle/Resources/views/Traducteur/tableau.html.twig #}
+
+	{% if traducteurs|length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Nom</th>
+				<th>Prenom</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for traducteur in traducteurs %}  
+				<tr>
+					 <td>
+					 	<a href="{{ path('zeus_site_traducteur_modif', { 'idTraducteur': traducteur.id }) }}">
+					 		<img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+					 	</a>
+					 </td>
+					 <td>{{ traducteur.nom }}</td> 
+					 <td>{{ traducteur.prenom }}</td> 	 
+				</tr>
+			 {% endfor %}  
+		</tbody>
+		{# <tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>#}
+	</table>
+	{% else %}
+		<div>Aucun traducteur</div>
+	{% endif %}
