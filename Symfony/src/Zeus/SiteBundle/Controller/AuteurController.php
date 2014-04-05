@@ -62,6 +62,13 @@ class AuteurController extends Controller
 				$entity_manager = $this->getDoctrine()->getManager();
 				$entity_manager->persist($auteur);
 				$entity_manager->flush();
+                                
+                                $repository = $entity_manager->getRepository('ZeusSiteBundle:Auteur');
+                                $liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
+		
+                                return $this->render('ZeusSiteBundle:Auteur:page_gestion.html.twig', array(
+                                    'auteurs' => $liste_auteurs,
+                                ));
 			}
 		}
 		
@@ -94,4 +101,14 @@ class AuteurController extends Controller
 		));
 	}
 	
+        public function supprimerAction(Request $request, $idAuteur)
+	{
+		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Auteur');
+		$auteur = $repository->remove($idAuteur);
+		$liste_auteurs = $repository->findBy(array(), array('nom' => 'asc'));
+                
+		return $this->render('ZeusSiteBundle:Auteur:page_gestion.html.twig', array(
+			'auteurs' => $liste_auteurs,
+		));
+	}
 }
