@@ -2,6 +2,10 @@ parameters:
 #    zeus_site.example.class: Zeus\SiteBundle\Example
 
 services:
+    zeus_site_bundle.image_type_extension:
+        class: Zeus\SiteBundle\Form\Extension\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, alias: file }
 #    zeus_site.example:
 #        class: %zeus_site.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

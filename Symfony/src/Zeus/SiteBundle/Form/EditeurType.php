@@ -17,6 +17,8 @@ class EditeurType extends AbstractType
         $builder
         	->add('nom', 'text')
         ;
+        
+        $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
     
     /**

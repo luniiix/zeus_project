@@ -1,5 +1,7 @@
 {# src/Zeus/SiteBundle/Resources/views/Parution/modifier.html.twig #}
 
+{% form_theme form 'ZeusSiteBundle:Form:fields.html.twig' %}
+
 <h3>Modifier une Parutionr</h3>
 
 <div class="well">
@@ -8,9 +10,8 @@
     	{{ form_label(form.resume, "Resumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
     	{{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
     	{{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
-    	<img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}"/> <br />
+    	{#<img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}"/> <br />#}
     	{{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
-    	{{ form_label(form.isActif, "Actif") }} {{ form_widget(form.isActif) }} {{ form_errors(form.isActif) }} <br />
     	{{ form_widget(form.modifier) }}
 	</form>
 </div>

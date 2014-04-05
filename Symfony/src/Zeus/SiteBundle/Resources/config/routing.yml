@@ -17,7 +17,23 @@ zeus_site_auteur_ajout:
 zeus_site_auteur_modif:
     pattern: /auteurs/modifier/{idAuteur}
     defaults: { _controller: ZeusSiteBundle:Auteur:modifier }
+    
+zeus_site_auteur_suppr:
+    pattern: /auteurs/supprimer/{idAuteur}
+    defaults: { _controller: ZeusSiteBundle:Auteur:supprimer }
+    
+zeus_site_traducteur_tableau:
+    pattern: /traducteurs
+    defaults: { _controller: ZeusSiteBundle:Traducteur:index }
+    
+zeus_site_traducteur_ajout:
+    pattern: /traducteurs/ajouter
+    defaults: { _controller: ZeusSiteBundle:Traducteur:ajouter }
 
+zeus_site_traducteur_modif:
+    pattern: /traducteurs/modifier/{idTraducteur}
+    defaults: { _controller: ZeusSiteBundle:Traducteur:modifier }
+    
 zeus_site_parution_tableau:
     pattern: /parutions
     defaults: { _controller: ZeusSiteBundle:Parution:index }
@@ -45,3 +61,15 @@ zeus_site_typeparution_modif:
 zeus_site_informationuser_edit:
     pattern: /informationuser/edit
     defaults: { _controller: ZeusSiteBundle:User:edit }
+    
+zeus_site_editeurs_tableau:
+    pattern: /editeurs
+    defaults: { _controller: ZeusSiteBundle:Editeur:index }
+    
+zeus_site_editeurs_ajout:
+    pattern: /editeurs/ajouter
+    defaults: { _controller: ZeusSiteBundle:Editeur:ajouter }
+
+zeus_site_editeurs_modif:
+    pattern: /editeurs/modifier/{idEditeur}
+    defaults: { _controller: ZeusSiteBundle:Editeur:modifier }

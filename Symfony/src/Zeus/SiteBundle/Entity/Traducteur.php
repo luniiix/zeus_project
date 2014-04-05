@@ -50,22 +50,25 @@ class Traducteur
         $this->parutions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 	
-	public function getId(){
-		return $this->id;
-	}
-	
-	public function setNom($nom){
-		$this->nom = $nom;
-		return $this;
-	}
-	
-	public function getNom(){
-		return $this->nom;
-	}
-	
-	public function setPrenom($prenom){
-		$this->prenom = $prenom;
-		return $this;
-	}
+    public function getId(){
+            return $this->id;
+    }
+
+    public function setNom($nom){
+            $this->nom = $nom;
+            return $this;
+    }
+
+    public function getNom(){
+            return $this->nom;
+    }
+
+    public function setPrenom($prenom){
+            $this->prenom = $prenom;
+            return $this;
+    }
     
+    public function getPrenom(){
+        return $this->prenom;
+    }
 }

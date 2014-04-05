@@ -4,12 +4,13 @@
 */
 
 /*********************
- 	Général
+ 	Gï¿½nï¿½ral
 *********************/
 h1{
-	font-size:16px !important;
+	font-size:17px !important;
 	font-weight:bold;
 	text-transform:uppercase;
+        margin-bottom:10px;
 }
 
 h2{
@@ -39,12 +40,30 @@ li, a{
 /*********************
  	Header
 *********************/
+#haut_information{
+    width: 1150px;
+}
+
+.deconnexion{
+    background-color: #22427c;
+    color: #ffffff;
+    width: 150px;
+    padding: 5px 10px;
+    border-radius: 0 0 3px 3px;
+    float: right;
+    text-align: center;
+}
+
+.deconnexion:hover{
+    color: #ffffff;
+}
+
 /* Changement de la couleur de fond */
 .navbar-inverse {
 	 background-image: linear-gradient(to bottom, #ffffff 0px, #ffffff 100%);
 }
 
-/* On enlève la bordure du bas */
+/* On enlï¿½ve la bordure du bas */
 .navbar-fixed-top, .navbar-fixed-bottom {
     border-width: 0;
 }
@@ -92,8 +111,40 @@ li, a{
 	background-color:white;
 }
 
+/* page de connexion */
+#connexion{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#connexion form{
+    margin-left: 20px;
+}
+
+label{
+    margin-bottom: 0px;
+}
+
+input{
+    border: #000 solid 1px;
+    border-shadow: none;
+}
+
+.btn-primary{
+    background-color: #22427c !important;
+}
+
+.btn-primary:hover{
+    background-color: grey !important;
+}
+
+.centrer{
+    text-align:center;
+}
+
 /************************
-  Jumbotron / Container
+          Footer
 ************************/
 footer{
 	color:white;

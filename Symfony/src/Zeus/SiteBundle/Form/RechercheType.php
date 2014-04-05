@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AuteurType extends AbstractType
+class RechercheType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,21 +15,14 @@ class AuteurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        	->add('nom', 'text')
-        	->add('prenom', 'text')
+        	->add('titre', 'text')
+        	->add('auteur', 'text')
+                ->add('keys', 'text')
+                ->add('type', 'text')
+                ->add('categorie', 'text')
+                ->add('date', 'date')
+                ->add('dispo', 'integer')
         ;
-        
-        $builder->addEventSubscriber(new AddSubmitFormSubscriber());
-    }
-    
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Zeus\SiteBundle\Entity\Auteur'
-        ));
     }
 
     /**
@@ -37,6 +30,6 @@ class AuteurType extends AbstractType
      */
     public function getName()
     {
-        return 'zeus_sitebundle_auteur';
+        return 'zeus_sitebundle_recherche';
     }
 }

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ImageType extends AbstractType
+class ExemplaireType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,13 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'file', array('image_path' => 'webPath'))
+            ->add('dateAjout')
+            ->add('codeReference')
+            ->add('isDispo')
+            ->add('edition')
         ;
+        
+        $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
     
     /**
@@ -25,7 +30,7 @@ class ImageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Zeus\SiteBundle\Entity\Image'
+            'data_class' => 'Zeus\SiteBundle\Entity\Exemplaire'
         ));
     }
 
@@ -34,6 +39,6 @@ class ImageType extends AbstractType
      */
     public function getName()
     {
-        return 'zeus_sitebundle_image';
+        return 'zeus_sitebundle_exemplaire';
     }
 }

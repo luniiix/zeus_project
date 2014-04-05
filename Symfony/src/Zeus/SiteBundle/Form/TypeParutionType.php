@@ -17,6 +17,8 @@ class TypeParutionType extends AbstractType
         $builder
             ->add('libelle', 'text')
         ;
+        
+        $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
     
     /**

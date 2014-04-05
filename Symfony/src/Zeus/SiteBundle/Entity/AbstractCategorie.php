@@ -44,5 +44,23 @@ abstract class AbstractCategorie
     {
         $this->parutions = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
+    public function getCodeClassification(){
+        return $this->codeClassification;
+    }
+    
+    public function setCodeClassification($codeClassification){
+        $this->codeClassification = $codeClassification;
+        return $this;
+    }
+    
+    public function getIntitule(){
+        return $this->intitule;
+    }
+    
+    public function setIntitule($intitule){
+        return $this->intitule = $intitule;
+    }
+    
  
 }
