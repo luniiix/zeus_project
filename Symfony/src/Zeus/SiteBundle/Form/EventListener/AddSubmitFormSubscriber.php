@@ -22,10 +22,14 @@ class AddSubmitFormSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         if (!$element || null === $element->getId()) {
-            $form->add('ajouter', 'submit');
+            $form->add('ajouter', 'submit', array(
+                'attr' => array('class' => 'btn-primary btn'),
+            ));
         }
         else{
-            $form->add('modifier', 'submit');
+            $form->add('modifier', 'submit', array(
+                'attr' => array('class' => 'btn-primary btn'),
+            ));
         }
     }
 }

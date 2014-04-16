@@ -5,6 +5,7 @@ namespace Zeus\SiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Zeus\SiteBundle\Form\EventListener\AddSubmitFormSubscriber;
 
 class TypeParutionType extends AbstractType
 {

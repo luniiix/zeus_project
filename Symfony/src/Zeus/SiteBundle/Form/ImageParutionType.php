@@ -14,9 +14,9 @@ class ImageParutionType extends AbstractType
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder
-			->add('file', 'file', array('image_path' => 'webPath'))
-		;
+            $builder
+                    ->add('file', 'file', array('image_path' => 'webPath'))
+            ;
 	}
 	
     /**

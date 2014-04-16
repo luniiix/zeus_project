@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
+use Zeus\SiteBundle\Form\EventListener\AddSubmitFormSubscriber;
+
 
 class ParutionType extends AbstractType {
 
@@ -19,15 +21,21 @@ class ParutionType extends AbstractType {
                 ->add('resume', 'textarea', array('required' => false))
                 ->add('auteurs', 'genemu_jqueryselect2_entity', array(
                     'class' => 'ZeusSiteBundle:Auteur',
-                    'property' => 'nom',
                     'multiple' => true,
                     'expanded' => false,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('parution_auteur')
+                                ->orderBy('parution_auteur.nom, parution_auteur.prenom', 'ASC');
+                    }
                 ))
-                ->add('traducteur', 'genemu_jqueryselect2_entity', array(
+                ->add('traducteurs', 'genemu_jqueryselect2_entity', array(
                     'class' => 'ZeusSiteBundle:Traducteur',
-                    'property' => 'nom',
-                    'multiple' => false,
+                    'multiple' => true,
                     'expanded' => false,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('parution_traducteur')
+                                ->orderBy('parution_traducteur.nom, parution_traducteur.prenom', 'ASC');
+                    }
                 ))
                 ->add('sousCategorie', 'genemu_jqueryselect2_entity', array(
                     'class' => 'ZeusSiteBundle:SousCategorie',
@@ -48,7 +56,7 @@ class ParutionType extends AbstractType {
                 ))
         ;
         
-       // $builder->addEventSubscriber(new AddSubmitFormSubscriber());
+        $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
 
     /**
