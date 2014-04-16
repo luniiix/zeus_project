@@ -1,8 +1,8 @@
 {# src/Zeus/SiteBundle/Resources/views/Auteur/modifier.html.twig #}
 
-<h3>Modifier un Auteur</h3>
+<h1 class="h1Parution">Modifier un Auteur</h1>
 
-<div class="well">
+<div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
     	{{ form_label(form.nom, "Nom de l'auteur") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
     	{{ form_label(form.prenom, "Prenom de l'auteur") }} {{ form_widget(form.prenom) }} {{ form_errors(form.prenom) }} <br />

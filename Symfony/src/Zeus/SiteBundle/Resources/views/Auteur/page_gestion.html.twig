@@ -1,9 +1,10 @@
 {% extends "::base.html.twig" %}
 {% block content %}
 
-	{% include 'ZeusSiteBundle:Auteur:tableau.html.twig' %}
-	
 	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
 		with {'route': 'zeus_site_auteur_ajout', 'element' : 'un auteur'} only %}
+
+        {% include 'ZeusSiteBundle:Auteur:tableau.html.twig' %}
+	
 
 {% endblock %}
