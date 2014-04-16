@@ -83,7 +83,7 @@ class Parution
      *   }
      * )
      */
-    private $traducteur;
+    private $traducteurs;
 
     /**
      * @var \TypeParution
@@ -226,7 +226,7 @@ class Parution
      * Get traducteurs
      *
      */
-    public function getATraducteurs()
+    public function getTraducteurs()
     {
     	return $this->traducteurs;
     }

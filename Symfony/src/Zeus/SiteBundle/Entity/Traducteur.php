@@ -71,4 +71,8 @@ class Traducteur
     public function getPrenom(){
         return $this->prenom;
     }
+    
+    public function __toString() {
+        return $this->nom." ".$this->prenom;
+    }
 }
