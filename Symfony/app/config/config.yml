@@ -90,5 +90,5 @@ genemu_form:
         enabled: true
         configs:
             allowClear: true
-            width: resolve
+            width: '250px'
             maximumSelectionSize: 3
