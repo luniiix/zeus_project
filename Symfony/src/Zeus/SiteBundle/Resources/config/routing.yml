@@ -34,6 +34,10 @@ zeus_site_traducteur_modif:
     pattern: /traducteurs/modifier/{idTraducteur}
     defaults: { _controller: ZeusSiteBundle:Traducteur:modifier }
     
+zeus_site_traducteur_suppr:
+    pattern: /traducteurs/supprimer/{idTraducteur}
+    defaults: { _controller: ZeusSiteBundle:Traducteur:supprimer }
+    
 zeus_site_parution_tableau:
     pattern: /parutions
     defaults: { _controller: ZeusSiteBundle:Parution:index }
@@ -45,6 +49,10 @@ zeus_site_parution_ajout:
 zeus_site_parution_modif:
     pattern: /parutions/modifier/{idParution}
     defaults: { _controller: ZeusSiteBundle:Parution:modifier }
+    
+zeus_site_parution_suppr:
+    pattern: /parutions/supprimer/{idParution}
+    defaults: { _controller: ZeusSiteBundle:Parution:supprimer }
 
 zeus_site_typeparution_tableau:
     pattern: /types-parutions
@@ -57,6 +65,10 @@ zeus_site_typeparution_ajout:
 zeus_site_typeparution_modif:
     pattern: /types-parutions/modifier/{idTypeParution}
     defaults: { _controller: ZeusSiteBundle:TypeParution:modifier }
+    
+zeus_site_typeparution_suppr:
+    pattern: /types-parutions/supprimer/{idTypeParution}
+    defaults: { _controller: ZeusSiteBundle:TypeParution:supprimer }
     
 zeus_site_informationuser_edit:
     pattern: /informationuser/edit
