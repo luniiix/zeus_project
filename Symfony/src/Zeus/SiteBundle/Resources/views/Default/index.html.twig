@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="row-fluid">
-    <div class='block-find span8'>
-        <h2>Recherche</h2>
+    <div id="recherche" class='block-find span8'>
+        <h1  class="h1Parution">Recherche</h1>
         {#<form method="post" {{ form_enctype(form) }}>
     	{# {{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
     	{#{{ form_label(form.resume, "Resumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
@@ -15,28 +15,28 @@
     	{#{{ form_label(form.isActif, "Actif") }} {{ form_widget(form.isActif) }} {{ form_errors(form.isActif) }} <br />
     	{#{{ form_widget(form.modifier) }}
 	{#</form> #}
-        <form action="#" method="post">
+        <form class="formulaire" action="#" method="post">
             <label for="titre">Titre</label>
-            <input type="text" name="titre"></input>
+            <input type="text" name="titre"></input><br/>
             <label for="auteur">Auteur</label>
-            <input type="text" name="auteur"></input>
+            <input type="text" name="auteur"></input><br/>
             <label for="tag">Recherche par mots clés</label>
-            <input type="text" name="tag"></input>
+            <input type="text" name="tag"></input><br/>
             <label for="type">Type de parutions</label>
             <select name="type">
                 <option>Article</option>
                 <option>Revue</option>
-            </select>
+            </select><br/>
             <label for="category">Catégorie</label>
-            <input type="text" name="category"></input>
+            <input type="text" name="category"></input><br/>
             <label for="date">Date de parution</label>
-            <input type="text" name="date"></input>
+            <input type="text" name="date"></input><br/>
             <label for="aviable">Disponibilité</label>
             <select name="aviable">
                 <option>Disponible</option>
                 <option>Indisponible</option>
-            </select>
-            <input type="submit" name="rechercher" value="Rechercher" />
+            </select><br/>
+            <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary" />
         </form>
     </div>
 
