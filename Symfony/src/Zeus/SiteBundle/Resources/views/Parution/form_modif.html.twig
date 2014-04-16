@@ -2,16 +2,24 @@
 
 {% form_theme form 'ZeusSiteBundle:Form:fields.html.twig' %}
 
-<h3>Modifier une Parutionr</h3>
+{% block stylesheets %}
+    {{ form_stylesheet(form) }}
+{% endblock %}
 
-<div class="well">
+{% block javascripts %}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+    <h1 class="h1Parution">Modifier une Parution</h1>
+    <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
     	{{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
-    	{{ form_label(form.resume, "Resumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
-    	{{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
+    	{{ form_label(form.resume, "Résumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
+    	{{ form_label(form.traducteurs, "Traducteurs") }} {{ form_widget(form.traducteurs) }} {{ form_errors(form.traducteurs) }} <br />
+        {{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
     	{{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
     	{#<img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}"/> <br />#}
     	{{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
     	{{ form_widget(form.modifier) }}
 	</form>
-</div>
+    </div>

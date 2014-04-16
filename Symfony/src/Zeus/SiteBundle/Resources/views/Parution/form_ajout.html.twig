@@ -14,27 +14,26 @@
 $(document).ready(function() {
 	//console.log("dfsdfsd");
 	
-	$("#select2-drop-mask").select2({
+	/*$("#select2-drop-mask").select2({
 		tags:["red", "green", "blue"],
 		maximumSelectionSize: 3
-	});
+	});*/
 
 });
 </script>
 
-<h3>Ajouter une Parutionr</h3>
-
-<div class="well">
+    <h1 class="h1Parution">Ajouter une Parution</h1>
+    <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
-    	{{ form_label(form.resume, "Resumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
-    	{{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
-    	{{ form_label(form.traducteur, "Traducteur") }} {{ form_widget(form.traducteur) }} {{ form_errors(form.traducteur) }} <br />
-    	{{ form_label(form.sousCategorie, "Categorie : ") }} {{ form_widget(form.sousCategorie) }} {{ form_errors(form.sousCategorie) }} <br />
-    	{{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
-    	{{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
-    	{{ form_widget(form.ajouter) }}
+            {{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
+            {{ form_label(form.resume, "Résumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
+            {{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
+            {{ form_label(form.traducteurs, "Traducteur(s)") }} {{ form_widget(form.traducteurs) }} {{ form_errors(form.traducteurs) }} <br />
+            {{ form_label(form.sousCategorie, "Catégorie") }} {{ form_widget(form.sousCategorie) }} {{ form_errors(form.sousCategorie) }} <br />
+            {{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
+            {{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
+            {{ form_widget(form.ajouter) }}
 	</form>
-</div>
+    </div>
 
 

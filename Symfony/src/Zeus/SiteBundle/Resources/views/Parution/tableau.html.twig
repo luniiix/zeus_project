@@ -1,41 +1,44 @@
 {# src/Zeus/SiteBundle/Resources/views/Parution/tableau.html.twig #}
 
 	{% if parutions|length > 0 %}
-	<table>
-		<thead>
-			<tr>
-				<th></th>
-				<th>Date ajout</th>
-				<th>Titre</th>
-				<th>Auteurs</th>
-				<th>Résumé</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for parution in parutions %}  
-				<tr>
-					 <td>
-						 <a href="{{ path('zeus_site_parution_modif', { 'idParution': parution.id }) }}">
-					 		<img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
-					 	</a>
-					 </td> 
-					 <td>{{ parution.dateAjout|date("m/d/Y") }}</td> 
-					 <td>{{ parution.titre }}</td> 
-					 <td>
-					 	{% for auteur in parution.auteurs %}
-					 		{{ auteur.nom }} {{ auteur.prenom }} <br>
-					 	{% endfor %}
-					 </td> 
-					 <td>{{ parution.resume }}</td> 
-			 {% endfor %}  
-		</tbody>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Date ajout</th>
+            <th>Titre</th>
+            <th>Auteurs</th>
+            <th>Résumé</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for parution in parutions %}  
+            <tr>
+                <td>
+                    <a href="{{ path('zeus_site_parution_suppr', { 'idParution': parution.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_parution_modif', { 'idParution': parution.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                </td>
+                <td>{{ parution.dateAjout|date("m/d/Y") }}</td> 
+                <td>{{ parution.titre }}</td> 
+                <td>
+                {% for auteur in parution.auteurs %}
+                        {{ auteur.nom }} {{ auteur.prenom }} <br>
+                {% endfor %}
+                </td> 
+                <td>{{ parution.resume }}</td> 
+            </tr>
+            {% endfor %}  
+            </tbody>
 		{#<tfoot>
 		<tr>
 			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
 		</tr>
 		</tfoot>#}
-	</table>
+        </table>
 	{% else %}
-		<div>Aucune parution</div>
+        <div>Aucune parution</div>
 	{% endif %}
-	
