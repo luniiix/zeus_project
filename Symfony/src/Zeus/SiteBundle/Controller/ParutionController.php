@@ -5,8 +5,7 @@ namespace Zeus\SiteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Zeus\SiteBundle\Entity\Parution;
-use Zeus\SiteBundle\Form\ParutionAjoutType;
-use Zeus\SiteBundle\Form\ParutionModifType;
+use Zeus\SiteBundle\Form\ParutionType;
 
 class ParutionController extends Controller
 {
@@ -23,7 +22,7 @@ class ParutionController extends Controller
 	public function ajouterAction(Request $request)
 	{	
 		$parution = new Parution();
-		$form = $this->createForm(new ParutionAjoutType(), $parution);
+		$form = $this->createForm(new ParutionType(), $parution);
 		$validator = $this->get('validator');
 		
 		if($request->isMethod('POST')){
@@ -35,6 +34,8 @@ class ParutionController extends Controller
 				$entity_manager = $this->getDoctrine()->getManager();
 				$entity_manager->persist($parution);
 				$entity_manager->flush();
+                                
+                                return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
 			}
 		}
 		
@@ -48,7 +49,7 @@ class ParutionController extends Controller
 		$repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
 		$parution = $repository->find($idParution);
 		
-		$form = $this->createForm(new ParutionModifType(), $parution);
+		$form = $this->createForm(new ParutionType(), $parution);
 		$validator = $this->get('validator');
 		
 		if($request->isMethod('POST')){
@@ -58,8 +59,11 @@ class ParutionController extends Controller
 			
 			if(count($liste_erreurs) === 0){
 				$entity_manager = $this->getDoctrine()->getManager();
+                               // print_r($parution);  
 				$entity_manager->persist($parution);
-				$entity_manager->flush();
+                                $entity_manager->flush();
+                                
+                                return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
 			}	
 		}
 		
@@ -68,5 +72,15 @@ class ParutionController extends Controller
 			'image' => $parution->getImageParution() 	
 		));
 	}
+        
+        public function supprimerAction(Request $request, $idParution) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('ZeusSiteBundle:Parution');
+            $parution = $repository->find($idParution);
+            $em->remove($parution);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
+        }
 	
 }

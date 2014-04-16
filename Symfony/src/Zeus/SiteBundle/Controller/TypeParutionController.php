@@ -35,6 +35,8 @@ class TypeParutionController extends Controller
 				$entity_manager = $this->getDoctrine()->getManager();
 				$entity_manager->persist($typeParution);
 				$entity_manager->flush();
+                                
+                                return $this->redirect($this->generateUrl('zeus_site_typeparution_tableau'), 301);
 			}
 		}
 		
@@ -59,6 +61,8 @@ class TypeParutionController extends Controller
 				$entity_manager = $this->getDoctrine()->getManager();
 				$entity_manager->persist($typeParution);
 				$entity_manager->flush();
+                                
+                                return $this->redirect($this->generateUrl('zeus_site_typeparution_tableau'), 301);
 			}	
 		}
 		
@@ -66,5 +70,14 @@ class TypeParutionController extends Controller
 			'form' => $form->createView(),	
 		));
 	}
+        
+        public function supprimerAction(Request $request, $idTypeParution) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('ZeusSiteBundle:TypeParution');
+            $typeparution = $repository->find($idTypeParution);
+            $em->remove($typeparution);
+            $em->flush();
+            return $this->redirect($this->generateUrl('zeus_site_typeparution_tableau'), 301);
+        }
 	
 }
