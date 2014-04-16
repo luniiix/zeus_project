@@ -1,31 +1,34 @@
 {# src/Zeus/SiteBundle/Resources/views/Auteur/tableau.html.twig #}
 
 	{% if typesparutions|length > 0 %}
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th>Libellé</th>
-				</tr>
-			</thead>
-			<tbody>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Libellé</th>
+        </tr>
+    </thead>
+    <tbody>
 				{% for typeparution in typesparutions %}  
-					<tr>
-						 <td>
-						 	<a href="{{ path('zeus_site_typeparution_modif', { 'idTypeParution': typeparution.id }) }}">
-						 		<img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
-						 	</a>
-						 </td>
-						 <td>{{ typeparution.libelle }}</td> 	 
-					</tr>
+            <tr>
+               <td>
+                    <a href="{{ path('zeus_site_typeparution_suppr', { 'idTypeParution': typeparution.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_typeparution_modif', { 'idTypeParution': typeparution.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                </td>
+                <td>{{ typeparution.libelle }}</td> 	 
+            </tr>
 				 {% endfor %}  
-			</tbody>
+        </tbody>
 			{# <tfoot>
 			<tr>
 				<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
 			</tr>
 			</tfoot>#}
-		</table>
+    </table>
 	{% else %}
-		<div>Aucun type de parution</div>
+    <div>Aucun type de parution</div>
 	{% endif %}

@@ -1,8 +1,7 @@
 {# src/Zeus/SiteBundle/Resources/views/TypeParution/ajouter.html.twig #}
 
-<h3>Ajouter un Type de Parution</h3>
-
-<div class="well">
+<h1 class="h1Parution">Ajouter un Type de Parution</h1>
+<div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
     	{{ form_label(form.libelle, "Libellé") }} {{ form_widget(form.libelle) }} {{ form_errors(form.libelle) }} <br />
     	{{ form_widget(form.ajouter) }}
