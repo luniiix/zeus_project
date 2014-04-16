@@ -40,22 +40,27 @@ li, a{
 /*********************
  	Header
 *********************/
-#haut_information{
-    width: 1150px;
-}
 
 .deconnexion{
-    background-color: #22427c;
+    background-color: #E67E30;/*22427c#ED7F10*/
     color: #ffffff;
     width: 150px;
     padding: 5px 10px;
     border-radius: 0 0 3px 3px;
     float: right;
     text-align: center;
+    top: 0;
 }
 
 .deconnexion:hover{
     color: #ffffff;
+}
+
+/* Navigation */
+.nav{
+        margin-top: 65px;
+        font-size: 14px;
+        float: right;
 }
 
 /* Changement de la couleur de fond */
@@ -69,12 +74,12 @@ li, a{
 }
 
 .navbar {
-	box-shadow: none;
+    box-shadow: none;
 }
 
 /* Changement de la couleur de la navigation */
 .navbar-inverse .navbar-nav > li > a {
-	color:#22427c;
+	color: #000; /* 22427c */
 }
 
 /* Changement de couleur pour le hover de la navigation */
@@ -94,7 +99,6 @@ li, a{
 }
 
 .navbar-collapse.collapse {
-	margin:90px 0 0 0;
 }
 
 .separation{
@@ -111,6 +115,36 @@ li, a{
 	background-color:white;
 }
 
+/* Page d'accueil' */
+.carousel-control{
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+.carousel-inner{
+    margin-top: 40px !important;
+}
+
+#recherche{
+    display:inline-block;
+    vertical-align: top;
+}
+
+.item{
+    width: 300px;
+    margin-left: 100px !important;
+}
+
+#parution-slider{
+    width: 500px !important;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.left, .right{
+    height: 10px !important
+}
+
 /* page de connexion */
 #connexion{
     width: 300px;
@@ -120,15 +154,6 @@ li, a{
 
 #connexion form{
     margin-left: 20px;
-}
-
-label{
-    margin-bottom: 0px;
-}
-
-input{
-    border: #000 solid 1px;
-    border-shadow: none;
 }
 
 .btn-primary{
@@ -143,6 +168,73 @@ input{
     text-align:center;
 }
 
+.h1Parution{
+    margin-left: 50px;
+}
+
+/* Mise en forme pour tous les formulaires */
+
+label{
+    margin-bottom: 0px;
+}
+
+input{
+    border: #000 solid 1px;
+    border-shadow: none;
+}
+select{
+    width:250px;
+}
+
+.formulaire{
+    width: 500px;
+    margin-left: 50px;
+}
+
+.formulaire form{
+    margin-left: 20px;
+}
+
+.formulaire label{
+    width: 100px !important;
+    margin-right: 10px !important;
+    margin-bottom: 20px;
+}
+
+.formulaire input{
+    width: 250px !important;
+    border-shadow: none !important;
+    border: 1px solid gray !important;
+    border-radius: 3px;
+}
+
+.formulaire textarea{
+    width: 250px;
+    height: 150px;
+    margin-bottom: 10px !important;
+    border-shadow: none !important;
+    border: 1px solid gray !important;
+    border-radius: 3px;
+}
+
+.formulaire button{
+    margin-left: 115px;
+}
+
+#zeus_sitebundle_parution_imageParution div{
+    margin-left: 112px;
+}
+
+#zeus_sitebundle_parution_imageParution div label{
+    display: none;
+}
+
+#zeus_sitebundle_parution_imageParution div input{
+    margin-top: -45px;
+    border-radius: 3px;
+}
+
+
 /************************
           Footer
 ************************/
@@ -151,6 +243,8 @@ footer{
 	background-color:#22427c;
 	width:100%;
 	padding: 10px 10px;
+        position: absolute;
+        bottom: 0;
 }
 
 footer p{
