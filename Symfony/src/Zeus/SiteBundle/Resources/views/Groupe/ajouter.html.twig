@@ -1,0 +1,10 @@
+{# src/Zeus/SiteBundle/Resources/views/Groupe/ajouter.html.twig #}
+
+<h3>Ajouter un Groupe</h3>
+
+<div class="well">
+	<form method="post" {{ form_enctype(form) }}>
+    	{{ form_label(form.nom, "Nom du Nouveau Groupe") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
+    	{{ form_widget(form.ajouter) }}
+	</form>
+</div>
