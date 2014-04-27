@@ -20,6 +20,8 @@
 						'bundles/zeussite/js/select2.js'
 						'bundles/zeussite/js/select2_locale_fr.js'%}
     		<script type="text/javascript" src="{{ asset_url }}"></script>
+                <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 		{% endjavascripts %}
 		
        {# <script src="bundles/zeussite/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> #}
@@ -44,20 +46,26 @@
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
             <div class="navbar-collapse collapse">
                 <a href="{{ path('fos_user_security_logout') }}" class="deconnexion">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="#" class="profil">Bonjour {{ app.user.username }}</a>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('zeus_site_homepage') }}">Accueil</a></li>
-                    <li><a href="{{ path('zeus_site_informationuser_edit') }}">Comptes Utilisateurs</a></li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Création de la bibliothèque<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion des utilisateurs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('fos_user_registration_register') }}">Enregistrer un utilisateur</a></li>
+                            <li><a href="{{ path ('fos_user_profile_show') }}">Mon profil</a></li>
+                        </ul>
+                    <li class="dropdown">
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de la bibliothèque<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('zeus_site_typeparution_tableau') }}">Gestion du type des parutions</a></li>
                             <li><a href="{{ path('zeus_site_parution_tableau') }}">Gestion des parutions</a></li>
                             <li><a href="{{ path('zeus_site_auteur_tableau') }}">Gestion des auteurs</a></li>
                             <li><a href="{{ path('zeus_site_traducteur_tableau') }}">Gestion des traducteurs</a></li>
-                            <li><a href="{{ path('zeus_site_editeurs_tableau') }}">Gestion des éditeurs</a></li>
+                            <li><a href="{{ path('zeus_site_editeur_tableau') }}">Gestion des éditeurs</a></li>
                         </ul>
                     <li class="dropdown">
-                    <li><a href="#">Groupe Utilisateurs</a></li>
                     <li><a href="#contact">Support technique</a></li>
                 </ul>
             </div><!--/.navbar-collapse -->
