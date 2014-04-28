@@ -5,6 +5,8 @@ namespace Zeus\SiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Zeus\SiteBundle\Form\EventListener\AddSubmitFormSubscriber;
+use Zeus\SiteBundle\Form\EditeurType;
 
 class EditeurType extends AbstractType
 {

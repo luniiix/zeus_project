@@ -38,6 +38,8 @@ class EditeurController extends Controller
 				$entity_manager->persist($editeur);
 				$entity_manager->flush();
 			}
+                        
+                        return $this->redirect($this->generateUrl('zeus_site_editeur_tableau'), 301);
 		}
 		
 		return $this->render('ZeusSiteBundle:Editeur:page_ajout.html.twig', array(
@@ -61,12 +63,23 @@ class EditeurController extends Controller
 				$entity_manager = $this->getDoctrine()->getManager();
 				$entity_manager->persist($editeur);
 				$entity_manager->flush();
-			}	
+			}
+                        
+                        return $this->redirect($this->generateUrl('zeus_site_editeur_tableau'), 301);
 		}
 		
 		return $this->render('ZeusSiteBundle:Editeur:page_modif.html.twig', array(
 			'form' => $form->createView(),	
 		));
 	}
+        
+        public function supprimerAction(Request $request, $idEditeur) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('ZeusSiteBundle:Editeur');
+            $editeur = $repository->find($idEditeur);
+            $em->remove($editeur);
+            $em->flush();
+             return $this->redirect($this->generateUrl('zeus_site_editeur_tableau'), 301);
+    }
 	
 }
