@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+		with {'route': 'zeus_site_edition_tableau', 'element' : 'edition'} only %}
+	{% include 'ZeusSiteBundle:Edition:form_modif.html.twig' with {'form': form} %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{# src/Zeus/SiteBundle/Resources/views/Edition/tableau.html.twig #}
+
+{% if editions|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Numero</th>
+            <th>Parution</th>
+            <th>Editeur</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for edition in editions %}  
+            <tr>
+                <td>
+                    <a href="{{ path('zeus_site_edition_suppr', { 'idEdition': edition.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_edition_modif', { 'idEdition': edition.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                </td>
+                <td>{{ edition.date|date("d/m/Y") }}</td> 
+                <td>{{ edition.numero }}</td> 	
+                <td>{{ edition.parution.titre }}</td> 	
+                <td>{{ edition.editeur.nom }}</td> 	
+            </tr>
+            {% endfor %}  
+        </tbody>
+		{# <tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>#}
+    </table>
+{% else %}
+    <div>Aucune edition</div>
+{% endif %}
