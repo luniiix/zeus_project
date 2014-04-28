@@ -1,0 +1,44 @@
+{# src/Zeus/SiteBundle/Resources/views/Exempalire/tableau.html.twig #}
+
+{% if exemplaires|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th></th>
+           {# <th>Date Ajout</th> #}
+            <th>Code référence</th>
+            <th>Parution</th>
+            <th>Editeur</th>
+            <th>Numéro d'édition</th>
+            <th>Date d'édition</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for exemplaire in exemplaires %}  
+            <tr>
+                <td>
+                    <a href="{{ path('zeus_site_exemplaire_suppr', { 'idExemplaire': exemplaire.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_exemplaire_modif', { 'idExemplaire': exemplaire.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                </td>
+               {# <td>{{ exemplaire.dateAjout|date("d/m/Y") }}</td> #} 
+                <td>{{ exemplaire.codeReference }}</td> 	
+                <td>{{ exemplaire.edition.parution.titre }}</td> 	
+                <td>{{ exemplaire.edition.editeur.nom }}</td> 
+                <td>{{ exemplaire.edition.numero }}</td> 
+                <td>{{ exemplaire.edition.date|date("d/m/Y") }}</td> 
+            </tr>
+            {% endfor %}  
+        </tbody>
+		{# <tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>#}
+    </table>
+{% else %}
+    <div>Aucune exemplaire</div>
+{% endif %}

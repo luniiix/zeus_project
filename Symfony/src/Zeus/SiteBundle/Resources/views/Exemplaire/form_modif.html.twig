@@ -1,0 +1,20 @@
+{# src/Zeus/SiteBundle/Resources/views/Exemplaire/form_modif.html.twig #}
+
+{% block stylesheets %}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+<h1 class="h1Parution">Ajouter un exemplaire</h1>
+<div class="well formulaire">
+	<form method="post" {{ form_enctype(form) }}>
+    	{{ form_label(form.codeReference) }} {{ form_widget(form.codeReference) }} {{ form_errors(form.codeReference) }} <br />
+        {{ form_label(form.parution) }} {{ form_widget(form.parution) }} {{ form_errors(form.parution) }} <br />
+        {{ form_label(form.edition) }} {{ form_widget(form.edition) }} {{ form_errors(form.edition) }} <br />
+        {{ form_label(form.isDispo) }} {{ form_widget(form.isDispo) }} {{ form_errors(form.isDispo) }} <br />
+    	{{ form_widget(form.modifier) }}
+	</form>
+</div>

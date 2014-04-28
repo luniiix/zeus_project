@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+		with {'route': 'zeus_site_exemplaire_ajout', 'element' : 'un exemplaire'} only %}
+
+        {% include 'ZeusSiteBundle:Exemplaire:tableau.html.twig' %}
+	
+
+{% endblock %}
