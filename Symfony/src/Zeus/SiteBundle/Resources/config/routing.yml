@@ -70,18 +70,92 @@ zeus_site_typeparution_suppr:
     pattern: /types-parutions/supprimer/{idTypeParution}
     defaults: { _controller: ZeusSiteBundle:TypeParution:supprimer }
     
+zeus_site_editeur_tableau:
+    pattern: /editeurs
+    defaults: { _controller: ZeusSiteBundle:Editeur:index }
+    
+zeus_site_editeur_ajout:
+    pattern: /editeurs/ajouter
+    defaults: { _controller: ZeusSiteBundle:Editeur:ajouter }
+
+zeus_site_editeur_modif:
+    pattern: /editeurs/modifier/{idEditeur}
+    defaults: { _controller: ZeusSiteBundle:Editeur:modifier }
+    
+zeus_site_editeur_suppr:
+    pattern: /editeurs/supprimer/{idEditeur}
+    defaults: { _controller: ZeusSiteBundle:Editeur:supprimer }
+    
 zeus_site_informationuser_edit:
     pattern: /informationuser/edit
     defaults: { _controller: ZeusSiteBundle:User:edit }
     
-zeus_site_editeurs_tableau:
-    pattern: /editeurs
-    defaults: { _controller: ZeusSiteBundle:Editeur:index }
+zeus_site_groupe_tableau:
+    pattern: /groupes
+    defaults: { _controller: ZeusSiteBundle:Groupe:index }
     
-zeus_site_editeurs_ajout:
-    pattern: /editeurs/ajouter
-    defaults: { _controller: ZeusSiteBundle:Editeur:ajouter }
+zeus_site_groupe_ajout:
+    pattern: /groupes/ajouter
+    defaults: { _controller: ZeusSiteBundle:Groupe:ajouter }
 
-zeus_site_editeurs_modif:
-    pattern: /editeurs/modifier/{idEditeur}
-    defaults: { _controller: ZeusSiteBundle:Editeur:modifier }
+zeus_site_groupe_modif:
+    pattern: /groupes/modifier/{idGroupe}
+    defaults: { _controller: ZeusSiteBundle:Groupe:modifier }
+    
+zeus_site_groupe_suppr:
+    pattern: /groupes/supprimer/{idGroupe}
+    defaults: { _controller: ZeusSiteBundle:Groupe:supprimer }
+    
+zeus_site_edition_tableau:
+    pattern: /editions
+    defaults: { _controller: ZeusSiteBundle:Edition:index }
+    
+zeus_site_edition_ajout:
+    pattern: /editions/ajouter
+    defaults: { _controller: ZeusSiteBundle:Edition:ajouter }
+
+zeus_site_edition_modif:
+    pattern: /editions/modifier/{idEdition}
+    defaults: { _controller: ZeusSiteBundle:Edition:modifier }
+    
+zeus_site_edition_suppr:
+    pattern: /editions/supprimer/{idEdition}
+    defaults: { _controller: ZeusSiteBundle:Edition:supprimer }
+    
+zeus_site_exemplaire_tableau:
+    pattern: /exemplaires
+    defaults: { _controller: ZeusSiteBundle:Exemplaire:index }
+    
+zeus_site_exemplaire_ajout:
+    pattern: /exemplaires/ajouter
+    defaults: { _controller: ZeusSiteBundle:Exemplaire:ajouter }
+
+zeus_site_exemplaire_modif:
+    pattern: /exemplaires/modifier/{idExemplaire}
+    defaults: { _controller: ZeusSiteBundle:Exemplaire:modifier }
+    
+zeus_site_exemplaire_suppr:
+    pattern: /exemplaires/supprimer/{idExemplaire}
+    defaults: { _controller: ZeusSiteBundle:Exemplaire:supprimer }
+
+zeus_site_sous_categorie_dispo_ajax:
+    pattern: /parutions/sous-categorie-dispo
+    defaults: { _controller: ZeusSiteBundle:Parution:rafraichirSousCategorieDispo }
+    options:
+        expose: true
+
+zeus_site_service_tableau:
+    pattern: /services
+    defaults: { _controller: ZeusSiteBundle:Service:index }
+    
+zeus_site_service_ajout:
+    pattern: /services/ajouter
+    defaults: { _controller: ZeusSiteBundle:Service:ajouter }
+
+zeus_site_service_modif:
+    pattern: /services/modifier/{idService}
+    defaults: { _controller: ZeusSiteBundle:Service:modifier }
+    
+zeus_site_service_suppr:
+    pattern: /services/supprimer/{idService}
+    defaults: { _controller: ZeusSiteBundle:Service:supprimer }
