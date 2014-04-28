@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="exemplaire")
  * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\ExemplaireRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Exemplaire
 {
@@ -24,7 +25,7 @@ class Exemplaire
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateAjout", type="datetime")
+     * @ORM\Column(name="date_ajout", type="datetime")
      */
     private $dateAjout;
     
@@ -52,9 +53,10 @@ class Exemplaire
      */
     private $isDispo;
 
-	public function __construct(){
-		$this->codeReference = ""; // a changer avec un prépersiste 	
-	}
+    
+    public function __construct(){
+		
+    }
 	
     /**
      * Get id
@@ -68,15 +70,12 @@ class Exemplaire
 
     /**
      * Set dateAjout
-     *
-     * @param \DateTime $dateAjout
-     * @return Exemplaire
+     * 
+     * @ORM\PrePersist
      */
-    public function setDateAjout($dateAjout)
+    public function setDateAjout()
     {
-        $this->dateAjout = $dateAjout;
-    
-        return $this;
+        $this->dateAjout = new \DateTime();
     }
 
     /**

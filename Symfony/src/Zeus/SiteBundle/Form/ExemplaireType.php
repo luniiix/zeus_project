@@ -5,6 +5,7 @@ namespace Zeus\SiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Zeus\SiteBundle\Form\EventListener\AddSubmitFormSubscriber;
 
 class ExemplaireType extends AbstractType
 {
@@ -15,10 +16,28 @@ class ExemplaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateAjout')
-            ->add('codeReference')
-            ->add('isDispo')
-            ->add('edition')
+            ->add('codeReference', 'text', array(
+                'label' => 'Code référencement'
+            ))
+            ->add('isDispo', 'checkbox', array(
+                'label' => 'Disponible',
+                'required' => false
+            ))
+            ->add('parution', 'genemu_jqueryselect2_entity', array(
+                'label' => 'Parution',
+                'empty_data' => 'Toutes les parution',
+                'class' => 'ZeusSiteBundle:Parution',
+                'property' => 'titre',
+                'multiple' => false,
+                'expanded' => false,
+                'mapped' => false
+            ))
+            ->add('edition', 'genemu_jqueryselect2_entity', array(
+                'label' => 'Edition',
+                'class' => 'ZeusSiteBundle:Edition',
+                'multiple' => false,
+                'expanded' => false,
+            ))
         ;
         
         $builder->addEventSubscriber(new AddSubmitFormSubscriber());
