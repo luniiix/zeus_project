@@ -38,5 +38,3 @@ class AuteursCollectionType extends AbstractType
 		return 'zeus_sitebundle_auteurscollection';
 	}
 }
-
-?>

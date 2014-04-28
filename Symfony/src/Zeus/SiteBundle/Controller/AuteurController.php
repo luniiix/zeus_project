@@ -7,8 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Zeus\SiteBundle\Entity\Auteur;
 use Zeus\SiteBundle\OtherClass\AuteursCollection;
 use Zeus\SiteBundle\Form\AuteursCollectionType;
-use Zeus\SiteBundle\Form\AuteurAjoutType;
-use Zeus\SiteBundle\Form\AuteurModifType;
+use Zeus\SiteBundle\Form\AuteurType;
 
 class AuteurController extends Controller {
 
@@ -48,7 +47,7 @@ class AuteurController extends Controller {
 
     public function ajouterAction(Request $request) {
         $auteur = new Auteur();
-        $form = $this->createForm(new AuteurAjoutType(), $auteur);
+        $form = $this->createForm(new AuteurType(), $auteur);
         $validator = $this->get('validator');
 
         if ($request->isMethod('POST')) {
@@ -73,7 +72,7 @@ class AuteurController extends Controller {
     public function modifierAction(Request $request, $idAuteur) {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Auteur');
         $auteur = $repository->find($idAuteur);
-        $form = $this->createForm(new AuteurModifType(), $auteur);
+        $form = $this->createForm(new AuteurType(), $auteur);
         $validator = $this->get('validator');
 
         if ($request->isMethod('POST')) {
