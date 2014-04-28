@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+		with {'route': 'zeus_site_service_ajout', 'element' : 'un service'} only %}
+
+        {% include 'ZeusSiteBundle:Service:tableau.html.twig' %}
+	
+
+{% endblock %}

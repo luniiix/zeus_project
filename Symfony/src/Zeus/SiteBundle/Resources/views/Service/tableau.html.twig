@@ -1,0 +1,34 @@
+{# src/Zeus/SiteBundle/Resources/views/Service/tableau.html.twig #}
+
+{% if services|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for service in services %}  
+            <tr>
+                <td>
+                    <a href="{{ path('zeus_site_service_suppr', { 'idService': service.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_service_modif', { 'idService': service.id }) }}">
+                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                </td>
+                <td>{{ service.nom }}</td>  
+            </tr>
+            {% endfor %}  
+        </tbody>
+		{# <tfoot>
+		<tr>
+			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+		</tr>
+		</tfoot>#}
+    </table>
+{% else %}
+    <div>Aucun Service</div>
+{% endif %}

@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+		with {'route': 'zeus_site_service_tableau', 'element' : 'service'} only %}
+	{% include 'ZeusSiteBundle:Service:form_ajout.html.twig' %}
+{% endblock %}
