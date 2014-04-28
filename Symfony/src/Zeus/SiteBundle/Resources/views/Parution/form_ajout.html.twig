@@ -8,19 +8,29 @@
     {{ form_javascript(form) }}
 {% endblock %}
 
-{# Voici le script en question : #}
-		<script type="text/javascript">
+<script type="text/javascript">
+    
+    function maj_sous_cat_dispo()
+    {
+        idCategorie = $(this).val();
+        console.log(idCategorie);
+        $.ajax({
+             type: "POST",
+             url: Routing.generate('zeus_site_sous_categorie_dispo_ajax'),
+             data : {idCategorie : idCategorie},
+             success : function (data){
+                 console.log("reussi");
+             }
+        });          
+    }
 		
-$(document).ready(function() {
-	//console.log("dfsdfsd");
-	
-	/*$("#select2-drop-mask").select2({
-		tags:["red", "green", "blue"],
-		maximumSelectionSize: 3
-	});*/
-
-});
+    $(document).ready(function() {
+        maj_sous_cat_dispo();
+        $("body").on('change', '#zeus_sitebundle_parution_categorie', maj_sous_cat_dispo());
+    });
+   
 </script>
+
 
     <h1 class="h1Parution">Ajouter une Parution</h1>
     <div class="well formulaire">
@@ -29,7 +39,8 @@ $(document).ready(function() {
             {{ form_label(form.resume, "Résumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
             {{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
             {{ form_label(form.traducteurs, "Traducteur(s)") }} {{ form_widget(form.traducteurs) }} {{ form_errors(form.traducteurs) }} <br />
-            {{ form_label(form.sousCategorie, "Catégorie") }} {{ form_widget(form.sousCategorie) }} {{ form_errors(form.sousCategorie) }} <br />
+            {{ form_label(form.categorie, "Catégorie") }} {{ form_widget(form.categorie) }} {{ form_errors(form.categorie) }} <br />
+            {{ form_label(form.sousCategorie, "Sous catégorie") }} {{ form_widget(form.sousCategorie) }} {{ form_errors(form.sousCategorie) }} <br />
             {{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
             {{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
             {{ form_widget(form.ajouter) }}
