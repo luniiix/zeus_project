@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "liip/imagine-bundle": "dev-master",
-        "genemu/form-bundle": "2.2.*@dev"
+        "genemu/form-bundle": "2.2.*@dev",
+        "friendsofsymfony/jsrouting-bundle" : "@stable"
         
     },
     "scripts": {

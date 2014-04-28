@@ -18,10 +18,11 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Zeus\SiteBundle\ZeusSiteBundle(),
-        	new Zeus\UserBundle\ZeusUserBundle(),
-        	new FOS\UserBundle\FOSUserBundle(),
-        	new Liip\ImagineBundle\LiipImagineBundle(),
-			new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new Zeus\UserBundle\ZeusUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         		
         );
 

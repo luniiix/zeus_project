@@ -6,6 +6,9 @@ zeus_user:
     resource: "@ZeusUserBundle/Resources/config/routing.yml"
     prefix:   /
     
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    
 _imagine:
     resource: .
     type:     imagine
