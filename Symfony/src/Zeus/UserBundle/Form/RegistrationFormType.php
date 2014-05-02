@@ -13,7 +13,14 @@ class RegistrationFormType extends BaseType
         $builder
             ->add('nom','text',array('label' => 'Nom'))
             ->add('prenom','text',array('label' => 'Prénom'))
-            ->add('service','text',array('label' => 'Service'))
+            ->add('Service', 'genemu_jqueryselect2_entity', array(
+                'label' => 'Service',
+                'class' => 'ZeusSiteBundle:Service',
+                'property' => 'nom',
+                'multiple' => false,
+                'expanded' => false
+            ))
+            //->add('Groupe', 'choice', array('empty_value' => 'Choisissez le groupe'))
         ;
     }
  
