@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+
+{% block content  %}
+    <h1>Résultats de la recherche</h1>
+    <h3>Nombre d'exemplaires trouvés: {{ results|length }}</h3>
+    <hr>
+    {% for result in results %}
+        <div class="exemplaire-trouve">
+            <h2>{{result['titre']}}</h2>
+            <p>Résumé: {{result['resume']}}</p>
+            <p>Auteur: {{result['prenom']}} {{result['nom']}}</p>
+            <p>Année de parution: {{result['date']}}</p>
+            <p>Catégorie: {{result['intitule']}}</p>
+            <p>Type: {{result['libelle']}}</p>
+            <p>{% if result['is_dispo'] == '1' %}Disponible{% else %}Indisponible{% endif %}</p>
+            <a href="#">Voir la fiche</a>
+            {% if result['is_dispo'] == '1' %}
+            <a href="#">Emprunter</a>
+            {% endif %}
+        <div>
+        <hr>
+    {% endfor %}
+    <a href="{{ app.request.getBaseURL() }}" class="btn btn-primary">Retour</a>
+{% endblock %}
