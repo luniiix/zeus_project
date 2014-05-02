@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class SousCategorieRepository extends EntityRepository
 {
+    public function findAllByCategorie($categorie){
+        
+      return $this->createQueryBuilder('sc')
+                  ->where('sc.categorie = :idCategorie')
+                  ->setParameter('idCategorie', $categorie->getId())
+                 ->orderBy('sc.codeClassification', 'ASC')
+                  ->getQuery()
+                  ->getResult();
+      
+    }
 }
