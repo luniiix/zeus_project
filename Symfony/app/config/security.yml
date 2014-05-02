@@ -34,7 +34,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       # - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }--> à mettre pour obliger l'authentification
-        - { path: ^/auteurs, roles: ROLE_USER }  
+      #  - { path: ^/, roles: ROLE_USER }
+     #   - { path: ^/auteurs, roles: ROLE_USER }  
         
         
