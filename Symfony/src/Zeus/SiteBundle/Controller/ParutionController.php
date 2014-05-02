@@ -11,8 +11,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
-use Zeus\SiteBundle\Form\Type\SousCategorieDispoType;
-use Zeus\SiteBundle\Entity\SousCategorie;
 
 class ParutionController extends Controller
 {
@@ -90,7 +88,7 @@ class ParutionController extends Controller
             return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
         }
         
-        public function rafraichirSousCategorieDispoAction(Request $request)
+        public function rafraichirSousCategoriesDispoAction(Request $request)
         {
             if($request->isXmlHttpRequest()){
                

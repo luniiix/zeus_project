@@ -10,6 +10,42 @@
     {{ form_javascript(form) }}
 {% endblock %}
 
+<script type="text/javascript">
+    
+    function maj_sous_cat_dispo()
+    {
+        idSousCategorie = $('form input[name=sous_cat]').val();
+        $('form input[name=sous_cat]').val(0);
+        idCategorie = $('#zeus_sitebundle_parution_categorie').val();
+        $.ajax({
+             type: "POST",
+             url: Routing.generate('zeus_site_sous_categorie_dispo_ajax'),
+             data : {idCategorie : idCategorie},
+             success : function (data){
+                 $('#zeus_sitebundle_parution_sousCategorie').empty();
+                 $.each(data, function(i, item) {
+                    if((idSousCategorie == 0 && i == 0) || (idSousCategorie != 0 && item.id == idSousCategorie)){
+                        $('#s2id_zeus_sitebundle_parution_sousCategorie .select2-chosen').html(
+                                item.codeClassification + ' ' + item.intitule
+                        );
+                    }
+                    $('#zeus_sitebundle_parution_sousCategorie').append(
+                        '<option value="' + item.id + '">' + item.codeClassification + ' ' + item.intitule +'</option>'
+                    );
+                 });
+             }
+        });          
+    }	
+    
+    $(document).ready(function() {
+        var sous_cat = $('#zeus_sitebundle_parution_sousCategorie').val();
+        $('form').append('<input type="hidden" name="sous_cat" value="' + sous_cat + '" />');
+        maj_sous_cat_dispo();
+        $("body").on('change', '#zeus_sitebundle_parution_categorie', maj_sous_cat_dispo);
+    });
+   
+</script>
+
     <h1 class="h1Parution">Modifier une Parution</h1>
     <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
