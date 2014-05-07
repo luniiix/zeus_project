@@ -1,11 +1,12 @@
-# app/config/security.yml     
+# app/config/security.yml
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
+        ROLE_OLYMPIENS:     ROLE_USER
+        ROLE_ADMIN:         ROLE_USER
+        ROLE_SUPER_ADMIN:   [ROLE_USER, ROLE_ADMIN, ROLE_OLYMPIENS]
 
     providers:
         fos_userbundle:
@@ -28,13 +29,23 @@ security:
             remember_me:
                 key: %secret%
             logout: true
-            anonymous: true
- 
+            anonymous: true 
+
     access_control:
+        # Controle d'acces pour les utilisateurs anonyme
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-      #  - { path: ^/, roles: ROLE_USER }
-     #   - { path: ^/auteurs, roles: ROLE_USER }  
         
+        # Controle d'acces pour les utilisateurs normaux
+        - { path: ^/, role: ROLE_USER}
+        - { path: ^/profiles, role: ROLE_USER}
+
+        # Controle d'acces pour les olympiens
+        - { path: ^/auteurs, role: ROLE_OLYMPIENS }  
+        - { path: ^/types_parutions, role: ROLE_OLYMPIENS }  
+        - { path: ^/parutions, role: ROLE_OLYMPIENS }  
+        - { path: ^/traducteurs, role: ROLE_OLYMPIENS }  
+        - { path: ^/editeurs, role: ROLE_OLYMPIENS }
+        
+        # Controle d'acces pour les administrateurs
+        - { path: ^/register, role: ROLE_ADMIN}
         
