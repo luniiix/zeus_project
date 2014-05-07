@@ -76,6 +76,10 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: zeus_userbundle_registration }
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
              
 # FOSUserBundle Configuration
 fos_user:
