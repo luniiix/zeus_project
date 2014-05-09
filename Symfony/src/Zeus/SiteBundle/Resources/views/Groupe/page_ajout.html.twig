@@ -1,7 +1,0 @@
-{% extends "::base.html.twig" %}
-
-{% block content %}
-	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
-		with {'route': 'zeus_site_groupe_tableau', 'element' : 'groupe'} only %}
-	{% include 'ZeusSiteBundle:Groupe:form_ajout.html.twig' %}
-{% endblock %}
