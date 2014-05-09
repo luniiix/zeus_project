@@ -1,9 +1,0 @@
-{# src/Zeus/SiteBundle/Resources/views/Editeur/modifier.html.twig #}
-
-<h1 class="h1Parution">Modifier un Editeur</h1>
-<div class="well formulaire">
-	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.nom, "Nom de l'éditeur") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
-    	{{ form_widget(form.modifier) }}
-	</form>
-</div>

@@ -1,9 +1,0 @@
-{# src/Zeus/SiteBundle/Resources/views/TypeParution/modifier.html.twig #}
-
-<h1 class="h1Parution">Modifier un type de parution</h1>
-<div class="well formulaire">
-	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.libelle, "Libellé") }} {{ form_widget(form.libelle) }} {{ form_errors(form.libelle) }} <br />
-    	{{ form_widget(form.modifier) }}
-	</form>
-</div>
