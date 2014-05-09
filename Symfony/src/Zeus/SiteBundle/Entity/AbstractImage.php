@@ -14,14 +14,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 abstract class AbstractImage
 {
 	
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	protected $id;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
     /**
      * @var string
@@ -37,6 +37,15 @@ abstract class AbstractImage
      */
     protected $alt;
     
+    /*
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/png"}
+     *     maxWidth = 700,
+     *     maxHeight = 700,
+     *     mimeTypesMessage = "L'image doit être de type JPEG ou PNG.",
+     *     maxWidthMessage = "La largeur de l'image ne doit pas dépasser {{ max_width }} px.",
+     *     maxHeightMessage = "La hauteur de l'image ne doit pas dépasser {{ max_width }} px."  
+     */
     protected $file;
     
     protected $tempFilename;

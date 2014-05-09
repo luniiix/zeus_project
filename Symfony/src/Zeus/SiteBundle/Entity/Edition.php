@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Edition
@@ -45,6 +46,9 @@ class Edition
      * @var integer
      *
      * @ORM\Column(name="numero", type="integer")
+     * @Assert\Regex(
+     *     pattern = "/^[0-9]+$/",
+     *     message = "Le numéro d'une édtition doit être un chiffre ou un nombre entier")
      */
     private $numero;
 
@@ -52,6 +56,8 @@ class Edition
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
+     * @Assert\Date(
+     *      message = "La date d'une édition doit être de la forme : jj-mm-aaaa")
      */
     private $date;
     
@@ -156,6 +162,13 @@ class Edition
     public function getDate()
     {
         return $this->date;
+    }
+    
+    public function __toString() {
+        $chaine = $this->parution->getTitre().' - Edition : '.$this->editeur->getNom();
+        if($this->numero !== null)
+            $chaine .= ' N° '.$this->numero;
+        return $chaine; 
     }
     
 }

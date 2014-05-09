@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Zeus\SiteBundle\Entity\Auteur;
 use Zeus\SiteBundle\Entity\SousCategorie;
 
@@ -33,7 +34,12 @@ class Parution
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @ORM\Column(name="titre", type="string", length=125, nullable=false)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "125",
+     *      minMessage = "Le titre d'une parution doit faire au minimum {{ limit }} caractères",
+     *      maxMessage = "Le titre d'une parution ne peut faire plus de {{ limit }} caractères")
      */
     private $titre;
 
@@ -58,6 +64,11 @@ class Parution
      * )
      */
     private $auteurs;
+    
+    /*
+     * @var \Categorie
+     */
+    private $categorie;
 
     /**
      * @var \SousCategorie
@@ -101,7 +112,7 @@ class Parution
      * @ORM\ManyToOne(targetEntity="ImageParution", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ref_image_parution", referencedColumnName="id")
-     * })
+     * })    
      */
     private $imageParution;
 
@@ -323,12 +334,25 @@ class Parution
     	return $this->traducteur;
     }
 	
-	public function setSousCategorie($sousCategorie){
-		$this->sousCategorie = $sousCategorie;
-		return $this;
-	}
-	
-	public function getSousCategorie(){
-		return $this->sousCategorie;
-	}
+    public function setSousCategorie($sousCategorie)
+    {
+        $this->sousCategorie = $sousCategorie;
+        return $this;
+    }
+
+    public function getSousCategorie()
+    {
+        return $this->sousCategorie;
+    }
+    
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+    
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+        return $this;
+    }
 }

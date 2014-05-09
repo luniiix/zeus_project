@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Editeur
@@ -24,7 +25,12 @@ class Editeur
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=200, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=45, nullable=false)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "45",
+     *      minMessage = "Le nom d'un éditeur doit faire au minimum {{ limit }} caractères",
+     *      maxMessage = "Le nom d'un éditeur ne peut faire plus de {{ limit }} caractères")
      */
     private $nom;
     

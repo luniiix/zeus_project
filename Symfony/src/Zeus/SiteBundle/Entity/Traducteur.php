@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Traducteur
@@ -24,14 +25,24 @@ class Traducteur
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=25, nullable=false)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "25",
+     *      minMessage = "Le prénom d'un traducteur doit faire au minimum {{ limit }} caractères",
+     *      maxMessage = "Le prénom d'un traducteur ne peut faire plus de {{ limit }} caractères")
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=25, nullable=false)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "25",
+     *      minMessage = "Le nom d'un traducteur doit faire au minimum {{ limit }} caractères",
+     *      maxMessage = "Le nom d'un traducteur ne peut faire plus de {{ limit }} caractères")
      */
     private $nom;
 

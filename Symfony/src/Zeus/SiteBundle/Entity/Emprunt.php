@@ -4,6 +4,7 @@ namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zeus\UserBundle\Entity\Utilisateur;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Emprunt

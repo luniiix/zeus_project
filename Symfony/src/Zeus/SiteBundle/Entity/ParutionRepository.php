@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * ParutionRepository
@@ -13,25 +14,14 @@ use Doctrine\ORM\EntityRepository;
 class ParutionRepository extends EntityRepository
 {
 	
-	public function aaLasts(){
-		
-   	 // Méthode équivalente, mais plus longue :
-    $queryBuilder = $this->_em->createQueryBuilder()
-                              ->select('p.id')
-                              ->from($this->_entityName, 'p');
-      // Dans un repository, $this->_entityName est le namespace de l'entité gérée
-      // Ici, il vaut donc Sdz\BlogBundle\Entity\Article
+	public function aaLasts()
+        {	
+           $queryBuilder = $this->_em->createQueryBuilder()
+                                     ->select('p.id')
+                                     ->from($this->_entityName, 'p');
+           $query = $queryBuilder->getQuery();
+           $resultats = $query->getResult();
 
-    // On a fini de construire notre requête
-
-    // On récupère la Query à partir du QueryBuilder
-    $query = $queryBuilder->getQuery();
-
-    // On récupère les résultats à partir de la Query
-    $resultats = $query->getResult();
-
-    // On retourne ces résultats
-    return $resultats;
+           return $resultats;
 	}
-	
 }

@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class EditionRepository extends EntityRepository
 {
+    public function findAllByParution($parution)
+    {
+        return $this->createQueryBuilder('e')
+                  ->where('e.parution = :idParution')
+                  ->setParameter('idParution', $parution->getId())
+                 ->orderBy('e.numero', 'ASC')
+                  ->getQuery()
+                  ->getResult();
+    }
 }
