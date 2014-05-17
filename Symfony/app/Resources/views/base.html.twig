@@ -9,12 +9,12 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-		
+
 		{% stylesheets 'bundles/zeussite/css/*' filter='cssrewrite' %}
     		<link rel="stylesheet" href="{{ asset_url }}" />
 		{% endstylesheets %}
-		
-		{% javascripts 
+
+		{% javascripts
                     'bundles/zeussite/js/jquery-1.10.1.min.js'
                     'bundles/zeussite/js/bootstrap.js'
                     'bundles/zeussite/js/select2.js'
@@ -29,7 +29,7 @@
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 		{% endjavascripts %}
-		
+
        {# <script src="bundles/zeussite/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script> #}
     </head>
     <body>
@@ -48,22 +48,24 @@
             <a class="navbar-brand" href="{{ path('zeus_site_homepage') }}"><img src="{{ asset('bundles/zeussite/img/logo.png') }}" /></a>
           <!--</div>-->
         </div>
-         
+
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
             <div class="navbar-collapse collapse">
                 <a href="{{ path('fos_user_security_logout') }}" class="deconnexion">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-                <a href="{{ path('fos_user_profile_show') }}" class="profil">Bonjour {{ app.user.username }}</a>
+                <a href="{{ path('fos_user_profile_edit') }}" class="profil">Bonjour {{ app.user.username }}</a>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ path('zeus_site_homepage') }}">Accueil</a></li>
+                    <li class=""><a href="{{ path('zeus_site_homepage') }}">Accueil</a></li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion des utilisateurs<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de mon profil<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            {% if is_granted("ROLE_ADMIN") %}
-                                <li><a href="{{ path('fos_user_registration_register') }}">Enregistrer un utilisateur</a></li>
-                            {% endif %}
-                            <li><a href="{{ path ('fos_user_profile_show') }}">Mon profil</a></li>
+                            <li><a href="{{ path ('fos_user_profile_edit') }}">Mon profil</a></li>
+                            <li><a href="{{ path ('zeus_site_emprunt_mes_emprunts') }}">Mes emprunts</a></li>
+                            <li><a href="{{ path ('fos_user_change_password') }}">Changer mon mot de passe</a></li>
                         </ul>
-                    <li class="dropdown">  
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li><a href="{{ path('fos_user_registration_register') }}">Enregistrer un utilisateur</a></li>
+                    {% endif %}
+                    <li class="dropdown">
                     {% if is_granted("ROLE_OLYMPIENS") %}
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de la bibliothèque<b class="caret"></b></a>
@@ -76,7 +78,7 @@
                             </ul>
                         <li class="dropdown">
                     {% endif %}
-                    <li><a href="#contact">Support technique</a></li>
+                    <li><a href="{{ path('zeus_site_contact') }}">Support technique</a></li>
                 </ul>
             </div><!--/.navbar-collapse -->
              {% endif %}
@@ -84,20 +86,25 @@
         </div>
             <div class="separation"></div>
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
-          <div class="container container-fluid">
-            {% block content %}{% endblock %}
-          </div>
+            <div class="jumbotron">
+                {% for flashMessage in app.session.flashbag.get('notification') %}
+                    <div class="alert alert-{{flashMessage.class}}">
+                        {{ flashMessage.message }}
+                    </div>
+                {% endfor %}
+            <div class="container container-fluid">
+                {% block content %}{% endblock %}
+            </div>
         </div>
 
         <div class="container">
 
-        </div> <!-- /container --> 
-   
+        </div> <!-- /container -->
+
    {# <footer>
     	<p>&copy; Zeus 2013  -  <a href="#">Mention l&eacute;gale</a></p>
-    </footer> #}    
-      
+    </footer> #}
+
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
