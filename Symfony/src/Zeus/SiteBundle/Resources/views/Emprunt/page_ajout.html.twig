@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    {#% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+            with {'route': 'zeus_site_emprunt_tableau', 'element' : 'emprunt'} only %#}
+    <h1 class="h1Parution">Emprunter de {{exemplaire.parution.titre}}</h1>
+
+    {% include 'ZeusSiteBundle:Emprunt:form_ajout.html.twig' %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{# src/Zeus/SiteBundle/Resources/views/Emprunt/ajouter.html.twig #}
+
+
+<div class="well formulaire">
+	<form method="post" {{ form_enctype(form) }}>
+    	{{ form_label(form.datedebut, "Date de début") }} {{ form_widget(form.datedebut) }} {{ form_errors(form.datedebut) }} <br />
+    	{{ form_label(form.datefin, "Date de fin") }} {{ form_widget(form.datefin) }} {{ form_errors(form.datefin) }} <br />
+    	{{ form_widget(form.ajouter) }}
+	</form>
+</div>

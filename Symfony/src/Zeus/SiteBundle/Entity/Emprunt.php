@@ -3,6 +3,7 @@
 namespace Zeus\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Exemplaire;
 use Zeus\UserBundle\Entity\Utilisateur;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -57,4 +58,56 @@ class Emprunt
      */
     private $utilisateur;
 
+    // Rajout des Getter Et Setter
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getDatedebut()
+    {
+        return $this->datedebut;
+    }
+
+    public function getDatefin()
+    {
+        return $this->datefin;
+    }
+
+    public function getExemplaire()
+    {
+        return $this->exemplaire;
+    }
+
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setDatedebut(\DateTime $datedebut)
+    {
+        $this->datedebut = $datedebut;
+    }
+
+    public function setDatefin(\DateTime $datefin)
+    {
+        $this->datefin = $datefin;
+    }
+
+    public function setUtilisateur(\Zeus\UserBundle\Entity\Utilisateur $utilisateur)
+    {
+        echo $utilisateur;
+        $this->utilisateur = $utilisateur;
+    }
+
+    public function setExemplaire(\Zeus\SiteBundle\Entity\Exemplaire $exemplaire)
+    {
+        $this->exemplaire = $exemplaire;
+    }
 }

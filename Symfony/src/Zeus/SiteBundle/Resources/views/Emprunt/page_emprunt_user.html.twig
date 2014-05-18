@@ -1,0 +1,43 @@
+<?php
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+
+{# src/Zeus/SiteBundle/Resources/views/Emprunt/mesEmprunts.html.twig #}
+
+<h1>Mes emprunts</h1>
+
+{% if emprunts|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Exemplaire</th>
+            <th>Editeur</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for emprunt in emprunts %}
+            <tr>
+                <td>
+                    {% if emprunt.exemplaire.parution.imageParution is defined and emprunt.exemplaire.parution.imageParution is not null %}
+                        {% set urlIMG = '/uploads/img_parution/'~emprunt.exemplaire.parution.imageParution.id~'.jpeg' %}
+                           <img alt='{{emprunt.exemplaire.parution.imageParution.alt}}' src='{{ urlIMG | imagine_filter('image_parution_thumbnail') }}'>
+                    {% endif %}
+                </td>
+                <td>{{ emprunt.exemplaire.parution.titre|capitalize }}</td>
+                <td>{{ emprunt.exemplaire.edition.editeur.nom|capitalize }}</td>
+                <td>{{ emprunt.datedebut.format('Y-m-d H:i') }}</td>
+                <td>{{ emprunt.datefin.format('Y-m-d H:i') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div>Vous n'avez aucun emprunt en cours</div>
+{% endif %}
+

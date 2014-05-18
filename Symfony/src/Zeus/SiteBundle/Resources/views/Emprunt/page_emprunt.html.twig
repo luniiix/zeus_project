@@ -1,0 +1,41 @@
+{# src/Zeus/SiteBundle/Resources/views/Emprunt/emprunter.html.twig #}
+
+<h1>Liste des parutions actuellement empruntées</h1>
+
+{% if emprunts|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Exemplaire</th>
+            <th>Editeur</th>
+            <th>Utilisateur</th>
+            <th>Service</th>
+            <th>Bureau</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for emprunt in emprunts %}
+            <tr>
+                <td>
+                    {% if emprunt.exemplaire.parution.imageParution is defined and emprunt.exemplaire.parution.imageParution is not null %}
+                        {% set urlIMG = '/uploads/img_parution/'~emprunt.exemplaire.parution.imageParution.id~'.jpeg' %}
+                           <img alt='{{emprunt.exemplaire.parution.imageParution.alt}}' src='{{ urlIMG | imagine_filter('image_parution_thumbnail') }}'>
+                    {% endif %}
+                </td>
+                <td>{{ emprunt.exemplaire.parution.titre|capitalize }}</td>
+                <td>{{ emprunt.exemplaire.edition.editeur.nom|capitalize }}</td>
+                <td>{{ emprunt.utilisateur.nom|capitalize  ~ ' ' ~  emprunt.utilisateur.prenom|capitalize }}</td>
+                <td>{{ emprunt.utilisateur.service.nom|capitalize }} </td>
+                <td></td> {#{{  emprunt.utilisateur.bureau }} #}
+                <td>{{ emprunt.datedebut.format('Y-m-d H:i') }}</td>
+                <td>{{ emprunt.datefin.format('Y-m-d H:i') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div>Aucun emprunt en cours</div>
+{% endif %}
