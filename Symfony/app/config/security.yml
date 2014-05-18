@@ -18,34 +18,35 @@ security:
             security: false
             logout: true
             anonymous: true
-             
+
         # Firewall principal pour le reste de notre site
         main:
-            pattern: .*                     
-            form_login:                     
-                provider: fos_userbundle    
-                remember_me: true     
+            pattern: .*
+            form_login:
+                provider: fos_userbundle
+                remember_me: true
                 #default_target_path: /frontend/photo
             remember_me:
                 key: %secret%
             logout: true
-            anonymous: true 
+            anonymous: true
 
     access_control:
         # Controle d'acces pour les utilisateurs anonyme
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        
+
         # Controle d'acces pour les utilisateurs normaux
         - { path: ^/, role: ROLE_USER}
         - { path: ^/profiles, role: ROLE_USER}
+        - { path: ^/emprunt, role: ROLE_USER}
+        - { path: ^/contact, role: ROLE_USER}
 
         # Controle d'acces pour les olympiens
-        - { path: ^/auteurs, role: ROLE_OLYMPIENS }  
-        - { path: ^/types_parutions, role: ROLE_OLYMPIENS }  
-        - { path: ^/parutions, role: ROLE_OLYMPIENS }  
-        - { path: ^/traducteurs, role: ROLE_OLYMPIENS }  
+        - { path: ^/auteurs, role: ROLE_OLYMPIENS }
+        - { path: ^/types_parutions, role: ROLE_OLYMPIENS }
+        - { path: ^/parutions, role: ROLE_OLYMPIENS }
+        - { path: ^/traducteurs, role: ROLE_OLYMPIENS }
         - { path: ^/editeurs, role: ROLE_OLYMPIENS }
-        
+
         # Controle d'acces pour les administrateurs
         - { path: ^/register, role: ROLE_ADMIN}
-        
