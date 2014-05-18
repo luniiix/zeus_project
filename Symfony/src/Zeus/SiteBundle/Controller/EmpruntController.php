@@ -132,9 +132,6 @@ class EmpruntController extends Controller
             $emprunt->setExemplaire($exemplaire);
             $form->handleRequest($request);
             if (!$form->isValid()) {
-                // Mise a jour du isDispo
-                $emprunt->getExemplaire()->setIsDispo(false);
-
                 // Envoie de la requête
                 $entity_manager = $this->getDoctrine()->getManager();
                 $entity_manager->persist($emprunt);
