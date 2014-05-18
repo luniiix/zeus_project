@@ -72,6 +72,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ path('zeus_site_typeparution_tableau') }}">Gestion du type des parutions</a></li>
                                 <li><a href="{{ path('zeus_site_parution_tableau') }}">Gestion des parutions</a></li>
+                                <li><a href="{{ path('zeus_site_exemplaire_tableau') }}">Gestion des exemplaires</a></li>
                                 <li><a href="{{ path('zeus_site_auteur_tableau') }}">Gestion des auteurs</a></li>
                                 <li><a href="{{ path('zeus_site_traducteur_tableau') }}">Gestion des traducteurs</a></li>
                                 <li><a href="{{ path('zeus_site_editeur_tableau') }}">Gestion des éditeurs</a></li>
@@ -91,7 +92,7 @@
             <div class="jumbotron">
                 <!-- Block notification -->
                 {% for flashMessage in app.session.flashbag.get('notification') %}
-                    <div class="alert alert-{{flashMessage.class}}"> 
+                    <div class="alert alert-{{flashMessage.class}}">
                         {{ flashMessage.message }}
                     </div>
                 {% endfor %}
