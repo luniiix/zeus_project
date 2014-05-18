@@ -1,0 +1,63 @@
+.block-find{
+	width: 600px;
+	height: 500px;
+	padding: 25px 20px;
+	margin: 0;
+	float: left;
+}
+
+/*.resume{
+	height: 220px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}*/
+
+.img_resume{
+	float: right;
+}
+
+a :hover{
+	pointer: cursor;	
+}
+
+.container{
+	font-size: 12px;	
+}
+
+table tr td, table tr th{
+	padding: 5px;	
+	border: 1px solid rgb(34, 66, 124);
+}
+
+table tr th{
+	text-align: center;
+}
+.carousel-control.left, .carousel-control.right {
+  color: #000000;
+  position: absolute;
+  top: 45%;
+  display: block;
+  height: 45px!important;
+}
+.carousel.slide.lasts-parutions.span4 {
+  border: 2px solid #22427C;
+}
+.carousel-inner .item {
+  min-height: 300px !important;
+}
+#recherche {
+    padding-top: 0;
+}
+#recherche h1 {
+  margin-top: 0;
+}
+.formulaire {
+    width: 100% !important;
+}
+.exemplaire-trouve h2 {
+  font-size: 20px !important;
+  margin: 5px 0;
+}
+#last-articles > h1 {
+  text-align: center;
+}
