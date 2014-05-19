@@ -21,6 +21,10 @@ zeus_site_auteur_modif:
 zeus_site_auteur_suppr:
     pattern: /auteurs/supprimer/{idAuteur}
     defaults: { _controller: ZeusSiteBundle:Auteur:supprimer }
+    
+zeus_site_auteur_affich:
+    pattern: /auteurs/fiche/{idAuteur}
+    defaults: { _controller: ZeusSiteBundle:Auteur:visualiser }
 
 zeus_site_traducteur_tableau:
     pattern: /traducteurs
@@ -37,6 +41,10 @@ zeus_site_traducteur_modif:
 zeus_site_traducteur_suppr:
     pattern: /traducteurs/supprimer/{idTraducteur}
     defaults: { _controller: ZeusSiteBundle:Traducteur:supprimer }
+    
+zeus_site_traducteur_affich:
+    pattern: /traducteurs/fiche/{idTraducteur}
+    defaults: { _controller: ZeusSiteBundle:Traducteur:visualiser }
 
 zeus_site_parution_tableau:
     pattern: /parutions
@@ -85,6 +93,10 @@ zeus_site_editeur_modif:
 zeus_site_editeur_suppr:
     pattern: /editeurs/supprimer/{idEditeur}
     defaults: { _controller: ZeusSiteBundle:Editeur:supprimer }
+    
+zeus_site_editeur_affich:
+    pattern: /editeurs/fiche/{idEditeur}
+    defaults: { _controller: ZeusSiteBundle:Editeur:visualiser }
 
 zeus_site_informationuser_edit:
     pattern: /informationuser/edit
@@ -165,6 +177,10 @@ zeus_site_service_modif:
 zeus_site_service_suppr:
     pattern: /services/supprimer/{idService}
     defaults: { _controller: ZeusSiteBundle:Service:supprimer }
+    
+zeus_site_service_affich:
+    pattern: /services/fiche/{idService}
+    defaults: { _controller: ZeusSiteBundle:Service:visualiser }
 
 zeus_site_contact:
     pattern: /contact
@@ -173,17 +189,17 @@ zeus_site_contact:
 
 # Ecriture des routes pour les emprunts
 zeus_site_emprunt:
-    pattern: /emprunt
+    pattern: /emprunts
     defaults: { _controller: ZeusSiteBundle:Emprunt:index }
 
 zeus_site_emprunt_gestion:
-    pattern: /emprunt/page_gestion
+    pattern: /emprunts/page-gestion
     defaults: { _controller: ZeusSiteBundle:Emprunt:page_gestion }
 
 zeus_site_emprunt_mes_emprunts:
-    pattern: /emprunt/mesEmprunts
+    pattern: /emprunts/mes-emprunts
     defaults: { _controller: ZeusSiteBundle:Emprunt:mesEmprunts }
 
 zeus_site_emprunt_ajout:
-    pattern: /emprunt/ajouter/{idExemplaire}
+    pattern: /emprunts/ajouter/{idExemplaire}
     defaults: { _controller: ZeusSiteBundle:Emprunt:ajouter }
