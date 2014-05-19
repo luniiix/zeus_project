@@ -1,24 +1,51 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+ * Formulaire EmpruntAjoutType
+ *
+ *
+ * @category Class
+ * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+*/
 
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Form;
 
+/**
+ * Import des differentes class
+ */
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Zeus\SiteBundle\Form\EventListener\AddSubmitFormSubscriber;
 
+/**
+ * Class EmpruntType
+ *
+ *
+ * @category   EmpruntType
+ * @package    Form
+ * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
+ */
 class EmpruntType extends AbstractType
 {
-        /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
+    /**
+     * Fonction buildForm
+     *
+     *
+     * @category   buildForm
+     * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param FormBuilderInterface $builder Variable contenant la base du formulaire
+     * @param array $options Variable contenant les options du formulaire
+    */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,23 +62,21 @@ class EmpruntType extends AbstractType
                 'format' => 'dd-MM-yyyy',
             ))
         ;
-
-        /*->add('utilisateur', 'entity', array(
-                'label' => 'Utilisateur',
-                'class' => 'ZeusUserBundle:Utilisateur',
-                'property' => 'id',
-            ))
-            ->add('exemplaire', 'entity', array(
-                'label' => 'Exemplaire',
-                'class' => 'ZeusSiteBundle:Exemplaire',
-                'property' => 'id',
-            ))*/
         $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
 
     /**
+     *
+    /**
+     * Fonction setDefaultOptions
+     *
+     *
+     * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
      * @param OptionsResolverInterface $resolver
-     */
+    */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -59,9 +84,18 @@ class EmpruntType extends AbstractType
         ));
     }
 
+
     /**
-     * @return string
-     */
+     * Fonction getName
+     *
+     *
+     * @category   getName
+     * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return string renvoie le formulaire permettant l'affichage des emprunts.
+    */
     public function getName()
     {
         return 'zeus_sitebundle_emprunt';

@@ -1,32 +1,52 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+ * Class EmpruntController
+ *
+ *
+ * @category Class
+ * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+*/
 
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Controller;
 
+/**
+ * Import des class
+ */
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zeus\SiteBundle\Form\EmpruntType;
 use Zeus\SiteBundle\Entity\Emprunt;
-use Zeus\SiteBundle\Entity\Exemplaire;
 use Zeus\UserBundle\Entity\Utilisateur;
 
 /**
  * Controller par défault concernant l'emprunt
+ *
+ * @category   EmpruntController
+ * @package    Controller
+ * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
  */
 class EmpruntController extends Controller
 {
 
     /**
+     * Fonction indexAction
+     *
+	 * Permet l'affichage de la liste des emprunts
+	 *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
-     * @name indexAction
-     * @return Emprunt $emprunts Liste des emprunts en cours
-     */
-    public function indexAction()
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return Emprunt Renvoie la liste des emprunts
+    */
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
@@ -49,11 +69,17 @@ class EmpruntController extends Controller
     }
 
     /**
+     * Fonction mesEmpruntsAction
+     *
+	 * Permet l'affichage de la liste des emprunts de l'utilisateur
+	 *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
-     * @name mesEmprunt
-     * @return Emprunt $emprunts Liste des emprunts en cours de l'utilisateur
-     */
-    public function mesEmpruntsAction()
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return Emprunt Renvoie la liste des emprunts de l'utilisateur
+    */
+    public function mesEmpruntsAction(Request $request)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -76,12 +102,17 @@ class EmpruntController extends Controller
             ));
     }
 
-    /**
+	/**
+     * Fonction ajouterAction
+     *
+	 * Permet d'emprunter un exemplaire
+	 *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
-     * @name mesEmprunt
-     * @param integer $idExemplaire Id de l'exemplaire à emprunter.
-     * @return type Permet l'ajout d'un nouvel emprunt.
-     */
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+	 * @param Integer $idExemplaire Id de l'exemplaire à emprunter
+    */
     public function ajouterAction(Request $request, $idExemplaire)
     {
         // Initialisation des variables $emprunt, $form et $validator
@@ -153,3 +184,4 @@ class EmpruntController extends Controller
         ));
     }
 }
+

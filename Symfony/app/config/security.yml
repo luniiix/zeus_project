@@ -38,7 +38,7 @@ security:
         # Controle d'acces pour les utilisateurs normaux
         - { path: ^/, role: ROLE_USER}
         - { path: ^/profiles, role: ROLE_USER}
-        - { path: ^/emprunt, role: ROLE_USER}
+        - { path: ^/emprunts, role: ROLE_USER}
         - { path: ^/contact, role: ROLE_USER}
 
         # Controle d'acces pour les olympiens
