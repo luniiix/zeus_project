@@ -4,7 +4,7 @@
  *
  *
  * @category Class
- * @author Amandine Faidide <kevinguicherd@gmail.com>
+ * @author Amandine Faidide <amandinefaidide@gmail.com>
 */
 
 /**
@@ -21,9 +21,9 @@ use Doctrine\ORM\EntityRepository;
  * Class EmpruntRepository
  *
  *
- * @category   EmpruntRepository
- * @package    Entity
- * @author GUICHERD Kévin <kevinguicherd@gmail.com>
+ * @category   Repository
+ * @package    Entity\Repository
+ * @author Amandine Faidide <amandinefaidide@gmail.com>
  * @copyright  2013-2014 projet-zeus.fr
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    Release: 1
