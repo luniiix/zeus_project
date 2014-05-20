@@ -1,12 +1,33 @@
 <?php
 
+/**
+ * Class Edition
+ *
+ *
+ * @category Class
+ * @author   FAIDIDE Amandine <amandinefaidide@gmail.com>
+*/
+
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Entity;
 
+/**
+ * Import des class
+ */
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Edition
+ *
+ * @category   Edition
+ * @package    Entity
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
  *
  * @ORM\Table(name="edition")
  * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\EditionRepository")
@@ -14,6 +35,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Edition
 {
     /**
+     * Id de l'edition
+     *
+     * @name $id
+     * @access private
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -23,6 +48,10 @@ class Edition
     private $id;
 
     /**
+     * Objet Parution de l'edition
+     *
+     * @name $parution
+     * @access private
      * @var \Parution
      *
      * @ORM\ManyToOne(targetEntity="Parution")
@@ -33,6 +62,10 @@ class Edition
     private $parution;
 
     /**
+     * Objet Editeur de l'edition
+     *
+     * @name $editeur
+     * @access private
      * @var \Editeur
      *
      * @ORM\ManyToOne(targetEntity="Editeur")
@@ -43,9 +76,14 @@ class Edition
     private $editeur;
 
     /**
+     * Objet Editeur de l'edition
+     *
+     * @name $editeur
+     * @access private
      * @var integer
      *
      * @ORM\Column(name="numero", type="integer")
+     * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern = "/^[0-9]+$/",
      *     message = "Le numéro d'une édtition doit être un chiffre ou un nombre entier")
@@ -53,42 +91,60 @@ class Edition
     private $numero;
 
     /**
+     * Date de l'edition
+     *
+     * @name $date
+     * @access private
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
+     * @Assert\NotBlank()
      * @Assert\Date(
      *      message = "La date d'une édition doit être de la forme : jj-mm-aaaa")
      */
     private $date;
-    
-   
+
+
+    // Rajout des Getter Et Setter
+
     /**
-     * Get id
+     * Fonction getId
      *
-     * @return integer 
-     */
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return integer Renvoie l'id de l'edition
+    */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set parution
+     * Fonction getId
      *
-     * @param \Parution $parution
-     * @return Edition
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param \Parution $parution Parution a ajouter a l'edition
+     * @return Edition Retourne l'objet edition
      */
     public function setParution($parution)
     {
         $this->parution = $parution;
-    
         return $this;
     }
 
     /**
-     * Get parution
+     * Fonction getParution
      *
-     * @return \Parution 
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return \Parution Retourne la parution de l'edition
      */
     public function getParution()
     {
@@ -96,22 +152,29 @@ class Edition
     }
 
     /**
-     * Set editeur
+     * Fonction setEditeur
      *
-     * @param \Editeur $editeur
-     * @return Edition
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param \Editeur $editeur Editeur de l'edition
+     * @return Edition Renvoie l'objet edition
      */
     public function setEditeur($editeur)
     {
         $this->editeur = $editeur;
-    
         return $this;
     }
 
     /**
-     * Get editeur
+     * Fonction getEditeur
      *
-     * @return \Editeur 
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return \Editeur Renvoie l'objet editeur de l'edition
      */
     public function getEditeur()
     {
@@ -119,22 +182,29 @@ class Edition
     }
 
     /**
-     * Set numero
+     * Fonction setNumero
      *
-     * @param integer $numero
-     * @return Edition
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $numero Numero de l'edition
+     * @return Edition Renvoie l'objet edition
      */
     public function setNumero($numero)
     {
         $this->numero = $numero;
-    
         return $this;
     }
 
     /**
-     * Get numero
+     * Fonction getNumero
      *
-     * @return integer 
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return integer Numero de l'edition
      */
     public function getNumero()
     {
@@ -142,33 +212,49 @@ class Edition
     }
 
     /**
-     * Set date
+     * Fonction setDate
      *
-     * @param \Date $date
-     * @return Edition
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param \Date $date Date de l'edition
+     * @return Edition Renvoie l'objet edition
      */
     public function setDate($date)
     {
         $this->date = $date;
-    
         return $this;
     }
 
     /**
-     * Get date
+     * Fonction setDate
      *
-     * @return \Date 
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return \Date Date de l'edition
      */
     public function getDate()
     {
         return $this->date;
     }
-    
-    public function __toString() {
-        $chaine = $this->parution->getTitre().' - Edition : '.$this->editeur->getNom();
-        if($this->numero !== null)
+    /**
+     * Fonction __toString
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return string Renvoie la chaine de caractere titre + nom + Numero
+     */
+    public function __toString()
+    {
+        $chaine = $this->parution->getTitre() . ' - Edition : ' . $this->editeur->getNom();
+        if ($this->numero !== null) {
             $chaine .= ' N° '.$this->numero;
-        return $chaine; 
+        }
+        return $chaine;
     }
-    
 }

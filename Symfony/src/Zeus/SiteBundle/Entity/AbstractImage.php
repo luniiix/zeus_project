@@ -77,13 +77,14 @@ abstract class AbstractImage
      * @access private
      *
      * @Assert\Image(
-     *     mimeTypes = {"image/jpeg", "image/png"}
+     *     mimeTypes = {"image/jpeg", "image/png"},
      *     maxWidth = 700,
      *     maxHeight = 700,
      *     mimeTypesMessage = "L'image doit être de type JPEG ou PNG.",
      *     maxWidthMessage = "La largeur de l'image ne doit pas dépasser {{ max_width }} px.",
-     *     maxHeightMessage = "La hauteur de l'image ne doit pas dépasser {{ max_width }} px."
+     *     maxHeightMessage = "La hauteur de l'image ne doit pas dépasser {{ max_height }} px.")
      */
+
     protected $file;
     /**
      * tempFilename
@@ -223,7 +224,7 @@ abstract class AbstractImage
     {
         // Si jamais il n'y a pas de fichier (champ facultatif)
         if ($this->file === null) {
-                return;
+            return;
         }
 
         // Le nom du fichier est son id, on doit juste stocker également son extension
