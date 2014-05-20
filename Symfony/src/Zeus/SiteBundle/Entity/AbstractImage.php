@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Image
  *
  * @category   Categorie
- * @package    Abstract
+ * @package    Entity\Abstract
  * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
  * @copyright  2013-2014 projet-zeus.fr
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
