@@ -1,11 +1,31 @@
 <?php
 
+/**
+ * Class SousCategorie
+ *
+ * @category Class
+ * @author   FAIDIDE Amandine <amandinefaidide@gmail.com>
+*/
+
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Entity;
 
+/**
+ * Import des class
+ */
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SousCategorie
+ *
+ * @category   SousCategorie
+ * @package    Entity
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
  *
  * @ORM\Table(name="sous_categorie")
  * @ORM\Entity(repositoryClass="Zeus\SiteBundle\Entity\SousCategorieRepository")
@@ -13,6 +33,10 @@ use Doctrine\ORM\Mapping as ORM;
 class SousCategorie extends AbstractCategorie
 {
     /**
+     * Objet catégorie
+     *
+     * @name $categorie
+     * @access private
      * @var \Categorie
      *
      * @ORM\ManyToOne(targetEntity="Categorie")
@@ -22,23 +46,34 @@ class SousCategorie extends AbstractCategorie
      */
     private $categorie;
 
+    // Rajout des Getter Et Setter
+
     /**
-     * Set categorie
+     * Fonction setCategorie
      *
-     * @param \Categorie $categorie
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     *
+     * @param \Categorie $categorie set la catégorie
      * @return SousCategorie
      */
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
-    
         return $this;
     }
 
     /**
-     * Get categorie
+     * Fonction setCategorie
      *
-     * @return \Categorie 
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     *
+     * @return \Categorie Rennvoie la catégorie
      */
     public function getCategorie()
     {

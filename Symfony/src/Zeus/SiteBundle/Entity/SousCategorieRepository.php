@@ -7,7 +7,7 @@
 */
 
 /**
- * Déclaration du namespace
+ * DÃ©claration du namespace
  */
 namespace Zeus\SiteBundle\Entity;
 
@@ -28,7 +28,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class SousCategorieRepository extends EntityRepository
 {
-	/**
+    /**
      * Fonction findAllByCategorie
      *
      * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
@@ -36,11 +36,11 @@ class SousCategorieRepository extends EntityRepository
      * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
      * @version    Release: 1
      * @param      Categorie $categorie Categorie ou l'on doit chercher les sous-categorie
-     * @return     sousCategorie Renvoie la liste des sous-Categorie pour la categorie donné.
+     * @return     sousCategorie Renvoie la liste des sous-Categorie pour la categorie donnÃ©.
     */
     public function findAllByCategorie($categorie)
     {
-      return $this->createQueryBuilder('sc')
+        return $this->createQueryBuilder('sc')
                   ->where('sc.categorie = :idCategorie')
                   ->setParameter('idCategorie', $categorie->getId())
                   ->orderBy('sc.codeClassification', 'ASC')

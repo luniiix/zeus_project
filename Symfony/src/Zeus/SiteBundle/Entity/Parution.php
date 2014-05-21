@@ -23,7 +23,7 @@ use Zeus\SiteBundle\Entity\SousCategorie;
 /**
  * Parution
  *
- * @category   Image
+ * @category   Parution
  * @package    Entity
  * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
  * @copyright  2013-2014 projet-zeus.fr
