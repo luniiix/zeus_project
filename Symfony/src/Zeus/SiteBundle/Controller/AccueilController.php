@@ -42,8 +42,6 @@ class AccueilController extends Controller
      * @copyright  2013-2014 projet-zeus.fr
      * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
      * @version    Release: 1
-     *
-     * @return type appelle la page d'accueil
      */
     public function indexAction(Request $request)
     {

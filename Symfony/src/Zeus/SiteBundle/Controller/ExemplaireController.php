@@ -1,7 +1,21 @@
 <?php
 
+/**
+ * Class ExemplaireController
+ *
+ *
+ * @category   Class
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+*/
+
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Controller;
 
+/**
+ * Import des class
+ */
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,9 +26,30 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Zeus\SiteBundle\Entity\Exemplaire;
 use Zeus\SiteBundle\Form\ExemplaireType;
 
-class ExemplaireController extends Controller {
-
-    public function indexAction(Request $request) 
+/**
+ * Class ExemplaireController
+ *
+ *
+ * @category   ExemplaireController
+ * @package    Controller
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
+ */
+class ExemplaireController extends Controller
+{
+    /**
+     * Fonction indexAction
+     *
+     * Permet l'affichage de la page qui affiche la liste des exemplaires
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+    */
+    public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Exemplaire');
         $liste_exemplaires = $repository->findBy(array(), array('dateAjout' => 'asc'));
@@ -23,8 +58,17 @@ class ExemplaireController extends Controller {
                     'exemplaires' => $liste_exemplaires,
                 ));
     }
-
-    public function ajouterAction(Request $request) 
+    /**
+     * Fonction ajouterAction
+     *
+     * Permet l'affichage de la page qui affiche la page d'ajout des exemplaires
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+    */
+    public function ajouterAction(Request $request)
     {
         $exemplaire = new Exemplaire();
         $form = $this->createForm(new ExemplaireType(), $exemplaire);
@@ -48,8 +92,18 @@ class ExemplaireController extends Controller {
                     'form' => $form->createView(),
                 ));
     }
-
-    public function modifierAction(Request $request, $idExemplaire) 
+    /**
+     * Fonction modifierAction
+     *
+     * Permet l'affichage de la page qui affiche la page de modification des exemplaires
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idExemplaire Id de l'exemplaire à modifier
+    */
+    public function modifierAction(Request $request, $idExemplaire)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Exemplaire');
         $exemplaire = $repository->find($idExemplaire);
@@ -65,7 +119,7 @@ class ExemplaireController extends Controller {
                 $entity_manager = $this->getDoctrine()->getManager();
                 $entity_manager->persist($exemplaire);
                 $entity_manager->flush();
-                
+
                 return $this->redirect($this->generateUrl('zeus_site_exemplaire_tableau'), 301);
             }
         }
@@ -74,8 +128,18 @@ class ExemplaireController extends Controller {
                     'form' => $form->createView(),
                 ));
     }
-
-    public function supprimerAction(Request $request, $idExemplaire) 
+    /**
+     * Fonction supprimerAction
+     *
+     * Permet l'affichage de la page qui affiche la page de suppréssion des exemplaires
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idExemplaire Id de l'exemplaire à supprimer
+    */
+    public function supprimerAction(Request $request, $idExemplaire)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ZeusSiteBundle:Exemplaire');
@@ -84,38 +148,44 @@ class ExemplaireController extends Controller {
         $em->flush();
          return $this->redirect($this->generateUrl('zeus_site_exemplaire_tableau'), 301);
     }
-    
+    /**
+     * Fonction rafraichirEditionsDispoAction
+     *
+     * Permet de raffraichir les editions disponibles pour cet exemplaire
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+    */
     public function rafraichirEditionsDispoAction(Request $request)
     {
-        if($request->isXmlHttpRequest()){
-               
-           
+        if ($request->isXmlHttpRequest()) {
+
             $data = $request->request->all();
             $em = $this->getDoctrine()->getManager();
             $repositoryParution = $em->getRepository('ZeusSiteBundle:Parution');
-            $parution = $repositoryParution->find($data['idParution']);
-            //echo $data['idParution'];
-             //echo $parution->getTitre();
-            //echo "ohla !!";
-            
+            $parution = $repositoryParution->find($data['ref']);
+
             $repositoryEdition = $em->getRepository('ZeusSiteBundle:Edition');
-           
             $editionsDispos = $repositoryEdition->findAllByParution($parution);
-            foreach ($editionsDispos as $elem){
-                echo $elem->getNumero();
+
+            $liste_editions = array();
+
+            foreach ($editionsDispos as $cle => $edition) {
+                $liste_editions[$cle]['value'] = $edition->getId();
+                $liste_editions[$cle]['option'] = $edition->__toString();
             }
-            
-           /* $encoders = array(new XmlEncoder(), new JsonEncoder());
+
+            $encoders = array(new XmlEncoder(), new JsonEncoder());
             $normalizers = array(new GetSetMethodNormalizer());
             $serializer = new Serializer($normalizers, $encoders);
 
-            $formSerializedJSON = $serializer->serialize($editionsDispos, 'json');
+            $formSerializedJSON = $serializer->serialize($liste_editions, 'json');
             $response = new Response($formSerializedJSON);
             $response->headers->set('Content-Type', 'application/json');
-          
-            return $response;*/
+
+            return $response;
         }
     }
-
 }
-

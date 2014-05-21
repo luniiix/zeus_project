@@ -1,15 +1,49 @@
 <?php
+/**
+ * Class EditionController
+ *
+ * @category   Class
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+*/
 
+/**
+ * Déclaration du namespace
+ */
 namespace Zeus\SiteBundle\Controller;
 
+/**
+ * Import des class
+ */
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Zeus\SiteBundle\Entity\Edition;
 use Zeus\SiteBundle\Form\EditionType;
 
-class EditionController extends Controller {
-
-    public function indexAction(Request $request) {
+/**
+ * Class EditionController
+ *
+ *
+ * @category   EditionController
+ * @package    Controller
+ * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+ * @copyright  2013-2014 projet-zeus.fr
+ * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version    Release: 1
+ */
+class EditionController extends Controller
+{
+    /**
+     * Fonction indexAction
+     *
+     * Permet l'affichage de la page qui affiche la liste des editions
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+    */
+    public function indexAction(Request $request)
+    {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Edition');
         $liste_editions = $repository->findBy(array(), array('date' => 'asc'));
 
@@ -17,8 +51,18 @@ class EditionController extends Controller {
                     'editions' => $liste_editions,
                 ));
     }
-
-    public function ajouterAction(Request $request) {
+    /**
+     * Fonction ajouterAction
+     *
+     * Permet l'affichage de la page qui permet l'ajout des editions
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+    */
+    public function ajouterAction(Request $request)
+    {
         $edition = new Edition();
         $form = $this->createForm(new EditionType(), $edition);
         $validator = $this->get('validator');
@@ -41,8 +85,19 @@ class EditionController extends Controller {
                     'form' => $form->createView(),
                 ));
     }
-
-    public function modifierAction(Request $request, $idEdition) {
+    /**
+     * Fonction modifierAction
+     *
+     * Permet l'affichage de la page qui permet la modiciation des editions
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idEdition Id de l'edition à modifier
+    */
+    public function modifierAction(Request $request, $idEdition)
+    {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Edition');
         $edition = $repository->find($idEdition);
         $form = $this->createForm(new EditionType(), $edition);
@@ -57,7 +112,7 @@ class EditionController extends Controller {
                 $entity_manager = $this->getDoctrine()->getManager();
                 $entity_manager->persist($edition);
                 $entity_manager->flush();
-                
+
                 return $this->redirect($this->generateUrl('zeus_site_edition_tableau'), 301);
             }
         }
@@ -66,8 +121,19 @@ class EditionController extends Controller {
                     'form' => $form->createView(),
                 ));
     }
-
-    public function supprimerAction(Request $request, $idEdition) {
+    /**
+     * Fonction supprimerAction
+     *
+     * Permet l'affichage de la page qui permet la suppréssion des editions
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idEdition Id de l'edition à supprimer
+    */
+    public function supprimerAction(Request $request, $idEdition)
+    {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ZeusSiteBundle:Edition');
         $edition = $repository->find($idEdition);
@@ -75,6 +141,4 @@ class EditionController extends Controller {
         $em->flush();
          return $this->redirect($this->generateUrl('zeus_site_edition_tableau'), 301);
     }
-
 }
-

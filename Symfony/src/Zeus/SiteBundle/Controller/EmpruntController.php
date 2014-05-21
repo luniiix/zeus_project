@@ -23,7 +23,7 @@ use Zeus\SiteBundle\Entity\Emprunt;
 use Zeus\UserBundle\Entity\Utilisateur;
 
 /**
- * Controller par défault concernant l'emprunt
+ * Controller concernant l'emprunt
  *
  * @category   EmpruntController
  * @package    Controller
@@ -38,8 +38,8 @@ class EmpruntController extends Controller
     /**
      * Fonction indexAction
      *
-	 * Permet l'affichage de la liste des emprunts
-	 *
+     * Permet l'affichage de la liste des emprunts
+     *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
      * @copyright  2013-2014 projet-zeus.fr
      * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
@@ -71,8 +71,8 @@ class EmpruntController extends Controller
     /**
      * Fonction mesEmpruntsAction
      *
-	 * Permet l'affichage de la liste des emprunts de l'utilisateur
-	 *
+     * Permet l'affichage de la liste des emprunts de l'utilisateur
+     *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
      * @copyright  2013-2014 projet-zeus.fr
      * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
@@ -102,16 +102,16 @@ class EmpruntController extends Controller
             ));
     }
 
-	/**
+    /**
      * Fonction ajouterAction
      *
-	 * Permet d'emprunter un exemplaire
-	 *
+     * Permet d'emprunter un exemplaire
+     *
      * @author GUICHERD Kévin <kevinguicherd@gmail.com>
      * @copyright  2013-2014 projet-zeus.fr
      * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
      * @version    Release: 1
-	 * @param Integer $idExemplaire Id de l'exemplaire à emprunter
+     * @param Integer $idExemplaire Id de l'exemplaire à emprunter
     */
     public function ajouterAction(Request $request, $idExemplaire)
     {
@@ -174,6 +174,7 @@ class EmpruntController extends Controller
                     'notification',
                     $notification
                 );
+
                 return $this->redirect($this->generateUrl('zeus_site_emprunt_mes_emprunts'), 301);
             }
         }
@@ -184,4 +185,3 @@ class EmpruntController extends Controller
         ));
     }
 }
-
