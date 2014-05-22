@@ -20,6 +20,7 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class DefaultController
@@ -80,7 +81,10 @@ class RegistrationController extends BaseController
                         'notification',
                         $notification
                     );
-                return $this->redirect($this->generateUrl('zeus_site_homepage'), 301);
+					
+				$url = $this->container->get('router')->generate('zeus_site_homepage');
+				$response = new RedirectResponse($url);
+                return $response;
             }
                 $notification['class']   = 'danger';
                 $notification['message'] = "Un problème est survenu";
