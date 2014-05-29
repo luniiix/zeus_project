@@ -37,11 +37,13 @@ class EditionType extends AbstractType
                 'multiple' => false,
                 'expanded' => false
             ))
+            ->add('isbn', 'text', array(
+                'label' => 'Numéro ISBN',
+            ))
         ;
-        
         $builder->addEventSubscriber(new AddSubmitFormSubscriber());
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

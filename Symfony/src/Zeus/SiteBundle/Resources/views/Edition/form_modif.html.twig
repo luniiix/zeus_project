@@ -8,13 +8,32 @@
     {{ form_javascript(form) }}
 {% endblock %}
 
-<h1 class="h1Parution">Modifier un Editeur</h1>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        route = 'zeus_site_sous_categorie_dispo_ajax';
+        select_categorie = 'zeus_sitebundle_parution_categorie';
+        select_sous_categorie = 'zeus_sitebundle_parution_sousCategorie'
+        sous_cat = $('#' + select_sous_categorie).val();
+
+        maj_select(route, select_categorie, select_sous_categorie, sous_cat);
+
+        $("body").on('change', '#zeus_sitebundle_parution_categorie', function(){
+            maj_select(route, select_categorie, select_sous_categorie, 0);
+        });
+    });
+
+</script>
+
+ <h1 class="h1Parution">Modifier une Edition</h1>
 <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
     	{{ form_label(form.numero) }} {{ form_widget(form.numero) }} {{ form_errors(form.numero) }} <br />
     	{{ form_label(form.date) }} {{ form_widget(form.date) }} {{ form_errors(form.date) }} <br />
         {{ form_label(form.parution) }} {{ form_widget(form.parution) }} {{ form_errors(form.parution) }} <br />
         {{ form_label(form.editeur) }} {{ form_widget(form.editeur) }} {{ form_errors(form.editeur) }} <br />
+        {{ form_label(form.isbn) }} {{ form_widget(form.isbn) }} {{ form_errors(form.isbn) }} <br />
     	{{ form_widget(form.modifier) }}
 	</form>
 </div>

@@ -104,6 +104,20 @@ class Edition
      */
     private $date;
 
+    /**
+     * Objet Editeur de l'edition
+     *
+     * @name $editeur
+     * @access private
+     * @var integer
+     *
+     * @ORM\Column(name="isbn", type="string")
+     * @Assert\Regex(
+     *     pattern = "/((978[\--– ])?[0-9][0-9\--– ]{10}[\--– ][0-9xX])|((978)?[0-9]{9}[0-9Xx])/",
+     *     message = "Le code ISBN doit être de la forme : 90-70002-34-5 où bien 90-70002-34-x")
+     */
+    private $isbn;
+
 
     // Rajout des Getter Et Setter
 
@@ -256,5 +270,32 @@ class Edition
             $chaine .= ' N° '.$this->numero;
         }
         return $chaine;
+    }
+    /**
+     * Fonction setIsbn
+     *
+     * @author     GUICHERD Kévin <kevinguicherd@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param string $isbn Numéro ISBN de l'edition
+     */
+
+    public function setIsbn($isbn)
+    {
+        $this->isbn = $isbn;
+    }
+    /**
+     * Fonction getIsbn
+     *
+     * @author     GUICHERD Kévin <kevinguicherd@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @return string Renvoie la chaine ISBN de l'édition
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
     }
 }

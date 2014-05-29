@@ -1,40 +1,56 @@
 {# src/Zeus/SiteBundle/Resources/views/Edition/tableau.html.twig #}
 
-{% if editions|length > 0 %}
+<h1>Liste des éditions</h1>
+
+{% if pagination|length > 0 %}
+
+<div class="count">
+        Nombre : {{ pagination.getTotalItemCount }}
+</div>
+
 <table>
     <thead>
         <tr>
-            <th></th>
-            <th>Date</th>
-            <th>Numero</th>
-            <th>Parution</th>
-            <th>Editeur</th>
+            <th>Actions</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Date', 'edition.date') }}</th>
+            <th{% if pagination.isSorted('edition.numero') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Numero', 'edition.numero') }}
+            </th>
+            <th{% if pagination.isSorted('edition.parution') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Parution', 'edition.titre') }}
+            </th>
+            <th{% if pagination.isSorted('edition.editeur') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Editeur', 'edition.editeur') }}
+            </th>
         </tr>
     </thead>
     <tbody>
-            {% for edition in editions %}  
-            <tr>
-                <td>
-                    <a href="{{ path('zeus_site_edition_suppr', { 'idEdition': edition.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
-                    </a>
-                    <a href="{{ path('zeus_site_edition_modif', { 'idEdition': edition.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
-                    </a>
-                </td>
-                <td>{{ edition.date|date("d/m/Y") }}</td> 
-                <td>{{ edition.numero }}</td> 	
-                <td>{{ edition.parution.titre }}</td> 	
-                <td>{{ edition.editeur.nom }}</td> 	
-            </tr>
-            {% endfor %}  
-        </tbody>
-		{# <tfoot>
-		<tr>
-			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-		</tr>
-		</tfoot>#}
-    </table>
+        {% for edition in pagination %}  
+        <tr>
+            <td class="nowrap">
+                <a href="{{ path('zeus_site_edition_suppr', { 'idEdition': edition.id }) }}">
+                    <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                </a>
+                <a href="{{ path('zeus_site_edition_modif', { 'idEdition': edition.id }) }}">
+                    <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                </a>
+                <a href="{{ path('zeus_site_edition_affich', { 'idEdition': edition.id }) }}">
+                     <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
+                </a>
+            </td>
+            <td>{{ edition.date|date("d/m/Y") }}</td> 
+            <td>{{ edition.numero }}</td> 	
+            <td>{{ edition.parution.titre }}</td> 	
+            <td>{{ edition.editeur.nom }}</td> 	
+        </tr>
+        {% endfor %}  
+    </tbody>
+</table>
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
 {% else %}
     <div>Aucune edition</div>
 {% endif %}

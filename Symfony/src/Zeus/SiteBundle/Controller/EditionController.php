@@ -45,11 +45,16 @@ class EditionController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Edition');
-        $liste_editions = $repository->findBy(array(), array('date' => 'asc'));
+        $query_builder_editions = $repository->findAllPagination();
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                          $query_builder_editions,
+                          $this->get('request')->query->get('page', 1));
 
         return $this->render('ZeusSiteBundle:Edition:page_gestion.html.twig', array(
-                    'editions' => $liste_editions,
-                ));
+                'pagination' => $pagination,
+        ));
     }
     /**
      * Fonction ajouterAction
@@ -140,5 +145,26 @@ class EditionController extends Controller
         $em->remove($edition);
         $em->flush();
          return $this->redirect($this->generateUrl('zeus_site_edition_tableau'), 301);
+    }
+
+    /**
+     * Fonction visualiserAction
+     *
+     * Permet l'affichage de la page de visualisation (fiche) de l'edition
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idEdition Id de l'exemplaire à visualiser
+     */
+    public function visualiserAction(Request $request, $idEdition)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Edition');
+        $edition     = $repository->find($idEdition);
+
+        return $this->render('ZeusSiteBundle:Edition:page_visualisation.html.twig', array(
+                    'edition' => $edition,
+                ));
     }
 }

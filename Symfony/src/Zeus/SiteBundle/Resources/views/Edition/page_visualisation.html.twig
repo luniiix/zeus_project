@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                    with {'route': 'zeus_site_edition_tableau', 'element' : 'editions'} only %}
+
+    <h1 class="h1Parution">Fiche de l'édition</h1>
+     <div class="visualisation">
+         {% if edition.parution is defined %}
+             <p>
+                <img src="{{ asset(edition.parution.imageParution.WebPath | imagine_filter('image_parution_thumbnail')) }}" /><br>
+                <span class='label_fiche'>Edition : </span>
+                {{ edition.editeur.nom }}
+                {% if edition.numero is not null %}
+                    N° {{ edition.numero }}
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Date d'édition : </span> {{ edition.date|date('m/d/Y') }}<br>
+                <span class='label_fiche'>Titre : </span> {{edition.parution.titre}}<br>
+                <span class='label_fiche'>Resume : </span><span id="resume"> {{edition.parution.resume}}</span><br>
+                <span class='label_fiche'>Auteurs : </span>
+                {% if edition.parution.auteurs is not null %}
+                   {% for auteur in edition.parution.auteurs %}
+                      {{ auteur.nom }} {{ auteur.prenom }}
+                      {% if not loop.last %}
+                        ,
+                      {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Traducteurs : </span>
+                {% if edition.parution.traducteurs is not null %}
+                   {% for traducteur in edition.parution.traducteurs %}
+                       {{ traducteur.nom }} {{ traducteur.prenom }}
+                       {% if not loop.last %}
+                        ,
+                       {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Categorie : </span> {{edition.parution.categorie.intitule}}<br>
+                <span class='label_fiche'>Sous-categorie : </span> {{edition.parution.sousCategorie.intitule}}<br>
+                <span class='label_fiche'>Type : </span> {{edition.parution.type.libelle}}<br>
+                <span class='label_fiche'>Numéro ISBN : </span> {{edition.isbn}}<br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche de l'édition</p>
+         {% endif %}
+     </div>
+
+{% endblock %}
