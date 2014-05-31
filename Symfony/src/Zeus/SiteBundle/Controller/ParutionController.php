@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Zeus\SiteBundle\Entity\Parution;
+use Zeus\SiteBundle\Entity\ExemplaireRepository;
 use Zeus\SiteBundle\Form\ParutionType;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -52,10 +53,16 @@ class ParutionController extends Controller
     public function indexAction(Request $request)
     {
             $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
-            $liste_parution = $repository->findBy(array(), array('dateAjout' => 'desc'));
+            $query_builder_parutions = $repository->findAllPagination();
+
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                $query_builder_parutions,
+                $this->get('request')->query->get('page', 1)
+            );
 
             return $this->render('ZeusSiteBundle:Parution:page_gestion.html.twig', array(
-                    'parutions' => $liste_parution,
+                    'pagination' => $pagination,
             ));
     }
     /**
@@ -72,17 +79,18 @@ class ParutionController extends Controller
     {
         $parution = new Parution();
         $form = $this->createForm(new ParutionType(), $parution);
-        $validator = $this->get('validator');
+        $alert = $this->get('session')->getFlashBag();
 
         if ($request->isMethod('POST')) {
 
             $form->handleRequest($request);
-            $list_erreurs = $validator->validate($parution);
 
-            if (count($list_erreurs) === 0) {
+            if ($form->isValid()) {
                 $entity_manager = $this->getDoctrine()->getManager();
                 $entity_manager->persist($parution);
                 $entity_manager->flush();
+                $alert->add('success',
+                        'La parution a bien été ajoutée.');
 
                 return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
             }
@@ -107,20 +115,21 @@ class ParutionController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
         $parution = $repository->find($idParution);
+        $form = $this->createForm(new ParutionType(), $parution);
+        $alert = $this->get('session')->getFlashBag();
 
-        $form = $this->createForm(new ParutionType($parution->getCategorie()), $parution);
-        $validator = $this->get('validator');
         if ($request->isMethod('POST')) {
 
-            //$task = $form->getData();
-            //var_dump($request->getData());
             $form->handleRequest($request);
-            $liste_erreurs = $validator->validate($parution);
 
-            if (count($liste_erreurs) === 0) {
+            if ($form->isValid()) {
                 $entity_manager = $this->getDoctrine()->getManager();
                 $entity_manager->persist($parution);
                 $entity_manager->flush();
+                $alert->add(
+                    'success',
+                    'La parution a bien été modifiée.'
+                );
 
                 return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
             }
@@ -144,14 +153,65 @@ class ParutionController extends Controller
     */
     public function supprimerAction(Request $request, $idParution)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ZeusSiteBundle:Parution');
-        $parution = $repository->find($idParution);
-        $em->remove($parution);
-        $em->flush();
+        $em_parution = $this->getDoctrine()->getManager();
+        $repository_parution = $em_parution->getRepository('ZeusSiteBundle:Parution');
+        $parution = $repository_parution->find($idParution);
 
-        return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
+        $repository_exemplaire = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Exemplaire');
+        $exemplaires = $repository_exemplaire->findByParution($parution);
+
+        $alert = $this->get('session')->getFlashBag();
+
+        if(count($exemplaires) !== 0){
+            $alert->add('error',
+                        'Impossible de supprimer cette parution car elle est utilisée dans un exemplaire.');
+        }
+        else{
+            foreach($parution->getAuteurs() as $auteur){
+                $parution->removeAuteur($auteur);
+            }
+            foreach($parution->getTraducteurs() as $traducteur){
+                $parution->removeTraducteur($traducteur);
+            }
+            $em_parution->persist($parution);
+            $em_parution->flush();
+
+            $em_parution->remove($parution);
+            $em_parution->flush();
+            $alert->add('success',
+                        'La parution a bien été supprimée.');
+        }
+
+         return $this->redirect($this->generateUrl('zeus_site_parution_tableau'), 301);
     }
+
+    /**
+     * Fonction visualiserAction
+     *
+     * Permet l'affichage de la page de visualisation (fiche) de la parution
+     *
+     * @author     FAIDIDE Amandine <amandinefaidide@gmail.com>
+     * @copyright  2013-2014 projet-zeus.fr
+     * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @version    Release: 1
+     * @param integer $idParution Id de la parution parution à visualiser
+     */
+    public function visualiserAction(Request $request, $idParution)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('ZeusSiteBundle:Parution');
+        $parution = $repository->findOneById($idParution);
+
+        // On récupère la liste des editions
+        $repository = $this->getDoctrine()
+        ->getRepository('ZeusSiteBundle:Exemplaire');
+        $exemplaires = $repository->getListeExemplaire($idParution);
+
+        return $this->render('ZeusSiteBundle:Parution:page_visualisation.html.twig', array(
+                    'parution' => $parution,
+                    'exemplaires' => $exemplaires,
+                ));
+    }
+
     /**
      * Fonction rafraichirSousCategoriesDispoAction
      *

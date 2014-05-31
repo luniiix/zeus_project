@@ -1,0 +1,95 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                    with {'route': 'zeus_site_parution_tableau', 'element' : 'parutions'} only %}
+
+    <h1 class="h1Parution">Fiche de la parution</h1>
+     <div class="visualisation">
+         {% if parution is defined %}
+            <img src="{{ asset(parution.imageParution.WebPath) | imagine_filter('image_parution_thumbnail') }}" />
+             <p>
+                <span class='label_fiche'>Titre : </span> {{parution.titre}}<br>
+                <span class='label_fiche'>Auteurs : </span>
+                {% if parution.auteurs is not null %}
+                   {% for auteur in parution.auteurs %}
+                      {{ auteur.nom }} {{ auteur.prenom }}
+                      {% if not loop.last %}
+                        ,
+                      {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Traducteurs : </span>
+                {% if parution.traducteurs is not null %}
+                   {% for traducteur in parution.traducteurs %}
+                       {{ traducteur.nom }} {{ traducteur.prenom }}
+                       {% if not loop.last %}
+                        ,
+                       {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Catégorie : </span> {{parution.categorie.intitule}}<br>
+                <span class='label_fiche'>Date d'ajout : </span> {{ parution.dateAjout|date('d/m/Y') }}<br>
+                <span class='label_fiche'>Sous-catégorie : </span> {{parution.sousCategorie.intitule}}<br>
+                <span class='label_fiche'>Type : </span> {{parution.type.libelle}}<br>
+                <span class='label_fiche'>Résumé : </span><span id="resume"> {{parution.resume}}</span><br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche de la parution</p>
+         {% endif %}
+
+
+
+
+     </div>
+
+    <div class="visualisation">
+        <table>
+            <thead>
+                <tr>
+                    <th>Référence de l'exemplaire</th>
+                    <th>Employée empruntant l'exemplaire</th>
+                    <th>Date de fin d'emprunt</th>
+                    <th>Date de début d'emprunt</th>
+                    <th>Emprunter l'exemplaire</th>
+                <tr>
+            </thead>
+            <tbody>
+    {% if exemplaires is not empty %}
+
+            {% for exemplaire in exemplaires %}
+                <tr>
+                    <th>{{ exemplaire.code_reference }}</th>
+                    {% if exemplaire.ref_utilisateur%}
+                        <th>{{ exemplaire.nom|capitalize }} {{ exemplaire.prenom|capitalize }}</th>
+                        <th>{{ exemplaire.date_debut }}</th>
+                        <th>{{ exemplaire.date_fin }}</th>
+                        <th></th>
+                    {% else %}
+                        <th>Disponible</th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <a href="{{ path('zeus_site_emprunt_ajout', { 'idExemplaire': exemplaire.id }) }}">
+                                <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                            </a>
+                        </th>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+
+        {% else %}
+            <th colspan="5">Aucun exemplaire n'est disponible pour cette parution</th>
+        {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
