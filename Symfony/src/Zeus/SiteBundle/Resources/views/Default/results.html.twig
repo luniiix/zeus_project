@@ -6,17 +6,34 @@
     <h3>Nombre d'exemplaires trouvés: {{ results|length }}</h3>
     <hr>
     {% for result in results %}
+{#        {{ dump(result) }}#}
         <div class="exemplaire-trouve">
+            {% if result['titre'] is defined %}
             <h2>{{result['titre']}}</h2>
+            {% endif %}
+            {% if result['resume'] is defined %}
             <p>Résumé: {{result['resume']}}</p>
+            {% endif %}
+            {% if result['nom'] is defined %}
             <p>Auteur: {{result['prenom']}} {{result['nom']}}</p>
+            {% endif %}
+            {% if result['date'] is defined %}
             <p>Année de parution: {{result['date']}}</p>
+            {% endif %}
+            {% if result['intitule'] is defined %}
             <p>Catégorie: {{result['intitule']}}</p>
+            {% endif %}
+            {% if result['libelle'] is defined %}
             <p>Type: {{result['libelle']}}</p>
-            <p>{% if result['is_dispo'] == '1' %}Disponible{% else %}Indisponible{% endif %}</p>
-            <a href="#">Voir la fiche</a>
-            {% if result['is_dispo'] == '1' %}
-            <a href="#">Emprunter</a>
+            {% endif %}
+            {% if result['is_dispo'] is defined %}
+                <p>{% if result['is_dispo'] == '1' %}Disponible{% else %}Indisponible{% endif %}</p>
+            {% endif %}
+            <a href="{{ path('zeus_site_parution_affich', {'idParution': result.idParution}) }}" class="btn btn-primary">Voir la fiche</a>
+            {% if result['is_dispo'] is defined %}
+                {% if result['is_dispo'] == '1' %}
+                <a href="{{ path('zeus_site_emprunt_ajout', {'idExemplaire': result.id}) }}" class="btn btn-primary">Emprunter</a>
+                {% endif %}
             {% endif %}
         <div>
         <hr>

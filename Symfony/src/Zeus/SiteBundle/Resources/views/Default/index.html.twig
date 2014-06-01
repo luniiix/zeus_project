@@ -1,74 +1,75 @@
 {% extends "::base.html.twig" %}
 
 
-{% block content %}
-<div class="row-fluid">
-    <div id="recherche" class='block-find span8'>
-        <h1  class="h1Parution">Recherche</h1>
-        {#<form method="post" {{ form_enctype(form) }}>
-    	{# {{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
-    	{#{{ form_label(form.resume, "Resumé") }} {{ form_widget(form.resume) }} {{ form_errors(form.resume) }} <br />
-    	{#{{ form_label(form.auteurs, "Auteur(s)") }} {{ form_widget(form.auteurs) }} {{ form_errors(form.auteurs) }} <br />
-    	{#{{ form_label(form.imageParution, "Image") }} {{ form_widget(form.imageParution) }} {{ form_errors(form.imageParution) }} <br />
-    	<img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}"/> <br />
-    	{#{{ form_label(form.type, "Type") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />
-    	{#{{ form_label(form.isActif, "Actif") }} {{ form_widget(form.isActif) }} {{ form_errors(form.isActif) }} <br />
-    	{#{{ form_widget(form.modifier) }}
-	{#</form> #}
-        <form class="formulaire" action="#" method="post">
-            <label for="titre">Titre</label>
-            <input type="text" name="titre"></input><br/>
-            <label for="auteur">Auteur</label>
-            <input type="text" name="auteur"></input><br/>
-            <label for="tag">Recherche par mots clés</label>
-            <input type="text" name="tag"></input><br/>
-            <label for="type">Type de parutions</label>
-            <select name="type">
-                <option>Article</option>
-                <option>Revue</option>
-            </select><br/>
-            <label for="category">Catégorie</label>
-            <input type="text" name="category"></input><br/>
-            <label for="date">Date de parution</label>
-            <input type="text" name="date"></input><br/>
-            <label for="aviable">Disponibilité</label>
-            <select name="aviable">
-                <option>Disponible</option>
-                <option>Indisponible</option>
-            </select><br/>
-            <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary" />
+{% block content  %}
+
+    <h1>Nouveautés</h1>
+    <div id="last-articles">
+        <div class="container">
+            <div id="ca-container" class="ca-container">
+                <div class="ca-wrapper">
+                    {% for parution in parutions %}
+                    <div class="ca-item ca-item-{{ parution.id }}">
+                        <div class="ca-item-main">
+                            {% if parution.imageParution is defined and parution.imageParution is not null %}
+                                {% set urlIMG = '/uploads/img_parution/'~parution.imageParution.id~'.jpeg' %}
+                                    <div class="thumb-ca-container"><img alt='{{parution.imageParution.alt}}' src='{{ urlIMG | imagine_filter('image_parution_thumbnail') }}'></div>
+                            {% endif %}
+                            <h3>{{ parution.titre|truncate(30) }}</h3>
+                            <h4>
+                                <span class="ca-quote">&ldquo;</span>
+                                <span>{{ parution.resume|truncate(100)}}</span>
+                            </h4>
+                            <a href="#" class="ca-more">voir...</a>
+                        </div>
+                        <div class="ca-content-wrapper">
+                            <div class="ca-content">
+                                <h6>{{ parution.titre }}</h6>
+                                <a href="#" class="ca-close">fermer</a>
+                                <div class="ca-content-text">
+                                    <p>{{ parution.resume | nl2br}}</p>
+                                </div>
+                                <h5><span>Auteurs:</span> {% for auteur in parution.auteurs %}
+                                    {{ auteur.prenom }} {{ auteur.nom }}
+                                {% endfor %}</h5>
+                                    <h5><span>Catégories:</span> {{ parution.type.libelle }}</h5>
+                                <ul>
+                                    <li><a href="{{ path('zeus_site_parution_affich', {'idParution': parution.id}) }}">Voir la fiche</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="recherche-article">
+        <h1>Recherche d'ouvrage</h1>
+        <form  class="formulaire" method="post" {{ form_enctype(form) }}>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.titre) }}
+                    {{ form_row(form.auteur) }}
+                    {{ form_row(form.keys) }}
+                    {{ form_row(form.type) }}
+                   {# {{ form_label(form.titre, "Titre") }} {{ form_widget(form.titre) }} {{ form_errors(form.titre) }} <br />
+                    {{ form_label(form.auteur, "Auteur(s)") }} {{ form_widget(form.auteur) }} {{ form_errors(form.auteur) }} <br />
+                    {{ form_label(form.keys, "Recherche par mots clés") }} {{ form_widget(form.keys) }} {{ form_errors(form.keys) }} <br />
+                    {{ form_label(form.type, "Type de parution") }} {{ form_widget(form.type) }} {{ form_errors(form.type) }} <br />#}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.categorie) }}
+                    {{ form_row(form.date) }}
+                    {{ form_row(form.isDispo) }}
+                    {{ form_row(form.rechercher) }}
+                   {# {{ form_label(form.categorie, "Catégorie(s)") }} {{ form_widget(form.categorie) }} {{ form_errors(form.categorie) }} <br />
+                    {{ form_label(form.date, "Date de parution") }} {{ form_widget(form.date) }} {{ form_errors(form.date) }} <br />
+                    {{ form_label(form.isDispo) }} {{ form_widget(form.isDispo) }} {{ form_errors(form.isDispo) }} <br />
+                    {{ form_label(form.rechercher) }} {{ form_widget(form.rechercher) }} <br />#}
+                </div>
+            </div>
         </form>
     </div>
-
-    <div id="parution-slider" class="carousel slide lasts-parutions span4" >  
-
-       <div class="carousel-inner">
-        {% for parution in parutions %}
-            {% if active is not defined %}
-               {% set active = 1 %}
-                <div class="item active">
-            {% else %}
-                <div class="item"> 
-            {% endif %}
-                {% if parution.imageParution is defined and parution.imageParution is not null %}
-                    {% set urlIMG = '/uploads/img_parution/'~parution.imageParution.alt~'.'~parution.imageParution.extension %}
-                    <img alt='{{parution.imageParution.alt}}' src='{{ urlIMG | imagine_filter('image_parution_thumbnail') }}'>
-                {% endif %}
-                <h2>{{ parution.titre }}</h2>
-                <h3>Auteur:</h3>
-                        {% for auteur in parution.auteurs %}
-                <p>{{ auteur.prenom }} {{ auteur.nom }}</p>
-                        {% endfor %}
-                <h3>Catégorie: </h3>
-                <p>{{ parution.type.libelle }}</p>
-                <h3 class="resume">Résumé:</h3>
-                <p> {{ parution.resume | nl2br}}</p>
-            </div>
-            {% endfor %}
-      </div>  
-      <!-- Carousel nav -->  
-      <a class="carousel-control left" href="#parution-slider" data-slide="prev"> ‹ </a>  
-      <a class="carousel-control right" href="#parution-slider" data-slide="next"> › </a>  
-    </div>
-</div>
 {% endblock %}
