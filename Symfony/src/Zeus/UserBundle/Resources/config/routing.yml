@@ -1,3 +1,19 @@
+zeus_user_utilisateur_tableau:
+    pattern: /utilisateurs
+    defaults: { _controller: ZeusUserBundle:Utilisateur:index }
+
+zeus_user_utilisateur_ajout:
+    pattern: /utilisateurs/ajouter
+    defaults: { _controller: ZeusUserBundle:Utilisateur:ajouter }
+
+zeus_user_utilisateur_modif:
+    pattern: /utilisateurs/modifier/{idUtilisateur}
+    defaults: { _controller: ZeusUserBundle:Utilisateur:modifier }
+
+zeus_user_utilisateur_suppr:
+    pattern: /utilisateurs/supprimer
+    defaults: { _controller: ZeusUserBundle:Utilisateur:supprimer }
+
 fos_user_security:
     resource: "routing/security.xml"
 
@@ -16,3 +32,7 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "routing/change_password.xml"
     prefix: /profile
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /groupe

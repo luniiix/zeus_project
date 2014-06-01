@@ -1,0 +1,23 @@
+services:
+    zeus_user.form.type.registration:
+        class: Zeus\UserBundle\Form\UtilisateurFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: zeus_userbundle_utilisateur }
+            
+    zeus_user.form.type.permission:
+        class: Zeus\UserBundle\Form\PermissionType
+        arguments:
+          - "@service_container"
+        tags:
+          - { name: form.type, alias: permission_choice }
+ 
+    fos_user.registration.success:
+        class: Zeus\UserBundle\EventListener\RegistrationSuccessListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+
+     
+            
+      
