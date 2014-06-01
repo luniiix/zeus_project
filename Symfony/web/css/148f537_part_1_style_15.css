@@ -95,7 +95,15 @@ li, a{
 
 /* Changement de couleur pour le hover de la navigation */
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-	color:#22427c;
+	background-color:#22427c;
+        color: #ffffff;
+        border-radius: 3px 3px 0 0;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+	background-color:#22427c;
+        color: #ffffff;
+        border-radius: 3px 3px 0 0;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
@@ -109,9 +117,6 @@ li, a{
 	color:#22427c;
 }
 
-.navbar-collapse.collapse {
-}
-
 .separation{
 	height:20px;
 	background-color:#22427c;
@@ -121,9 +126,26 @@ li, a{
 /************************
   Jumbotron / Container
 ************************/
+/* Page d'accueil' */
+/* Slide */
+.ca-item-main{
+    background-color: #e5e5e5 !important;
+}
+
+.ca-more{
+    border-radius: 3px !important;
+}
+
+.thumb-ca-container{
+    background-color: #e5e5e5 !important;
+}
+.thumb-ca-container h3{
+    font-size: 13px !important;
+}
+
 /* Changement de couleur pour le background */
 .jumbotron {
-	background-color:white;
+    background-color:white;
 }
 
 /* Page d'accueil' */
@@ -189,12 +211,18 @@ label{
     margin-bottom: 0px;
 }
 
+#remember_me {
+    width: 10px;
+    margin-right: 5px;
+}
+
 input{
     border: #000 solid 1px;
     border-shadow: none;
 }
+
 select{
-    width:250px;
+    width: 250px;
 }
 
 .formulaire{
@@ -232,6 +260,17 @@ select{
     margin-left: 115px;
 }
 
+.formulaire ul{
+    display: inline-block;
+    margin-left: 15px; 
+    min-width: 250px;
+    max-width: 500px;
+}
+
+.formulaire li{
+    display: inline;
+}
+
 #zeus_sitebundle_parution_imageParution div{
     margin-left: 112px;
 }
@@ -243,6 +282,109 @@ select{
 #zeus_sitebundle_parution_imageParution div input{
     margin-top: -45px;
     border-radius: 3px;
+}
+
+/* Mise en forme pour tous des tableaux */
+@media (max-width: 500px) {
+	
+    .responsive-table-line td:before { content: attr(data-title); }
+
+    .responsive-table-line table,
+    .responsive-table-line thead,
+    .responsive-table-line tbody,
+    .responsive-table-line th,
+    .responsive-table-line td,
+    .responsive-table-line tr {
+        display: block;
+    }
+    
+    .responsive-table-line thead tr {
+	display:none;
+	}
+
+    .container th{
+        white-space: nowrap;
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    td{
+        text-align: justify;
+        font-size: 13px;
+        padding: 10px 20px !important;
+    }
+
+    td a{
+        padding-left: 5px;
+    }
+
+    .nowrap{
+       white-space: nowrap; 
+    }
+
+    thead tr{
+        background-color: #22427c !important; 
+    }
+
+    thead tr th, thead tr a{
+        color: #ffffff !important;
+        padding: 5px 5px;
+    }
+
+    table tr:nth-child(odd){
+        background-color: #ededed;
+        border: none;
+    }
+
+    table tr td, table tr th{
+        border: none !important;
+    }
+
+}
+
+.container th{
+    white-space: nowrap;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/*th{
+    width: 150px;
+}*/
+
+td{
+    text-align: justify;
+    font-size: 13px;
+    padding: 10px 20px !important;
+}
+
+td a{
+    padding-left: 5px;
+}
+
+.nowrap{
+   white-space: nowrap; 
+}
+
+thead tr{
+    background-color: #22427c !important;
+   /* width: 250px;*/
+}
+
+thead tr th, thead tr a{
+    color: #ffffff !important;
+    padding: 5px 5px;
+}
+
+table tr:nth-child(odd){
+    background-color: #ededed;
+    border: none;
+}
+
+table tr td, table tr th{
+    border: none !important;
 }
 
 

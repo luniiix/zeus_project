@@ -51,3 +51,13 @@ table tr th{
 #recherche h1 {
   margin-top: 0;
 }
+.formulaire {
+    width: 100% !important;
+}
+.exemplaire-trouve h2 {
+  font-size: 20px !important;
+  margin: 5px 0;
+}
+#last-articles > h1 {
+  text-align: center;
+}
