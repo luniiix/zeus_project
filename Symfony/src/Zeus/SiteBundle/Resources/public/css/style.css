@@ -4,7 +4,7 @@
 */
 
 /*********************
- 	G�n�ral
+ 	Général
 *********************/
 h1{
 	font-size:17px !important;
@@ -35,6 +35,10 @@ label{
 
 li, a{
 	text-decoration:none;
+}
+
+.alert{
+    padding: 6px 15px !important;
 }
 
 /*********************
@@ -95,7 +99,15 @@ li, a{
 
 /* Changement de couleur pour le hover de la navigation */
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-	color:#22427c;
+	background-color:#22427c;
+        color: #ffffff;
+        border-radius: 3px 3px 0 0;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{
+	background-color:#22427c;
+        color: #ffffff;
+        border-radius: 3px 3px 0 0;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
@@ -121,12 +133,46 @@ li, a{
 /************************
   Jumbotron / Container
 ************************/
+/* Page d'accueil' */
+/* Slide */
+.ca-item-main{
+    background-color: #e5e5e5 !important;
+}
+
+.ca-more{
+    border-radius: 3px !important;
+}
+
+.thumb-ca-container{
+    background-color: #e5e5e5 !important;
+}
+.thumb-ca-container h3{
+    font-size: 13px !important;
+}
+
 /* Changement de couleur pour le background */
 .jumbotron {
-	background-color:white;
+    background-color:white;
 }
 
 /* Page d'accueil' */
+.thumb-ca-container{
+    background-color: #ffffff !important;
+}
+
+.ca-item-main {
+    background-color: #ffffff !important;
+}
+
+li{
+    list-style: none !important;
+}
+
+.ca-content h5 span {
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
 .carousel-control{
     background-color: #ffffff !important;
     background-image: none !important;
@@ -134,6 +180,11 @@ li, a{
 
 .carousel-inner{
     margin-top: 40px !important;
+}
+
+.ca-content ul li a{
+    padding: 5px 10px !important;
+    border-radius: 3px;
 }
 
 #recherche{
@@ -185,16 +236,29 @@ li, a{
 
 /* Mise en forme pour tous les formulaires */
 
+
 label{
     margin-bottom: 0px;
+}
+
+#remember_me {
+    width: 10px;
+    margin-right: 5px;
 }
 
 input{
     border: #000 solid 1px;
     border-shadow: none;
 }
-select{
-    width:250px;
+
+.formulaire select{
+    max-width: 250px !important;
+     display: inline-block !important;
+}
+
+.formulaire textarea{
+     max-width: 250px !important;
+     display: inline-block !important;
 }
 
 .formulaire{
@@ -207,20 +271,37 @@ select{
 }
 
 .formulaire label{
-    width: 100px !important;
+    width: 120px !important;
     margin-right: 10px !important;
     margin-bottom: 20px;
 }
 
 .formulaire input{
-    width: 250px !important;
+    max-width: 250px !important;
     border-shadow: none !important;
     border: 1px solid gray !important;
     border-radius: 3px;
+    display: inline-block !important;
+    height: 30px !important;
 }
 
+.formulaire .select2-container{
+    max-width: 250px !important;
+    display: inline-block !important;
+}
+
+.select2-search-field{
+    width: 100% !important;
+}
+
+.select2-input{
+
+    width: 100% !important;
+}
+
+
 .formulaire textarea{
-    width: 250px;
+    max-width: 250px;
     height: 150px;
     margin-bottom: 10px !important;
     border-shadow: none !important;
@@ -232,8 +313,24 @@ select{
     margin-left: 115px;
 }
 
+.formulaire ul{
+    display: inline-block;
+    margin-left: 15px; 
+    min-width: 250px;
+    max-width: 500px;
+}
+
+.formulaire li{
+    display: inline;
+}
+
+.formulaire label{
+    margin-bottom: 0;
+}
+
 #zeus_sitebundle_parution_imageParution div{
     margin-left: 112px;
+    display: inline-block;
 }
 
 #zeus_sitebundle_parution_imageParution div label{
@@ -245,6 +342,138 @@ select{
     border-radius: 3px;
 }
 
+/* Mise en forme pour tous des tableaux */
+@media (width: 100%) {
+	
+    .responsive-table-line td:before { content: attr(data-title); }
+
+    .responsive-table-line table,
+    .responsive-table-line thead,
+    .responsive-table-line tbody,
+    .responsive-table-line th,
+    .responsive-table-line td,
+    .responsive-table-line tr {
+        display: block;
+    }
+    
+    .responsive-table-line thead tr {
+	display:none;
+	}
+
+    .container th{
+        white-space: nowrap;
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    td{
+        text-align: justify;
+        font-size: 13px;
+        padding: 10px 20px !important;
+    }
+
+    td a{
+        padding-left: 5px;
+    }
+
+    .nowrap{
+       white-space: nowrap; 
+    }
+
+    thead tr{
+        background-color: #22427c !important; 
+    }
+
+    thead tr th, thead tr a{
+        color: #ffffff !important;
+        padding: 5px 5px;
+    }
+
+    table tr:nth-child(odd){
+        background-color: #ededed;
+        border: none;
+    }
+
+    table tr td, table tr th{
+        border: none !important;
+    }
+
+}
+
+.container th{
+    white-space: nowrap;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/*th{
+    width: 150px;
+}*/
+
+td{
+    text-align: justify;
+    font-size: 13px;
+    padding: 10px 20px !important;
+}
+
+td a{
+    padding-left: 5px;
+}
+
+.nowrap{
+   white-space: nowrap; 
+}
+
+thead tr{
+    background-color: #22427c !important;
+   /* width: 250px;*/
+}
+
+thead tr th, thead tr a{
+    color: #ffffff !important;
+    padding: 5px 5px;
+}
+
+table tr:nth-child(odd){
+    background-color: #ededed;
+    border: none;
+}
+
+table tr td, table tr th{
+    border: none !important;
+}
+
+/* Visualisation des parutions */
+.visualisation{
+    margin-top: 20px;
+    background-color: #F5F5F5;
+    padding: 30px 10px;
+    border-radius: 3px 3px;
+}
+
+.visualisation img{
+    display: inline-block;
+    vertical-align: top;
+    width-max: 200px;
+    margin-left: 40px;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px;
+    padding: 2px;
+}
+
+.visualisation p{
+    display: inline-block;
+    vertical-align: top;
+    width: 500px !important;
+    padding-left: 20px;
+}
+
+.label_fiche{
+    font-size: 14px;
+    font-weight: bold;
+}
 
 /************************
           Footer
