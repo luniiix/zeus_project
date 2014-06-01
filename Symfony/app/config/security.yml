@@ -5,48 +5,54 @@ security:
 
     role_hierarchy:
         ROLE_OLYMPIENS:     ROLE_USER
-        ROLE_ADMIN:         ROLE_USER
-        ROLE_SUPER_ADMIN:   [ROLE_USER, ROLE_ADMIN, ROLE_OLYMPIENS]
+        ROLE_ADMIN:         [ROLE_OLYMPIENS, ROLE_USER]
+        #ROLE_SUPER_ADMIN:   [ROLE_USER, ROLE_ADMIN, ROLE_OLYMPIENS]
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-            logout: true
-            anonymous: true
-
-        # Firewall principal pour le reste de notre site
         main:
-            pattern: .*
+            pattern: ^/
             form_login:
                 provider: fos_userbundle
+                csrf_provider: form.csrf_provider
                 remember_me: true
-                #default_target_path: /frontend/photo
             remember_me:
                 key: %secret%
             logout: true
             anonymous: true
 
     access_control:
+        
         # Controle d'acces pour les utilisateurs anonyme
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # Controle d'acces pour les utilisateurs normaux
-        - { path: ^/, role: ROLE_USER}
-        - { path: ^/profiles, role: ROLE_USER}
-        - { path: ^/emprunts, role: ROLE_USER}
-        - { path: ^/contact, role: ROLE_USER}
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        
+         # Controle d'acces pour les utilisateurs normaux
+        - { path: ^/$, roles: ROLE_USER}
+        - { path: ^/profiles, roles: ROLE_USER}
+        - { path: ^/emprunts, roles: ROLE_USER}
+        - { path: ^/contact, roles: ROLE_USER}
+        
+        # Controle d'acces pour les administrateurs
+        - { path: ^/register, roles: ROLE_ADMIN}
+        - { path: ^/utilisateurs, roles: ROLE_ADMIN}
 
         # Controle d'acces pour les olympiens
-        - { path: ^/auteurs, role: ROLE_OLYMPIENS }
-        - { path: ^/types_parutions, role: ROLE_OLYMPIENS }
-        - { path: ^/parutions, role: ROLE_OLYMPIENS }
-        - { path: ^/traducteurs, role: ROLE_OLYMPIENS }
-        - { path: ^/editeurs, role: ROLE_OLYMPIENS }
+        - { path: ^/auteurs, roles: ROLE_OLYMPIENS }
+        - { path: ^/types_parutions, roles: ROLE_OLYMPIENS }
+        - { path: ^/parutions, roles: ROLE_OLYMPIENS }
+        - { path: ^/traducteurs, roles: ROLE_OLYMPIENS }
+        - { path: ^/editeurs, roles: ROLE_OLYMPIENS }
+        
+        
+       
+        
 
-        # Controle d'acces pour les administrateurs
-        - { path: ^/register, role: ROLE_ADMIN}
+        
+       
+
+        
+        
+        

@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: "@ZeusUserBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
@@ -25,6 +26,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+      resources:
+        - ZeusSiteBundle:Form:form_div_layout.html.twig
 
 # Assetic Configuration
 assetic:
@@ -64,7 +68,7 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-    
+
 #app/config/config_dev.yml
 services:
     twig.extension.debug:
@@ -80,7 +84,8 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
-             
+
+
 # FOSUserBundle Configuration
 fos_user:
     db_driver:     orm
@@ -88,8 +93,9 @@ fos_user:
     user_class:    Zeus\UserBundle\Entity\Utilisateur
     registration:
         form:
-            type: zeus_userbundle_registration
-    
+            type: zeus_userbundle_utilisateur
+            validation_groups: [RegistrationZeus, Default]
+
 liip_imagine:
     filter_sets:
         image_parution_thumbnail:
@@ -97,6 +103,22 @@ liip_imagine:
             filters:
                 thumbnail: { size: [200, 200], mode: inset }
                 
+braincrafted_bootstrap:
+    output_dir:
+    assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
+    less_filter: none # "less", "lessphp", "sass" or "none"
+    auto_configure:
+        assetic: true
+        twig: false
+        knp_menu: true
+        knp_paginator: true
+    customize:
+        variables_file: ~
+        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
+        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+    
+
 genemu_form:
     select2:
         enabled: true
@@ -104,4 +126,15 @@ genemu_form:
             allowClear: true
             width: '250px'
             maximumSelectionSize: 3
-            
+
+knp_paginator:
+    page_range: 10                     # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: ZeusSiteBundle:Pagination:sortable_link.html.twig # sort link template
+
