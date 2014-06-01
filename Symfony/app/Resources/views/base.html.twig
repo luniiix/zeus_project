@@ -6,22 +6,32 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>{% block title %}Bibliothèque Zeus{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-		{% stylesheets 'bundles/zeussite/css/*' filter='cssrewrite' %}
-    		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% stylesheets 
+                    'css/bootstrap.css'    
+                    'bundles/zeussite/css/datepicker.css' 
+                    'bundles/zeussite/css/index.css'
+                    'bundles/zeussite/css/jquery.jscrollpane.css'
+                    'bundles/zeussite/css/main.css'
+                     'bundles/zeussite/css/select2.css'
+                    'bundles/zeussite/css/select2-bootstrap.css'
+                    'bundles/zeussite/css/style.css'
+                    'bundles/zeussite/css/style_ca.css'  
+                    filter='cssrewrite' 
+                %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
 		{% endstylesheets %}
 
 		{% javascripts
-                    'bundles/zeussite/js/jquery-1.10.1.min.js'
-                    'bundles/zeussite/js/bootstrap.js'
+                    'js/jquery.js'
+                    'js/bootstrap.js'
                     'bundles/zeussite/js/select2.js'
                     'bundles/zeussite/js/select2_locale_fr.js'
                     'bundles/zeussite/js/datepicker.js'
                     'bundles/zeussite/js/jquery.easing.1.3.js'
-                    'bundles/zeussite/js/jquery.mousewheel.js'
                     'bundles/zeussite/js/jquery.contentcarousel.js'
                     'bundles/zeussite/js/main.js'
                 %}
@@ -36,56 +46,9 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-         <!-- <div id="haut_information">-->
-            <a class="navbar-brand" href="{{ path('zeus_site_homepage') }}"><img src="{{ asset('bundles/zeussite/img/logo.png') }}" /></a>
-          <!--</div>-->
-        </div>
-
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-            <div class="navbar-collapse collapse">
-                <a href="{{ path('fos_user_security_logout') }}" class="deconnexion">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-                <a href="{{ path('fos_user_profile_edit') }}" class="profil">Bonjour {{ app.user.username }}</a>
-                <ul class="nav navbar-nav">
-                    <li class=""><a href="{{ path('zeus_site_homepage') }}">Accueil</a></li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de mon profil<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path ('fos_user_profile_edit') }}">Mon profil</a></li>
-                            <li><a href="{{ path ('zeus_site_emprunt_mes_emprunts') }}">Mes emprunts</a></li>
-                            <li><a href="{{ path ('fos_user_change_password') }}">Changer mon mot de passe</a></li>
-                        </ul>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <li><a href="{{ path('fos_user_registration_register') }}">Enregistrer un utilisateur</a></li>
-                    {% endif %}
-                    <li class="dropdown">
-                    {% if is_granted("ROLE_OLYMPIENS") %}
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de la bibliothèque<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('zeus_site_typeparution_tableau') }}">Gestion du type des parutions</a></li>
-                                <li><a href="{{ path('zeus_site_parution_tableau') }}">Gestion des parutions</a></li>
-                                <li><a href="{{ path('zeus_site_exemplaire_tableau') }}">Gestion des exemplaires</a></li>
-                                <li><a href="{{ path('zeus_site_auteur_tableau') }}">Gestion des auteurs</a></li>
-                                <li><a href="{{ path('zeus_site_traducteur_tableau') }}">Gestion des traducteurs</a></li>
-                                <li><a href="{{ path('zeus_site_editeur_tableau') }}">Gestion des éditeurs</a></li>
-                            </ul>
-                        <li class="dropdown">
-                    {% endif %}
-                    <li><a href="{{ path('zeus_site_contact') }}">Support technique</a></li>
-                </ul>
-            </div><!--/.navbar-collapse -->
-             {% endif %}
-          </div>
-        </div>
-            <div class="separation"></div>
+    
+        {% include '::menu.html.twig' %}
+        
         <!-- Main jumbotron for a primary marketing message or call to action -->
 
         <div class="container">
@@ -96,16 +59,13 @@
                         {{ flashMessage.message }}
                     </div>
                 {% endfor %}
+               
                 <!-- Block container -->
                 <div class="container container-fluid">
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
-
-        <div class="container">
-
-        </div> <!-- /container -->
 
    {# <footer>
     	<p>&copy; Zeus 2013  -  <a href="#">Mention l&eacute;gale</a></p>
