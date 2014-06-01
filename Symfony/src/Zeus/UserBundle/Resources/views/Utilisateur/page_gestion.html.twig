@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+		with {'route': 'zeus_user_utilisateur_ajout', 'element' : 'un utilisateur'} only %}
+        
+        {% include 'ZeusUserBundle:Utilisateur:tableau.html.twig' %}
+	
+
+{% endblock content %}

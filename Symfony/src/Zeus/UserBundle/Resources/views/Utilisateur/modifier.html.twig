@@ -1,0 +1,11 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+
+{% block content %}
+<div class="well formulaire">
+<form action="{{ path('zeus_user_utilisateur_tableau') }}" {{ form_enctype(form) }} method="POST" >
+    {{ form_widget(form) }}
+        <input type="submit" name="modifier" class="btn btn-primary" value="Modifier"/>
+</form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+
+<h1>Liste des utilisateurs</h1>
+
+<div class="tableau">
+    {% if pagination|length > 0 %}
+        <div class="count">
+            Nombre : {{ pagination.getTotalItemCount }}
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th class="text-center">
+                        {{ knp_pagination_sortable(pagination, 'Nom', 'utilisateur.nom') }}
+                    </th>
+                    <th class="{% if pagination.isSorted('utilisateur.prenom') %}sorted {% endif %}text-center">
+                        {{ knp_pagination_sortable(pagination, 'Prénom', 'utilisateur.prenom') }}
+                    </th>
+                    <th class="{% if pagination.isSorted('utilisateur.username') %}sorted {% endif %}text-center">
+                        {{ knp_pagination_sortable(pagination, 'Nom d\'utilisateur', 'utilisateur.username') }}
+                    </th>
+                    <th class="{% if pagination.isSorted('utilisateur.email') %}sorted {% endif %}text-center">
+                        {{ knp_pagination_sortable(pagination, 'Email', 'utilisateur.username') }}
+                    </th>
+                    <th class="text-center">
+                        Rôles
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for utilisateur in pagination %}  
+                <tr>
+                    <td class="nowrap text-center">
+                        <a href="{{ path('zeus_user_utilisateur_suppr', { 'idUtilisateur': utilisateur.id }) }}">
+                            <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        </a>
+                        <a href="{{ path('zeus_user_utilisateur_modif', { 'idUtilisateur': utilisateur.id }) }}">
+                            <img alt="editer" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                        </a>
+                       {# <a href="{{ path('zeus_site_utilisateur_affich', { 'idUtilisateur': utilisateur.id }) }}">
+                            <img alt="visualiser" src="{{ asset('bundles/becfrancesite/img/icons/zoom.png') }}" />
+                        </a>#}
+                    </td>
+                    <td class="text-center">{{ utilisateur.nom }}</td> 
+                    <td class="text-center">{{ utilisateur.prenom }}</td>
+                    <td class="text-center">{{ utilisateur.username }}</td> 
+                    <td class="text-center">{{ utilisateur.email }}</td> 
+                    <td class="text-center">
+                    {% for role in utilisateur.roles %}
+                        {{ role }}{% if not loop.last %},{% endif %} 
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}  
+            </tbody>
+        </table>
+    {% else %}
+        <div>Aucun utilisateur</div>
+    {% endif %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>

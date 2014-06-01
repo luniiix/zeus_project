@@ -1,0 +1,11 @@
+
+{% trans_default_domain 'FOSUserBundle' %}
+<h1>Mon profil</h1>
+<div class="well formulaire">
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit formulaire">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary" />
+    </div>
+</form>
+</div>
