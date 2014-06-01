@@ -3,5 +3,6 @@
 {% block content %}
 	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
 		with {'route': 'zeus_site_editeur_tableau', 'element' : 'editeur'} only %}
+         <h1 class="h1Parution">Ajouter un Editeur</h1>
 	{% include 'ZeusSiteBundle:Editeur:form_ajout.html.twig' %}
 {% endblock %}

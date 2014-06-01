@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+{% block content %}
+
+	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+		with {'route': 'zeus_site_groupe_ajout', 'element' : 'un groupe'} only %}
+
+        {% include 'ZeusSiteBundle:Groupe:tableau.html.twig' %}
+	
+
+{% endblock %}

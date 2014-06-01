@@ -1,0 +1,9 @@
+<a{% for attr, value in options %} {{ attr }}="{{ value }}"{% endfor %}>
+
+    {{ title }}
+    {% if 'desc' in options %}
+        <img alt="desc" src="{{ asset('/bundles/zeussite/img/icons/bullet_arrow_down.png') }}" />
+    {% elseif  'asc' in options %}
+         <img alt="asc" src="{{ asset('/bundles/zeussite/img/icons/bullet_arrow_up.png') }}" />
+    {% endif %}
+</a>

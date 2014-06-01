@@ -1,23 +1,37 @@
 {# src/Zeus/SiteBundle/Resources/views/Auteur/tableau.html.twig #}
 
-{% if auteurs|length > 0 %}
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Nom</th>
-            <th>Prenom</th>
-        </tr>
-    </thead>
-    <tbody>
-            {% for auteur in auteurs %}  
+<h1>Liste des auteurs</h1>
+
+{% if pagination|length > 0 %}
+
+    <div class="count">
+        Nombre : {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table>
+        <thead>
             <tr>
-                <td>
+                <th>Actions</th>
+                <th>
+                    {{ knp_pagination_sortable(pagination, 'Nom', 'auteur.nom') }}
+                </th>
+                <th{% if pagination.isSorted('auteur.prenom') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Prénom', 'auteur.prenom') }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auteur in pagination %}  
+            <tr>
+                <td class="nowrap">
                     <a href="{{ path('zeus_site_auteur_suppr', { 'idAuteur': auteur.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
                     </a>
                     <a href="{{ path('zeus_site_auteur_modif', { 'idAuteur': auteur.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                        <img alt="editer" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                    <a href="{{ path('zeus_site_auteur_affich', { 'idAuteur': auteur.id }) }}">
+                        <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
                     </a>
                 </td>
                 <td>{{ auteur.nom }}</td> 
@@ -25,12 +39,12 @@
             </tr>
             {% endfor %}  
         </tbody>
-		{# <tfoot>
-		<tr>
-			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-		</tr>
-		</tfoot>#}
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
 {% else %}
     <div>Aucun auteur</div>
 {% endif %}

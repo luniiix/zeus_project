@@ -1,36 +1,50 @@
 {# src/Zeus/SiteBundle/Resources/views/Traducteur/tableau.html.twig #}
 
-	{% if traducteurs|length > 0 %}
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Nom</th>
-            <th>Prenom</th>
-        </tr>
-    </thead>
-    <tbody>
-	{% for traducteur in traducteurs %}  
+<h1>Liste des Traducteurs</h1>
+
+{% if pagination|length > 0 %}
+
+    <div class="count">
+        Nombre : {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table>
+        <thead>
             <tr>
-                <td>
-                    <a href="{{ path('zeus_site_traducteur_suppr', { 'idTraducteur': traducteur.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
-                    </a>
-                    <a href="{{ path('zeus_site_traducteur_modif', { 'idTraducteur': traducteur.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
-                    </a>
-                </td>
-                <td>{{ traducteur.nom }}</td> 
-                <td>{{ traducteur.prenom }}</td> 	 
+                <th>Actions</th>
+                <th>
+                    {{ knp_pagination_sortable(pagination, 'Nom', 'traducteur.nom') }}
+                </th>
+                <th{% if pagination.isSorted('traducteur.prenom') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Prenom', 'traducteur.prenom') }}
+                </th>
             </tr>
-	{% endfor %}  
-    </tbody>
-		{# <tfoot>
-		<tr>
-			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-		</tr>
-		</tfoot>#}
+        </thead>
+        <tbody>
+            {% for traducteur in pagination %}  
+                <tr>
+                    <td class="nowrap">
+                        <a href="{{ path('zeus_site_traducteur_suppr', { 'idTraducteur': traducteur.id }) }}">
+                            <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        </a>
+                        <a href="{{ path('zeus_site_traducteur_modif', { 'idTraducteur': traducteur.id }) }}">
+                            <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                        </a>
+                         <a href="{{ path('zeus_site_traducteur_affich', { 'idTraducteur': traducteur.id }) }}">
+                             <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
+                        </a>
+                    </td>
+                    <td>{{ traducteur.nom }}</td> 
+                    <td>{{ traducteur.prenom }}</td> 	 
+                </tr>
+            {% endfor %}  
+        </tbody>
     </table>
-	{% else %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% else %}
     <div>Aucun traducteur</div>
-	{% endif %}
+{% endif %}

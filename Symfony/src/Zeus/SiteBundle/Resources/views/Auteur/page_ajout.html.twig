@@ -3,5 +3,6 @@
 {% block content %}
 	{% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
 		with {'route': 'zeus_site_auteur_tableau', 'element' : 'auteur'} only %}
+        <h1 class="h1Parution">Ajouter un Auteur</h1>
 	{% include 'ZeusSiteBundle:Auteur:form_ajout.html.twig' %}
 {% endblock %}

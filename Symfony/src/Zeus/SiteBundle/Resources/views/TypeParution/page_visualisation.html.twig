@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                    with {'route': 'zeus_site_typeparution_tableau', 'element' : 'types de parutions'} only %}
+     
+    <h1 class="h1Parution">Fiche du type de parution</h1>
+     <div class="visualisation">
+         {% if typeParution is defined %}
+             <p>
+                 <span class='label_fiche'>libelle : </span> {{typeParution.libelle}}<br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche du type de parution</p>
+         {% endif %}
+     </div>
+ 
+{% endblock %}

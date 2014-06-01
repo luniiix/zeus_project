@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <h1 class="h1Parution">Formulaire de Contact</h1>
+    <form action="#" class="formulaire" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        {{ form_rest(form) }}
+
+    </form>
+
+{% endblock %}

@@ -1,9 +1,11 @@
 {% extends "::base.html.twig" %}
 {% block content %}
 
-	{% include 'ZeusSiteBundle:Editeur:tableau.html.twig' %}
-	
-	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+        {% include 'ZeusSiteBundle:Include:alerts.html.twig' %}
+
+        {% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
 		with {'route': 'zeus_site_editeur_ajout', 'element' : 'un éditeur'} only %}
+
+	{% include 'ZeusSiteBundle:Editeur:tableau.html.twig' %}
 
 {% endblock %}

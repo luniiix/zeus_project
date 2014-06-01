@@ -3,8 +3,9 @@
 <h1 class="h1Parution">Ajouter un Traducteur</h1>
 <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.nom, "Nom du traducteur") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
+    	{#{{ form_label(form.nom, "Nom du traducteur") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
     	{{ form_label(form.prenom, "Prenom du traducteur") }} {{ form_widget(form.prenom) }} {{ form_errors(form.prenom) }} <br />
-    	{{ form_widget(form.ajouter) }}
+    	{{ form_widget(form.ajouter) }}#}
+                {{ form_widget(form) }}
 	</form>
 </div>

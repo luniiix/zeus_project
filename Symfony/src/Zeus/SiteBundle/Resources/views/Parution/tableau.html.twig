@@ -1,44 +1,57 @@
 {# src/Zeus/SiteBundle/Resources/views/Parution/tableau.html.twig #}
 
-	{% if parutions|length > 0 %}
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Date ajout</th>
-            <th>Titre</th>
-            <th>Auteurs</th>
-            <th>Résumé</th>
-        </tr>
-    </thead>
-    <tbody>
-            {% for parution in parutions %}  
+<h1>Liste des parutions</h1>
+
+{% if pagination|length > 0 %}
+
+    <div class="count">
+            Nombre : {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table>
+        <thead>
             <tr>
-                <td>
+                <th>Actions</th>
+                <th>
+                    {{ knp_pagination_sortable(pagination, 'Date ajout', 'parution.dateAjout') }}
+                </th>
+                <th{% if pagination.isSorted('parution.numero') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Titre', 'parution.titre') }}
+                </th>
+                <th>Auteurs</th>
+                <th>Résumé</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parution in pagination %}  
+            <tr>
+                <td class="nowrap">
                     <a href="{{ path('zeus_site_parution_suppr', { 'idParution': parution.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
                     </a>
                     <a href="{{ path('zeus_site_parution_modif', { 'idParution': parution.id }) }}">
                         <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
                     </a>
+                    <a href="{{ path('zeus_site_parution_affich', { 'idParution': parution.id }) }}">
+                         <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
+                    </a>
                 </td>
-                <td>{{ parution.dateAjout|date("m/d/Y") }}</td> 
+                <td>{{ parution.dateAjout|date("d/m/Y") }}</td> 
                 <td>{{ parution.titre }}</td> 
-                <td>
+                <td class="nowrap">
                 {% for auteur in parution.auteurs %}
                         {{ auteur.nom }} {{ auteur.prenom }} <br>
                 {% endfor %}
                 </td> 
-                <td>{{ parution.resume }}</td> 
+                <td class="resume">{{ parution.resume }}</td> 
             </tr>
             {% endfor %}  
-            </tbody>
-		{#<tfoot>
-		<tr>
-			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-		</tr>
-		</tfoot>#}
-        </table>
-	{% else %}
-        <div>Aucune parution</div>
-	{% endif %}
+        </tbody>
+    </table>
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+{% else %}
+    <div>Aucune parution</div>
+{% endif %}

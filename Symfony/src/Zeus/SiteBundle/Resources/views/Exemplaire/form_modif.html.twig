@@ -6,15 +6,35 @@
 
 {% block javascripts %}
     {{ form_javascript(form) }}
+    <script src="{{ asset('bundles/zeussite/js/fonctions_formulaires.js') }}" type="text/javascript"></script>
 {% endblock %}
+    
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        
+        route = 'zeus_site_edition_dispo_ajax';
+        select_parution = 'zeus_sitebundle_exemplaire_parution';
+        select_edition = 'zeus_sitebundle_exemplaire_edition'
+        edition = $('#' + select_edition).val();
+        
+        maj_select(route, select_parution, select_edition, edition);
+        
+        $("body").on('change', '#zeus_sitebundle_exemplaire_parution', function(){
+            maj_select(route, select_parution, select_edition, 0);
+        });
+    });
+   
+</script>
 
-<h1 class="h1Parution">Ajouter un exemplaire</h1>
+<h1 class="h1Parution">Modifier un Exemplaire</h1>
 <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.codeReference) }} {{ form_widget(form.codeReference) }} {{ form_errors(form.codeReference) }} <br />
+    	{#{{ form_label(form.codeReference) }} {{ form_widget(form.codeReference) }} {{ form_errors(form.codeReference) }} <br />
         {{ form_label(form.parution) }} {{ form_widget(form.parution) }} {{ form_errors(form.parution) }} <br />
         {{ form_label(form.edition) }} {{ form_widget(form.edition) }} {{ form_errors(form.edition) }} <br />
         {{ form_label(form.isDispo) }} {{ form_widget(form.isDispo) }} {{ form_errors(form.isDispo) }} <br />
-    	{{ form_widget(form.modifier) }}
+    	{{ form_widget(form.modifier) }}#}
+                 {{ form_widget(form) }}
 	</form>
 </div>

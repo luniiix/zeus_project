@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                    with {'route': 'zeus_site_edition_tableau', 'element' : 'editions'} only %}
+     
+    <h1 class="h1Parution">Fiche de l'exemplaire</h1>
+     <div class="visualisation">
+         {% if exemplaire.edition.parution is defined %}
+             <p>
+                <img src="{{ asset(exemplaire.edition.parution.imageParution.WebPath | imagine_filter('image_parution_thumbnail')) }}" /><br>
+                <span class='label_fiche'> Code de référence : </span> {{ exemplaire.codeReference }}<br>
+                <span class='label_fiche'>Edition : </span> 
+                {{ exemplaire.edition.editeur.nom }}
+                {% if exemplaire.edition.numero is not null %}
+                    N° {{ exemplaire.edition.numero }}
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Date d'édition : </span> {{ exemplaire.edition.date|date('m/d/Y') }}<br>
+                <span class='label_fiche'>Titre : </span> {{exemplaire.edition.parution.titre}}<br>
+                <span class='label_fiche'>Statut : </span> 
+                {% if exemplaire.isDispo %} Disponible {% else %} Indisponible {% endif %}<br>
+                <span class='label_fiche'>Resume : </span><span id="resume"> {{exemplaire.edition.parution.resume}}</span><br>
+                <span class='label_fiche'>Auteurs : </span> 
+                {% if exemplaire.edition.parution.auteurs is not null %}
+                   {% for auteur in exemplaire.edition.parution.auteurs %}
+                      {{ auteur.nom }} {{ auteur.prenom }}
+                      {% if not loop.last %}, {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Traducteurs : </span> 
+                {% if exemplaire.edition.parution.traducteurs is not null %}
+                   {% for traducteur in exemplaire.edition.parution.traducteurs %}
+                       {{ traducteur.nom }} {{ traducteur.prenom }}{% if not loop.last %}, {% endif %}
+                   {% endfor %}
+                {% else %}
+                   aucun
+                {% endif %}
+                <br>
+                <span class='label_fiche'>Categorie : </span> {{exemplaire.edition.parution.categorie.intitule}}<br>
+                <span class='label_fiche'>Sous-categorie : </span> {{exemplaire.edition.parution.sousCategorie.intitule}}<br>
+              {#  <span class='label_fiche'>Type : </span> {{exemplaire.edition.parution.type.libelle}}<br>
+                <span class='label_fiche'>Type : </span> {{exemplaire.edition.parution.type.libelle}}<br> #}
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche de l'exemplaire</p>
+         {% endif %}
+     </div>
+ 
+{% endblock %}

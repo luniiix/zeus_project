@@ -1,0 +1,40 @@
+{% extends 'BraincraftedBootstrapBundle:Form:bootstrap.html.twig' %}
+
+{% block file_widget %}
+{% spaceless %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
+    {% if attr.simple_col is defined and attr.simple_col is not empty %}
+        {% set simple_col = attr.simple_col %}
+    {% endif  %}
+
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
+
+    {% if simple_col is defined %}
+        <div class="col-{{ col_size }}-{{ simple_col }}">
+    {% endif %}
+
+    <input type="file" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+    <br><br>
+    {% if image_url is not null %}
+        <img alt="image fichier" src="{{ asset(image_url) | imagine_filter('image_parution_thumbnail') }}" class="file-img" />
+    {% endif %}
+    
+    {% if simple_col is defined %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock file_widget %}
+
+{#{% block file_widget %}
+    {% spaceless %}
+
+    {{ block('form_widget') }}
+    {% if image_url is not null %}
+        <img src="{{ asset(image_url) | imagine_filter('image_parution_thumbnail') }}" />
+    {% endif %}
+
+    {% endspaceless %}
+{% endblock %}#}

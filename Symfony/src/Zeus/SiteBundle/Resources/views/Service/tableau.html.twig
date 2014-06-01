@@ -1,15 +1,22 @@
 {# src/Zeus/SiteBundle/Resources/views/Service/tableau.html.twig #}
 
-{% if services|length > 0 %}
-<table>
+<h1>Liste des services</h1>
+
+{% if pagination|length > 0 %}
+
+<div class="count">
+    Nombre : {{ pagination.getTotalItemCount }}
+</div>
+
+<table class="table-responsive">
     <thead>
         <tr>
-            <th></th>
-            <th>Nom</th>
+            <th>Actions</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Nom', 'service.nom') }}</th>
         </tr>
     </thead>
     <tbody>
-            {% for service in services %}  
+            {% for service in pagination %}  
             <tr>
                 <td>
                     <a href="{{ path('zeus_site_service_suppr', { 'idService': service.id }) }}">
@@ -23,12 +30,13 @@
             </tr>
             {% endfor %}  
         </tbody>
-		{# <tfoot>
-		<tr>
-			<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-		</tr>
-		</tfoot>#}
+		
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
 {% else %}
     <div>Aucun Service</div>
 {% endif %}

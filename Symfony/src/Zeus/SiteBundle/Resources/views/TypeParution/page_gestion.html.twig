@@ -1,9 +1,11 @@
 {% extends "::base.html.twig" %}
 {% block content %}
 
-	{% include 'ZeusSiteBundle:TypeParution:tableau.html.twig' %}
-	
-	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
+        {% include 'ZeusSiteBundle:Include:alerts.html.twig' %}
+
+        {% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
 		with {'route': 'zeus_site_typeparution_ajout', 'element' : 'un type de parution'} only %}
 
+	{% include 'ZeusSiteBundle:TypeParution:tableau.html.twig' %}
+	
 {% endblock %}

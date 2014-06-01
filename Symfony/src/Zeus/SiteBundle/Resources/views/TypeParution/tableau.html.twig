@@ -1,34 +1,49 @@
 {# src/Zeus/SiteBundle/Resources/views/Auteur/tableau.html.twig #}
 
-	{% if typesparutions|length > 0 %}
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Libellé</th>
-        </tr>
-    </thead>
-    <tbody>
-				{% for typeparution in typesparutions %}  
+<h1>Liste des types de parutions</h1>
+
+{% if pagination|length > 0 %}
+
+    <div class="count">
+        Nombre : {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table>
+        <thead>
             <tr>
-               <td>
-                    <a href="{{ path('zeus_site_typeparution_suppr', { 'idTypeParution': typeparution.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
-                    </a>
-                    <a href="{{ path('zeus_site_typeparution_modif', { 'idTypeParution': typeparution.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
-                    </a>
-                </td>
-                <td>{{ typeparution.libelle }}</td> 	 
+                <th>Actions</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Libellé', 'typeparution.libelle') }}</th>
             </tr>
-				 {% endfor %}  
+        </thead>
+        <tbody>
+            {% for typeparution in pagination %}  
+                <tr>
+                    <td class="nowrap">
+                        <a href="{{ path('zeus_site_typeparution_suppr', { 'idTypeParution': typeparution.id }) }}">
+                            <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        </a>
+                        <a href="{{ path('zeus_site_typeparution_modif', { 'idTypeParution': typeparution.id }) }}">
+                            <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                        </a>
+                         <a href="{{ path('zeus_site_typeparution_affich', { 'idTypeParution': typeparution.id }) }}">
+                             <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
+                        </a>
+                    </td>
+                    <td>{{ typeparution.libelle }}</td> 	 
+                </tr>
+            {% endfor %}  
         </tbody>
-			{# <tfoot>
-			<tr>
-				<td colspan="3">{{ form_widget(form.enregistrer) }}</td>
-			</tr>
-			</tfoot>#}
+        {# <tfoot>
+        <tr>
+                <td colspan="3">{{ form_widget(form.enregistrer) }}</td>
+        </tr>
+        </tfoot>#}
     </table>
-	{% else %}
+
+     <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% else %}
     <div>Aucun type de parution</div>
-	{% endif %}
+{% endif %}

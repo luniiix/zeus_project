@@ -1,6 +1,8 @@
 {% extends "::base.html.twig" %}
 {% block content %}
 
+        {% include 'ZeusSiteBundle:Include:alerts.html.twig' %}
+
 	{% include 'ZeusSiteBundle:Include:lien_ajout_gestion.html.twig' 
 		with {'route': 'zeus_site_auteur_ajout', 'element' : 'un auteur'} only %}
 

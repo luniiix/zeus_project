@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                        with {'route': 'zeus_site_editeur_tableau', 'element' : 'éditeurs'} only %}
+
+     <h1 class="h1Parution">Fiche de l'éditeur</h1>
+     <div class="visualisation">
+         {% if editeur is defined %}
+             <p>
+                 <span class='label_fiche'>nom : </span> {{editeur.nom}}<br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche de l'éditeur</p>
+         {% endif %}
+     </div>
+ 
+{% endblock %}

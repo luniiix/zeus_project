@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+                    with {'route': 'zeus_site_auteur_tableau', 'element' : 'auteurs'} only %}
+     
+    <h1 class="h1Parution">Fiche de l'auteur</h1>
+     <div class="visualisation">
+         {% if auteur is defined %}
+             <p>
+                 <span class='label_fiche'>nom : </span> {{auteur.nom}}<br>
+                 <span class='label_fiche'>prenom : </span> {{auteur.prenom}}<br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche de l'auteur</p>
+         {% endif %}
+     </div>
+ 
+{% endblock %}

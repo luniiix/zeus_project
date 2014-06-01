@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+
+    {% include 'ZeusSiteBundle:Include:lien_retour_gestion.html.twig'
+           with {'route': 'zeus_site_traducteur_tableau', 'element' : 'traducteurs'} only %}
+
+     <h1 class="h1Parution">Fiche du traducteur</h1>
+     <div class="visualisation">
+         {% if traducteur is defined %}
+             <p>
+                 <span class='label_fiche'>nom : </span> {{traducteur.nom}}<br>
+                 <span class='label_fiche'>prenom : </span> {{traducteur.prenom}}<br>
+             </p>
+         {% else %}
+             <p>Impossible d'afficher la fiche du traducteur</p>
+         {% endif %}
+     </div>
+
+{% endblock %}

@@ -1,27 +1,37 @@
 {# src/Zeus/SiteBundle/Resources/views/Exempalire/tableau.html.twig #}
 
-{% if exemplaires|length > 0 %}
-<table>
-    <thead>
-        <tr>
-            <th></th>
-           {# <th>Date Ajout</th> #}
-            <th>Code référence</th>
-            <th>Parution</th>
-            <th>Editeur</th>
-            <th>Numéro d'édition</th>
-            <th>Date d'édition</th>
-        </tr>
-    </thead>
-    <tbody>
-            {% for exemplaire in exemplaires %}  
+<h1>Liste des exemplaires</h1>
+
+{% if pagination|length > 0 %}
+
+    <div class="count">
+            Nombre : {{ pagination.getTotalItemCount }}
+    </div>
+
+    <table>
+        <thead>
             <tr>
-                <td>
+                <th>Actions</th>
+               {# <th>Date Ajout</th> #}
+                <th>{{ knp_pagination_sortable(pagination, 'Code référence', 'exemplaire.codeReference') }}</th>
+                <th>Parution</th>
+                <th>Editeur</th>
+                <th>Numéro d'édition</th>
+                <th>Date d'édition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exemplaire in pagination %}  
+            <tr>
+                <td class="nowrap">
                     <a href="{{ path('zeus_site_exemplaire_suppr', { 'idExemplaire': exemplaire.id }) }}">
-                        <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
+                        <img alt="supprimer" src="{{ asset('bundles/zeussite/img/icons/cross.png') }}" />
                     </a>
                     <a href="{{ path('zeus_site_exemplaire_modif', { 'idExemplaire': exemplaire.id }) }}">
                         <img alt="edit" src="{{ asset('bundles/zeussite/img/icons/pencil.png') }}" />
+                    </a>
+                     <a href="{{ path('zeus_site_exemplaire_affich', { 'idExemplaire': exemplaire.id }) }}">
+                         <img alt="visualiser" src="{{ asset('bundles/zeussite/img/icons/zoom.png') }}" />
                     </a>
                 </td>
                {# <td>{{ exemplaire.dateAjout|date("d/m/Y") }}</td> #} 
@@ -39,6 +49,10 @@
 		</tr>
 		</tfoot>#}
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% else %}
     <div>Aucune exemplaire</div>
 {% endif %}

@@ -4,7 +4,8 @@
 
 <div class="well formulaire">
 	<form method="post" {{ form_enctype(form) }}>
-    	{{ form_label(form.nom, "Nom du Service") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
-    	{{ form_widget(form.modifier) }}
+    	{#{{ form_label(form.nom, "Nom du Service") }} {{ form_widget(form.nom) }} {{ form_errors(form.nom) }} <br />
+    	{{ form_widget(form.modifier) }}#}
+                 {{ form_widget(form) }}
 	</form>
 </div>
