@@ -11,3 +11,7 @@
 app/cache/dev/*
 app/cache/dev/sessions/*
 composer.lock
+
+web/media/cache/image_parution_thumnail/uploads/img_parution/*
+web/media/cache/image_parution_thumnail/uploads/img_parution/.gitkeep
+
